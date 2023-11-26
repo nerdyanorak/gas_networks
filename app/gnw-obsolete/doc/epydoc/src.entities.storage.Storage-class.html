@@ -1,0 +1,1247 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>src.entities.storage.Storage</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="src.entities-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >gnw-obsolete</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;src ::
+        <a href="src.entities-module.html">Package&nbsp;entities</a> ::
+        <a href="src.entities.storage-module.html">Module&nbsp;storage</a> ::
+        Class&nbsp;Storage
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="src.entities.storage.Storage-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Storage</h1><p class="nomargin-top"><span class="codelink"><a href="src.entities.storage-pysrc.html#Storage">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_src_enti_4" name="uml_class_diagram_for_src_enti_4">
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#DISCOUNT_FACTOR" alt="" coords="20,380,2422,398" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#FINAL_STORAGE_LEVEL_PCT" alt="" coords="20,398,2422,417" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#INJ_COST" alt="" coords="20,417,2422,436" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#MAX_INJ_CAPACITY_PCT" alt="" coords="20,436,2422,454" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#MAX_LEV_PCT" alt="" coords="20,454,2422,473" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#MAX_REL_CAPACITY_PCT" alt="" coords="20,473,2422,492" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#MIN_LEV_PCT" alt="" coords="20,492,2422,510" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#NOMINAL_INJ_CAPACITY" alt="" coords="20,510,2422,529" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#NOMINAL_REL_CAPACITY" alt="" coords="20,529,2422,548" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#NOMINAL_WGV" alt="" coords="20,548,2422,566" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#REL_COST" alt="" coords="20,566,2422,585" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#START_STORAGE_LEVEL_PCT" alt="" coords="20,585,2422,604" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#lev_pct" alt="" coords="20,604,2422,622" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#q_rel_pct" alt="" coords="20,641,2422,660" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#__init__" alt="" coords="20,662,2422,681" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#set_MAX_LEV_PCT" alt="" coords="20,681,2422,700" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#set_MIN_LEV_PCT" alt="" coords="20,700,2422,718" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#set_MAX_INJ_CAPACITY_PCT" alt="" coords="20,718,2422,737" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#set_MAX_REL_CAPACITY_PCT" alt="" coords="20,737,2422,756" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#set_INJ_COST" alt="" coords="20,756,2422,774" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#set_REL_COST" alt="" coords="20,774,2422,793" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#set_DISCOUNT_FACTOR" alt="" coords="20,793,2422,812" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#set_FWD_CURVE_BID" alt="" coords="20,812,2422,830" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#set_FWD_CURVE_ASK" alt="" coords="20,830,2422,849" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#set_DISPATCH_PERIODS" alt="" coords="20,849,2422,868" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#create_lp_vars" alt="" coords="20,868,2422,886" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#create_model" alt="" coords="20,886,2422,905" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#get_lp_vars" alt="" coords="20,905,2422,924" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html" title="Class implements a simple storage where injection/release volumes are only restricted by possible (time dependent) minimal and maximal storage level constraints as well as (time dependent) maximal injection and release capacity limits." alt="" coords="8,357,2434,930" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#DISPATCH_PERIODS" alt="" coords="992,30,1450,49" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#constraint_list" alt="" coords="992,49,1450,68" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#in_flow" alt="" coords="992,68,1450,86" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#objective_list" alt="" coords="992,86,1450,105" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#out_flow" alt="" coords="992,105,1450,124" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#snkList" alt="" coords="992,124,1450,142" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#srcList" alt="" coords="992,142,1450,161" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#create_coefficient_array" alt="" coords="992,164,1450,182" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#set_name" alt="" coords="992,182,1450,201" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#set_src_list" alt="" coords="992,201,1450,220" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#set_snk_list" alt="" coords="992,220,1450,238" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#append_to_src_list" alt="" coords="992,238,1450,257" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#append_to_snk_list" alt="" coords="992,257,1450,276" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#get_topology_graph" alt="" coords="992,276,1450,294" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#get_topology_edges" alt="" coords="992,294,1450,313" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html" title="Gas Network framework base class." alt="" coords="980,8,1462,320" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#snk" title="src.entities.storage.Storage.snk" alt="" coords="1244,330,1265,346" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#snk" title="src.entities.storage.Storage.snk" alt="" coords="1241,358,1249,366" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#snk" title="src.entities.storage.Storage.snk" alt="" coords="1238,310,1246,318" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#src" title="src.entities.storage.Storage.src" alt="" coords="1272,330,1290,346" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#src" title="src.entities.storage.Storage.src" alt="" coords="1270,358,1278,366" />
+<area shape="rect" href="src.entities.storage.Storage&#45;class.html#src" title="src.entities.storage.Storage.src" alt="" coords="1266,310,1274,318" />
+</map>
+  <img src="uml_class_diagram_for_src_enti_4.gif" alt='' usemap="#uml_class_diagram_for_src_enti_4" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>Class implements a simple storage where injection/release volumes are 
+  only restricted by possible (time dependent) minimal and maximal storage 
+  level constraints as well as (time dependent) maximal injection and 
+  release capacity limits. An (time dependent) injection and/or a release 
+  cost (potentially zero) is is charged for each unit of volume of gas 
+  injected and/or released, respectively, from the storage.</p>
+  <p>For the dynamics of the storage see Class instance method <a 
+  href="src.entities.storage.Storage-class.html#create_model" 
+  class="link">create_model(self, prefix=&quot;&quot;)</a>.</p>
+  <p>Note: In order to make the storage object independent from as many 
+  absolute volumes as possible all time dependent storage constraints limit
+  inputs have to be provided in percentage [%] terms relative to <a 
+  href="src.entities.storage.Storage-class.html#NOMINAL_WGV" 
+  class="link">NOMINAL_WGV</a>, <a 
+  href="src.entities.storage.Storage-class.html#NOMINAL_INJ_CAPACITY" 
+  class="link">NOMINAL_INJ_CAPACITY</a>, and <a 
+  href="src.entities.storage.Storage-class.html#NOMINAL_REL_CAPACITY" 
+  class="link">NOMINAL_REL_CAPACITY</a>, respectively. This means the size 
+  of the storage can be changed, without changing its operational dynamics,
+  by only changeing the value for <a 
+  href="src.entities.storage.Storage-class.html#NOMINAL_WGV" 
+  class="link">NOMINAL_WGV</a>.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.storage.Storage-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">nominalWorkingGasVolume</span>,
+        <span class="summary-sig-arg">nominalInjectionCapacity</span>,
+        <span class="summary-sig-arg">nominalReleaseCapacity</span>,
+        <span class="summary-sig-arg">startStorageLevelPct</span>,
+        <span class="summary-sig-arg">endStorageLevelPct</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">maxStorageLevelPct</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">minStorageLevelPct</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">maxInjectionCapacityPct</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">maxReleaseCapacityPct</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">injectionCost</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">releaseCost</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">discountFactor</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">fwdCurveBid</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">fwdCurveAsk</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">src</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">snk</span>=<span class="summary-sig-default">None</span>)</span><br />
+      x.__init__(...) initializes x; see x.__class__.__doc__ for signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_MAX_LEV_PCT"></a><span class="summary-sig-name">set_MAX_LEV_PCT</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.set_MAX_LEV_PCT">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_MIN_LEV_PCT"></a><span class="summary-sig-name">set_MIN_LEV_PCT</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.set_MIN_LEV_PCT">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_MAX_INJ_CAPACITY_PCT"></a><span class="summary-sig-name">set_MAX_INJ_CAPACITY_PCT</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.set_MAX_INJ_CAPACITY_PCT">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_MAX_REL_CAPACITY_PCT"></a><span class="summary-sig-name">set_MAX_REL_CAPACITY_PCT</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.set_MAX_REL_CAPACITY_PCT">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_INJ_COST"></a><span class="summary-sig-name">set_INJ_COST</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.set_INJ_COST">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_REL_COST"></a><span class="summary-sig-name">set_REL_COST</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.set_REL_COST">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_DISCOUNT_FACTOR"></a><span class="summary-sig-name">set_DISCOUNT_FACTOR</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.set_DISCOUNT_FACTOR">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_FWD_CURVE_BID"></a><span class="summary-sig-name">set_FWD_CURVE_BID</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.set_FWD_CURVE_BID">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_FWD_CURVE_ASK"></a><span class="summary-sig-name">set_FWD_CURVE_ASK</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.set_FWD_CURVE_ASK">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.storage.Storage-class.html#set_DISPATCH_PERIODS" class="summary-sig-name">set_DISPATCH_PERIODS</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">dispatchPeriods</span>)</span><br />
+      Set the dispatch periods array (calling parent's set method) and set 
+      coefficient arrays to the correct length and initialise with some 
+      meaningful defaults, if they haven't been set appropriately 
+      beforehand (using __init__(...) or setters).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.set_DISPATCH_PERIODS">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.storage.Storage-class.html#create_lp_vars" class="summary-sig-name">create_lp_vars</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">prefix</span>=<span class="summary-sig-default">&quot;&quot;</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.create_lp_vars">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.storage.Storage-class.html#create_model" class="summary-sig-name">create_model</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">prefix</span>=<span class="summary-sig-default">&quot;&quot;</span>)</span><br />
+      The dynamics of the storage are as follows:</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.create_model">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.storage.Storage-class.html#get_lp_vars" class="summary-sig-name">get_lp_vars</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.get_lp_vars">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="src.entities.entity.Entity-class.html">entity.Entity</a></code></b>:
+      <code><a href="src.entities.entity.Entity-class.html#append_to_snk_list">append_to_snk_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#append_to_src_list">append_to_src_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#get_topology_edges">get_topology_edges</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#get_topology_graph">get_topology_graph</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#set_name">set_name</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#set_snk_list">set_snk_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#set_src_list">set_src_list</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__str__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== STATIC METHODS ==================== -->
+<a name="section-StaticMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Static Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-StaticMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="src.entities.entity.Entity-class.html">entity.Entity</a></code></b>:
+      <code><a href="src.entities.entity.Entity-class.html#create_coefficient_array">create_coefficient_array</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE VARIABLES ==================== -->
+<a name="section-InstanceVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">numpy.ndarray</code> of dtype='double'</span>
+    </td><td class="summary">
+        <a href="src.entities.storage.Storage-class.html#DISCOUNT_FACTOR" class="summary-name">DISCOUNT_FACTOR</a><br />
+      array of cost of size len(<a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a>) containing the discount factors to
+      be used for cash flows from dispatch costs arising during each given 
+      dispatch period.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">number</span>
+    </td><td class="summary">
+        <a name="FINAL_STORAGE_LEVEL_PCT"></a><span class="summary-name">FINAL_STORAGE_LEVEL_PCT</span><br />
+      ending volume in % of <a 
+      href="src.entities.storage.Storage-class.html#NOMINAL_WGV" 
+      class="link">NOMINAL_WGV</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">numpy.ndarray</code> of dtype='double'</span>
+    </td><td class="summary">
+        <a name="INJ_COST"></a><span class="summary-name">INJ_COST</span><br />
+      array of cost of size len(<a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a>) for injection one [MWh] of gas 
+      into the storage.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">numpy.ndarray</code> of dtype='double'</span>
+    </td><td class="summary">
+        <a href="src.entities.storage.Storage-class.html#MAX_INJ_CAPACITY_PCT" class="summary-name">MAX_INJ_CAPACITY_PCT</a><br />
+      array of size len(<a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a>) holding the maximal available 
+      injection capacity as a % of <a 
+      href="src.entities.storage.Storage-class.html#NOMINAL_INJ_CAPACITY" 
+      class="link">NOMINAL_INJ_CAPACITY</a> assuming an injection rate of 
+      100% for each dispatch period t.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">numpy.ndarray</code> of dtype='double'</span>
+    </td><td class="summary">
+        <a name="MAX_LEV_PCT"></a><span class="summary-name">MAX_LEV_PCT</span><br />
+      array of size len(<a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a>) + 1 holding the maximal admissible
+      storage level in % of <a 
+      href="src.entities.storage.Storage-class.html#NOMINAL_WGV" 
+      class="link">NOMINAL_WGV</a> at the start of each dispatch period t.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">numpy.ndarray</code> of dtype='double'</span>
+    </td><td class="summary">
+        <a href="src.entities.storage.Storage-class.html#MAX_REL_CAPACITY_PCT" class="summary-name">MAX_REL_CAPACITY_PCT</a><br />
+      array of size len(<a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a>) holding the maximal available 
+      release capacity as a % of <a 
+      href="src.entities.storage.Storage-class.html#NOMINAL_REL_CAPACITY" 
+      class="link">NOMINAL_REL_CAPACITY</a> assuming an release rate of 
+      100% for each dispatch period t.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">numpy.ndarray</code> of dtype='double'</span>
+    </td><td class="summary">
+        <a name="MIN_LEV_PCT"></a><span class="summary-name">MIN_LEV_PCT</span><br />
+      array of size len(<a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a>) + 1 holding the minimal admissible
+      storage level in % of <a 
+      href="src.entities.storage.Storage-class.html#NOMINAL_WGV" 
+      class="link">NOMINAL_WGV</a> at the start of each dispatch period t.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">number</span>
+    </td><td class="summary">
+        <a name="NOMINAL_INJ_CAPACITY"></a><span class="summary-name">NOMINAL_INJ_CAPACITY</span><br />
+      nominal injection capacity in [MW]
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">number</span>
+    </td><td class="summary">
+        <a name="NOMINAL_REL_CAPACITY"></a><span class="summary-name">NOMINAL_REL_CAPACITY</span><br />
+      nominal release capacity in [MW]
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">number</span>
+    </td><td class="summary">
+        <a name="NOMINAL_WGV"></a><span class="summary-name">NOMINAL_WGV</span><br />
+      working gas volume in [MWh]
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">numpy.ndarray</code> of dtype='double'</span>
+    </td><td class="summary">
+        <a name="REL_COST"></a><span class="summary-name">REL_COST</span><br />
+      array of cost of size len(<a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a>) for release of one [MWh] of gas 
+      from the storage.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">number</span>
+    </td><td class="summary">
+        <a name="START_STORAGE_LEVEL_PCT"></a><span class="summary-name">START_STORAGE_LEVEL_PCT</span><br />
+      starting volume in % of <a 
+      href="src.entities.storage.Storage-class.html#NOMINAL_WGV" 
+      class="link">NOMINAL_WGV</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">numpy.ndarray</code> of dtype='object'    where 
+      object is <code class="link">pulp.LpAffineExpression</code></span>
+    </td><td class="summary">
+        <a name="lev_pct"></a><span class="summary-name">lev_pct</span><br />
+      array of constraint expression of size len(<a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a>) representing the current storage 
+      level as % of <a 
+      href="src.entities.storage.Storage-class.html#NOMINAL_WGV" 
+      class="link">NOMINAL_WGV</a> at each dispatch period t.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">str</code></span>
+    </td><td class="summary">
+        <a name="name"></a><span class="summary-name">name</span><br />
+      is the unique name of the object.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">numpy.ndarray</code> of dtype='object'    where 
+      object is <code class="link">pulp.LpVariable</code>.</span>
+    </td><td class="summary">
+        <a href="src.entities.storage.Storage-class.html#q_dsp_pct" class="summary-name">q_dsp_pct</a><br />
+      array of decision variables of size len(<a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a>) representing the dispatched gas 
+      volume as a % of the <a 
+      href="src.entities.storage.Storage-class.html#NOMINAL_WGV" 
+      class="link">NOMINAL_WGV</a> for each dispatch period t.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">numpy.ndarray</code> of dtype='object'\ where 
+      object is <code class="link">pulp.LpVariable</code></span>
+    </td><td class="summary">
+        <a href="src.entities.storage.Storage-class.html#q_inj_pct" class="summary-name">q_inj_pct</a><br />
+      array of decision variables of size len({DISPATCH_PERIODS}) 
+      representing the injected gas volume as a % of <a 
+      href="src.entities.storage.Storage-class.html#NOMINAL_WGV" 
+      class="link">NOMINAL_WGV</a> at each dispatch period t.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">numpy.ndarray</code> of dtype='object'\ where 
+      object is <code class="link">pulp.LpVariable</code></span>
+    </td><td class="summary">
+        <a href="src.entities.storage.Storage-class.html#q_rel_pct" class="summary-name">q_rel_pct</a><br />
+      array of decision variable of size len({DISPATCH_PERIODS}) 
+      representing the released gas volume as a % of <a 
+      href="src.entities.storage.Storage-class.html#NOMINAL_WGV" 
+      class="link">NOMINAL_WGV</a> at each dispatch period t.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><a href="src.entities.entity.Entity-class.html" 
+      class="link">Entity</a></span>
+    </td><td class="summary">
+        <a name="snk"></a><span class="summary-name">snk</span><br />
+      sink <a href="src.entities.entity.Entity-class.html" 
+      class="link">Entity</a> object, i.e., where the outflow is going to
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><a href="src.entities.entity.Entity-class.html" 
+      class="link">Entity</a></span>
+    </td><td class="summary">
+        <a name="src"></a><span class="summary-name">src</span><br />
+      source <a href="src.entities.entity.Entity-class.html" 
+      class="link">Entity</a> object, i.e., where the inflow is coming from
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="src.entities.entity.Entity-class.html">entity.Entity</a></code></b>:
+      <code><a href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS">DISPATCH_PERIODS</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#constraint_list">constraint_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#in_flow">in_flow</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#objective_list">objective_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#out_flow">out_flow</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#snkList">snkList</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#srcList">srcList</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">name</span>,
+        <span class="sig-arg">nominalWorkingGasVolume</span>,
+        <span class="sig-arg">nominalInjectionCapacity</span>,
+        <span class="sig-arg">nominalReleaseCapacity</span>,
+        <span class="sig-arg">startStorageLevelPct</span>,
+        <span class="sig-arg">endStorageLevelPct</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">maxStorageLevelPct</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">minStorageLevelPct</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">maxInjectionCapacityPct</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">maxReleaseCapacityPct</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">injectionCost</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">releaseCost</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">discountFactor</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">fwdCurveBid</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">fwdCurveAsk</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">src</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">snk</span>=<span class="sig-default">None</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__init__(...) initializes x; see x.__class__.__doc__ for 
+  signature</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>name</code></strong> (<code class="link">str</code>) - uniqe, non-empty name string of entity</li>
+        <li><strong class="pname"><code>nominalWorkingGasVolume</code></strong> (number) - working gas volume in [MWh]</li>
+        <li><strong class="pname"><code>nominalInjectionCapacity</code></strong> (number) - nominal injection capacity in [MW]</li>
+        <li><strong class="pname"><code>nominalReleaseCapacity</code></strong> (number) - nominal release capacity in [MW]</li>
+        <li><strong class="pname"><code>startStorageLevelPct</code></strong> (number) - starting volume in % of <code 
+          class="link">nominalWorkingGasVolume</code></li>
+        <li><strong class="pname"><code>endStorageLevelPct</code></strong> (number) - ending volume in % of <code 
+          class="link">nominalWorkingGasVolume</code></li>
+        <li><strong class="pname"><code>maxStorageLevelPct</code></strong> (number, <code class="link">numpy.ndarray</code> of dtype='double') - a non-negative number or an array of size len(<a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>) + 1 holding the maximal 
+          admissible storage level in % of <code 
+          class="link">nominalWorkingGasVolume</code> at the start of each 
+          dispatch period t.</li>
+        <li><strong class="pname"><code>minStorageLevelPct</code></strong> (number, <code class="link">numpy.ndarray</code> of dtype='double') - a non-negative number or an array of size len(<a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>) + 1 holding the minimal 
+          admissible storage level in % of <code 
+          class="link">nominalWorkingGasVolume</code> at the start of each 
+          dispatch period t.</li>
+        <li><strong class="pname"><code>maxInjectionCapacityPct</code></strong> (number, <code class="link">numpy.ndarray</code> of dtype='double') - a non-negative number or an array of size len(<a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>) holding the maximal available 
+          injection capacity as a % of <code 
+          class="link">nominalInjectionCapacity</code> assuming an 
+          injection rate of 100% for each dispatch period t. Depending on 
+          actual storage level the injection rate may be less than 100%.</li>
+        <li><strong class="pname"><code>maxReleaseCapacityPct</code></strong> (number, <code class="link">numpy.ndarray</code> of dtype='double') - a non-negative number or an array of size len(<a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>) holding the maximal available 
+          release capacity as a % of <code 
+          class="link">nominalReleaseCapacity</code> assuming an release 
+          rate of 100% for each dispatch period t. Depending on storage 
+          level the release rate may be less than 100%.</li>
+        <li><strong class="pname"><code>injectionCost</code></strong> (number, <code class="link">numpy.ndarray</code> of dtype='double') - a number or an array of cost of size len(<a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>) for injection of one [MWh] of 
+          gas into the storage.</li>
+        <li><strong class="pname"><code>releaseCost</code></strong> (number, <code class="link">numpy.ndarray</code> of dtype='double') - a number array of cost of size len(<a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>) for release of one [MWh] of 
+          gas from the storage.</li>
+        <li><strong class="pname"><code>discountFactor</code></strong> (number, <code class="link">numpy.ndarray</code> of dtype='double') - a number array of discount factors of size len(<a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>).</li>
+        <li><strong class="pname"><code>src</code></strong> (<a href="src.entities.entity.Entity-class.html" 
+          class="link">Entity</a>) - source entity object</li>
+        <li><strong class="pname"><code>snk</code></strong> (<a href="src.entities.entity.Entity-class.html" 
+          class="link">Entity</a>) - sink entity object</li>
+    </ul></dd>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_DISPATCH_PERIODS"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_DISPATCH_PERIODS</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">dispatchPeriods</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.set_DISPATCH_PERIODS">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Set the dispatch periods array (calling parent's set method) and set 
+  coefficient arrays to the correct length and initialise with some 
+  meaningful defaults, if they haven't been set appropriately beforehand 
+  (using __init__(...) or setters). If coefficient arrays have already been
+  set check for appropriate size (and values?).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dispatchPeriods</code></strong> (<code class="link">numpy.ndarray</code> of dtype='double') - array of dispatch periods defining the overall optimisation 
+          horizon as well as the individual duration of each dispatch 
+          period.</li>
+    </ul></dd>
+    <dt>Overrides:
+        <a href="src.entities.entity.Entity-class.html#set_DISPATCH_PERIODS">entity.Entity.set_DISPATCH_PERIODS</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="create_lp_vars"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">create_lp_vars</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">prefix</span>=<span class="sig-default">&quot;&quot;</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.create_lp_vars">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="src.entities.entity.Entity-class.html#create_lp_vars">entity.Entity.create_lp_vars</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="create_model"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">create_model</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">prefix</span>=<span class="sig-default">&quot;&quot;</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.create_model">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>The dynamics of the storage are as follows:</p>
+  <ul>
+    <li>
+      storage level balance constraints:
+      <ul>
+        <li>
+          storage_level[t] [MWh] == storage_level[t - 1] [MWh] + 
+          dispatch_volume[t] [MWh], for all t = 1..nPoints-1, and
+        </li>
+        <li>
+          storage_level[0] [MWh] == START_STORAGE_LEVEL [MWh],
+        </li>
+        <li>
+          storage_level[nPoints-1] [MWh] == FINAL_STORAGE_LEVEL [MWh] (if 
+          set)
+        </li>
+      </ul>
+      <p>with nPoints = nSteps + 1 and nSteps the number of dispatch 
+      periods in the optimisation. This is equivalent to storage_level(t) 
+      [MWh] == storage_level[0] [MWh] + sum(dispatch_volume[i], i = 0..t) 
+      [MWh]</p>
+    </li>
+    <li>
+      storage level limit constraints:
+      <ul>
+        <li>
+          MIN_STORAGE_LEVEL[t] [MWh] &lt;= storage_level[t] [MWh],
+        </li>
+        <li>
+          MAX_STORAGE_LEVEL[t] [MWh] &gt;= storage_level[t] [MWh],
+        </li>
+      </ul>
+      <p>for all t = 0..nPoints-1</p>
+    </li>
+    <li>
+      injection/release capacity constraints: As decision variable 
+      dispatch_volume[t], for all t = 0..nSteps-1, is a free variable 
+      (i.e., not bounded from below by 0) a positive value represents 
+      injected gas volume and a negative value represents released gas 
+      volume. Therefore we must have
+      <ul>
+        <li>
+          dispatch_volume[t] [MWh] &lt;= 
+          MAX_INJECTION_CAPACITY[t]*DISPATCH_PERIOD[t] [MW*h], and
+        </li>
+        <li>
+          -dispatch_volume[t] [MWh] &lt;= 
+          MAX_RELEASE_CAPACITY[t]*DISPATCH_PERIOD[t] [MW*h],
+        </li>
+      </ul>
+      <p>for all t = 0..nSteps-1</p>
+    </li>
+    <li>
+      inflow/outflow balance constraints:
+      <ul>
+        <li>
+          disptach_volume[t] [MWh] == in_flow[t] [MWh] - out_flow[t] [MWh],
+          for all t = 0..nSteps-1
+        </li>
+      </ul>
+    </li>
+    <li>
+      injection/release cost components to be considered for in objective 
+      function (that we want to maximise):
+      <ul>
+        <li>
+          injectionCost [EUR] := 
+          sum(injection_volume[i]*INJ_COST[i]*DISCOUNT_FACTOR[i], i = 
+          0..nSteps-1) [MWh*EUR/MWh]
+        </li>
+        <li>
+          releaseCost [EUR] := 
+          sum(release_volume[i]*REL_COST[i]*DISCOUNT_FACTOR[i], i = 
+          0..nSteps-1) [MWh*EUR/MWh]
+        </li>
+      </ul>
+      <p>where</p>
+      <ul>
+        <li>
+          injection_volume[t] [MWh] &gt;= dispatch_volume[t] [MWh],
+        </li>
+        <li>
+          release_volume[t] [MWh] &gt;= -dispatch_volume[t] [MWh],
+        </li>
+        <li>
+          injection_volume[t], release_volume[t] &gt;= 0,
+        </li>
+      </ul>
+      <p>for all t = 0..nSteps-1</p>
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="src.entities.entity.Entity-class.html#create_model">entity.Entity.create_model</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_lp_vars"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_lp_vars</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.storage-pysrc.html#Storage.get_lp_vars">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="src.entities.entity.Entity-class.html#get_lp_vars">entity.Entity.get_lp_vars</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== INSTANCE VARIABLE DETAILS ==================== -->
+<a name="section-InstanceVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="DISCOUNT_FACTOR"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">DISCOUNT_FACTOR</h3>
+  array of cost of size len(<a 
+  href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+  class="link">DISPATCH_PERIODS</a>) containing the discount factors to be 
+  used for cash flows from dispatch costs arising during each given 
+  dispatch period. This means that DISCOUNT_FACTOR[t] doesn't necessarily 
+  need to be the discount factor for cash flows payed at the end of 
+  DISPATCH_PERIOD[t] but some other point in time (for example settlement 
+  date of standard product its delivery period includes given dispatch 
+  period DISPATCH_PERIODS[t])
+  <dl class="fields">
+    <dt>Type:</dt>
+      <dd><code class="link">numpy.ndarray</code> of dtype='double'</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="MAX_INJ_CAPACITY_PCT"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">MAX_INJ_CAPACITY_PCT</h3>
+  array of size len(<a 
+  href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+  class="link">DISPATCH_PERIODS</a>) holding the maximal available 
+  injection capacity as a % of <a 
+  href="src.entities.storage.Storage-class.html#NOMINAL_INJ_CAPACITY" 
+  class="link">NOMINAL_INJ_CAPACITY</a> assuming an injection rate of 100% 
+  for each dispatch period t. Depending on actual storage level the 
+  injection rate may be less than 100%.
+  <dl class="fields">
+    <dt>Type:</dt>
+      <dd><code class="link">numpy.ndarray</code> of dtype='double'</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="MAX_REL_CAPACITY_PCT"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">MAX_REL_CAPACITY_PCT</h3>
+  array of size len(<a 
+  href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+  class="link">DISPATCH_PERIODS</a>) holding the maximal available release 
+  capacity as a % of <a 
+  href="src.entities.storage.Storage-class.html#NOMINAL_REL_CAPACITY" 
+  class="link">NOMINAL_REL_CAPACITY</a> assuming an release rate of 100% 
+  for each dispatch period t. Depending on storage level the release rate 
+  may be less than 100%.
+  <dl class="fields">
+    <dt>Type:</dt>
+      <dd><code class="link">numpy.ndarray</code> of dtype='double'</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="q_dsp_pct"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">q_dsp_pct</h3>
+  array of decision variables of size len(<a 
+  href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+  class="link">DISPATCH_PERIODS</a>) representing the dispatched gas volume
+  as a % of the <a 
+  href="src.entities.storage.Storage-class.html#NOMINAL_WGV" 
+  class="link">NOMINAL_WGV</a> for each dispatch period t. If <a 
+  href="src.entities.storage.Storage-class.html#q_dsp_pct" 
+  class="link">q_dsp_pct</a>[t] &gt; 0 we inject gas into storage. If <a 
+  href="src.entities.storage.Storage-class.html#q_dsp_pct" 
+  class="link">q_dsp_pct</a>[t] &lt; 0 we release gas from storage.
+  <dl class="fields">
+    <dt>Type:</dt>
+      <dd><code class="link">numpy.ndarray</code> of dtype='object'    where 
+      object is <code class="link">pulp.LpVariable</code>.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="q_inj_pct"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">q_inj_pct</h3>
+  array of decision variables of size len({DISPATCH_PERIODS}) representing 
+  the injected gas volume as a % of <a 
+  href="src.entities.storage.Storage-class.html#NOMINAL_WGV" 
+  class="link">NOMINAL_WGV</a> at each dispatch period t. I.e.,
+  <ul>
+    <li>
+      <a href="src.entities.storage.Storage-class.html#q_inj_pct" 
+      class="link">q_inj_pct</a>[t] &gt;= <a 
+      href="src.entities.storage.Storage-class.html#q_dsp_pct" 
+      class="link">q_dsp_pct</a>[t]
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Type:</dt>
+      <dd><code class="link">numpy.ndarray</code> of dtype='object'\ where 
+      object is <code class="link">pulp.LpVariable</code></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="q_rel_pct"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">q_rel_pct</h3>
+  array of decision variable of size len({DISPATCH_PERIODS}) representing 
+  the released gas volume as a % of <a 
+  href="src.entities.storage.Storage-class.html#NOMINAL_WGV" 
+  class="link">NOMINAL_WGV</a> at each dispatch period t. I.e.,
+  <ul>
+    <li>
+      <a href="src.entities.storage.Storage-class.html#q_rel_pct" 
+      class="link">q_rel_pct</a>[t] &gt;= -<a 
+      href="src.entities.storage.Storage-class.html#q_dsp_pct" 
+      class="link">q_dsp_pct</a>[t]
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Type:</dt>
+      <dd><code class="link">numpy.ndarray</code> of dtype='object'\ where 
+      object is <code class="link">pulp.LpVariable</code></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="src.entities-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >gnw-obsolete</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Mar 05 13:40:14 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

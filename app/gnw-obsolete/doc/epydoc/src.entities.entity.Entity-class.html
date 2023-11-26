@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>src.entities.entity.Entity</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="src.entities-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >gnw-obsolete</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;src ::
+        <a href="src.entities-module.html">Package&nbsp;entities</a> ::
+        <a href="src.entities.entity-module.html">Module&nbsp;entity</a> ::
+        Class&nbsp;Entity
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="src.entities.entity.Entity-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Entity</h1><p class="nomargin-top"><span class="codelink"><a href="src.entities.entity-pysrc.html#Entity">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_src_enti" name="uml_class_diagram_for_src_enti">
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#DISPATCH_PERIODS" alt="" coords="20,30,478,49" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#constraint_list" alt="" coords="20,49,478,68" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#in_flow" alt="" coords="20,68,478,86" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#name" alt="" coords="20,86,478,105" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#objective_list" alt="" coords="20,105,478,124" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#out_flow" alt="" coords="20,124,478,142" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#snkList" alt="" coords="20,142,478,161" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#srcList" alt="" coords="20,161,478,180" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#__init__" alt="" coords="20,182,478,201" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#create_coefficient_array" alt="" coords="20,201,478,220" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#set_DISPATCH_PERIODS" alt="" coords="20,220,478,238" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#set_name" alt="" coords="20,238,478,257" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#set_src_list" alt="" coords="20,257,478,276" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#set_snk_list" alt="" coords="20,276,478,294" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#append_to_src_list" alt="" coords="20,294,478,313" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#append_to_snk_list" alt="" coords="20,313,478,332" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#create_lp_vars" alt="" coords="20,332,478,350" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#create_model" alt="" coords="20,350,478,369" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#get_lp_vars" alt="" coords="20,369,478,388" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#get_topology_graph" alt="" coords="20,388,478,406" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#get_topology_edges" alt="" coords="20,406,478,425" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html" title="Gas Network framework base class." alt="" coords="8,8,490,432" />
+</map>
+  <img src="uml_class_diagram_for_src_enti.gif" alt='' usemap="#uml_class_diagram_for_src_enti" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>Gas Network framework base class.</p>
+  <p><a href="src.entities.entity.Entity-class.html" 
+  class="link">Entity</a> implements the basic attributes and methods for 
+  all objects under control of the framework. In its most simple form a gas
+  network entity, as implemented in this class, has an inflow and and an 
+  outflow variable for each dispatch period t, The inflow and outflow 
+  variables must relate to each other in a balance type constraint, such 
+  as</p>
+  <ul>
+    <li>
+      in_flow(t) == out_flow(t), for all t
+    </li>
+  </ul>
+  <p>As derived classes may want to implement more complicated balance 
+  constraints, no such balance constraint is enforced in this base 
+  class.</p>
+  <p>Each entity e object links to zero or more entity source objects (src)
+  and to zero or more entity sink objects (snk) with conditions</p>
+  <ul>
+    <li>
+      sum(src[i].out_flow(t), i in srcs) == e.in_flow(t), and
+    </li>
+    <li>
+      sum(snk[i].in_flow(t), i in snks) == e.out_flow(t), for all t
+    </li>
+  </ul>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.entity.Entity-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">srcs</span>=<span class="summary-sig-default">[]</span>,
+        <span class="summary-sig-arg">snks</span>=<span class="summary-sig-default">[]</span>)</span><br />
+      x.__init__(...) initializes x; see x.__class__.__doc__ for signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.entity-pysrc.html#Entity.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.entity.Entity-class.html#set_DISPATCH_PERIODS" class="summary-sig-name">set_DISPATCH_PERIODS</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span><br />
+      The length of the dispatchPeriods + 1 will be the number of time 
+      steps in the optimisation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.entity-pysrc.html#Entity.set_DISPATCH_PERIODS">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_name"></a><span class="summary-sig-name">set_name</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.entity-pysrc.html#Entity.set_name">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_src_list"></a><span class="summary-sig-name">set_src_list</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.entity-pysrc.html#Entity.set_src_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_snk_list"></a><span class="summary-sig-name">set_snk_list</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.entity-pysrc.html#Entity.set_snk_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="append_to_src_list"></a><span class="summary-sig-name">append_to_src_list</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">src</span>)</span><br />
+      If the src <a href="src.entities.entity.Entity-class.html" 
+      class="link">Entity</a> is not yet part of the <a 
+      href="src.entities.entity.Entity-class.html#srcList" 
+      class="link">srcList</a> and the <a 
+      href="src.entities.entity.Entity-class.html#name" 
+      class="link">name</a> is unique then add the src to the <a 
+      href="src.entities.entity.Entity-class.html#srcList" 
+      class="link">srcList</a> and add myself  to the src's <a 
+      href="src.entities.entity.Entity-class.html#snkList" 
+      class="link">snkList</a>.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.entity-pysrc.html#Entity.append_to_src_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="append_to_snk_list"></a><span class="summary-sig-name">append_to_snk_list</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">snk</span>)</span><br />
+      If the snk <a href="src.entities.entity.Entity-class.html" 
+      class="link">Entity</a> is not yet part of the <a 
+      href="src.entities.entity.Entity-class.html#snkList" 
+      class="link">snkList</a> and the <a 
+      href="src.entities.entity.Entity-class.html#name" 
+      class="link">name</a> is unique then add the snk to the <a 
+      href="src.entities.entity.Entity-class.html#snkList" 
+      class="link">snkList</a> and add myself to the snk's <a 
+      href="src.entities.entity.Entity-class.html#srcList" 
+      class="link">srcList</a>.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.entity-pysrc.html#Entity.append_to_snk_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="create_lp_vars"></a><span class="summary-sig-name">create_lp_vars</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">prefix</span>=<span class="summary-sig-default">&quot;&quot;</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.entity-pysrc.html#Entity.create_lp_vars">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="create_model"></a><span class="summary-sig-name">create_model</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">prefix</span>=<span class="summary-sig-default">&quot;&quot;</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.entity-pysrc.html#Entity.create_model">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_lp_vars"></a><span class="summary-sig-name">get_lp_vars</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.entity-pysrc.html#Entity.get_lp_vars">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_topology_graph"></a><span class="summary-sig-name">get_topology_graph</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      <code class="link">edges</code> keys have the form  
+      (self.name,snk.name) or (src.name,self.name) <code 
+      class="link">edges</code> values hav the form key[0] + &quot; -&gt; 
+      &quot; + key[1] <code class="link">visited</code> is a list of <a 
+      href="src.entities.entity.Entity-class.html" class="link">Entity</a> 
+      object references</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.entity-pysrc.html#Entity.get_topology_graph">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_topology_edges"></a><span class="summary-sig-name">get_topology_edges</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">visited</span>=<span class="summary-sig-default">[]</span>,
+        <span class="summary-sig-arg">edges</span>=<span class="summary-sig-default">{}</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.entity-pysrc.html#Entity.get_topology_edges">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__str__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== STATIC METHODS ==================== -->
+<a name="section-StaticMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Static Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-StaticMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="create_coefficient_array"></a><span class="summary-sig-name">create_coefficient_array</span>(<span class="summary-sig-arg">member_array</span>,
+        <span class="summary-sig-arg">size</span>,
+        <span class="summary-sig-arg">message</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.entity-pysrc.html#Entity.create_coefficient_array">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE VARIABLES ==================== -->
+<a name="section-InstanceVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">numpy.ndarray</code> of dtype='double'</span>
+    </td><td class="summary">
+        <a name="DISPATCH_PERIODS"></a><span class="summary-name">DISPATCH_PERIODS</span><br />
+      see <code class="link">setDISPATCH_PERIODS</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">[<code class="link">pulp.LpConstraint</code>]</span>
+    </td><td class="summary">
+        <a name="constraint_list"></a><span class="summary-name">constraint_list</span><br />
+      constraints owned by this <a 
+      href="src.entities.entity.Entity-class.html" class="link">Entity</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">[<code class="link">numpy.ndarray</code> of dtype='object'    where 
+      object is <code class="link">pulp.LpVariable</code></span>
+    </td><td class="summary">
+        <a name="in_flow"></a><span class="summary-name">in_flow</span><br />
+      inflow variables of the <a 
+      href="src.entities.entity.Entity-class.html" class="link">Entity</a> 
+      in [MWh]    for all t in <a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">str</code></span>
+    </td><td class="summary">
+        <a href="src.entities.entity.Entity-class.html#name" class="summary-name">name</a><br />
+      is the unique name of the object.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">[<code class="link">pulp.LpAffineExpression</code>]</span>
+    </td><td class="summary">
+        <a name="objective_list"></a><span class="summary-name">objective_list</span><br />
+      objective (constraints) owned by this <a 
+      href="src.entities.entity.Entity-class.html" class="link">Entity</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">[<code class="link">numpy.ndarray</code> of dtype='object'    where 
+      object is <code class="link">pulp.LpVariable</code></span>
+    </td><td class="summary">
+        <a name="out_flow"></a><span class="summary-name">out_flow</span><br />
+      outflow variables of the <a 
+      href="src.entities.entity.Entity-class.html" class="link">Entity</a> 
+      in [MWh]    for all t in <a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">[<a href="src.entities.entity.Entity-class.html" 
+      class="link">Entity</a>]</span>
+    </td><td class="summary">
+        <a name="snkList"></a><span class="summary-name">snkList</span><br />
+      List of sink <a href="src.entities.entity.Entity-class.html" 
+      class="link">Entity</a> objects
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">[<a href="src.entities.entity.Entity-class.html" 
+      class="link">Entity</a>]</span>
+    </td><td class="summary">
+        <a name="srcList"></a><span class="summary-name">srcList</span><br />
+      List of source <a href="src.entities.entity.Entity-class.html" 
+      class="link">Entity</a> objects
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">name</span>,
+        <span class="sig-arg">srcs</span>=<span class="sig-default">[]</span>,
+        <span class="sig-arg">snks</span>=<span class="sig-default">[]</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.entity-pysrc.html#Entity.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__init__(...) initializes x; see x.__class__.__doc__ for 
+  signature</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>name</code></strong> (<code class="link">str</code>) - uniqe, non-empty name string of entity</li>
+        <li><strong class="pname"><code>srcs</code></strong> ([<a href="src.entities.entity.Entity-class.html" 
+          class="link">Entity</a>]) - source entity object</li>
+        <li><strong class="pname"><code>snks</code></strong> ([<a href="src.entities.entity.Entity-class.html" 
+          class="link">Entity</a>]) - sink entity object</li>
+    </ul></dd>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_DISPATCH_PERIODS"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_DISPATCH_PERIODS</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">value</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.entity-pysrc.html#Entity.set_DISPATCH_PERIODS">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>The length of the dispatchPeriods + 1 will be the number of time steps
+  in the optimisation. The time grid need not be uniform.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>value</code></strong> (<code class="link">numpy.ndarray</code> of dtype='double') - length of the individual dispatch periods in hours.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== INSTANCE VARIABLE DETAILS ==================== -->
+<a name="section-InstanceVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="name"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">name</h3>
+  is the unique name of the object.    Will be used to prefix the LP 
+  variables.
+  <dl class="fields">
+    <dt>Type:</dt>
+      <dd><code class="link">str</code></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="src.entities-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >gnw-obsolete</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Mar 05 13:40:13 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+digraph "Topology" {
+    "market[1]" -> "storage[0]";
+    "storage[0]" -> "market[0]";
+}

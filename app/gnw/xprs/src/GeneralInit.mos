@@ -1,0 +1,82 @@
+! ==============================================================================
+!
+!   Package         :   Gas NetWork and Storage Optimisation (gnw)
+!   Author          :   Marc Roth (re04179)
+!   Version         :   $Id: GeneralInit.mos 500 2009-04-20 10:58:21Z re04179 $
+!   Heading         :   $HeadURL: http://subversion.rwe.com/svn/s_and_v_projects/GasNetworks/trunk/app/gnw/xprs/src/GeneralInit.mos $
+!
+!   Description     :   Xpress-MP/Mosel file
+!
+!   Creation Date   :   02Mar2009
+!
+!   Copyright       :   RWE Supply & Trading GmbH
+!
+! ==============================================================================
+function GeneralInit_nSteps(fileName : string) : integer
+	initialisations from fileName
+		returned as "nSteps"
+	end-initialisations
+end-function
+
+function GeneralInit_nPoints(fileName : string) : integer
+	initialisations from fileName
+		returned as "nPoints"
+	end-initialisations
+end-function
+
+function GeneralInit_dT(fileName : string) : real
+	initialisations from fileName
+		returned as "dT"
+	end-initialisations
+end-function
+
+function GeneralInit_nStrgs(fileName : string) : integer
+	initialisations from fileName
+		returned as "nStrgs"
+	end-initialisations
+end-function
+
+function GeneralInit_nStdPrds(fileName : string) : integer
+	initialisations from fileName
+		returned as "nStdPrds"
+	end-initialisations
+end-function
+
+function GeneralInit_nTrdTrns(fileName : string) : integer
+	initialisations from fileName
+		returned as "nTrdTrns"
+	end-initialisations
+end-function
+
+function GeneralInit_INFINITY(fileName : string) : real
+	initialisations from fileName
+		returned as "INFINITY"
+	end-initialisations
+end-function
+
+procedure GeneralInitStrgNames(STRG_NAMES : set of string, fileName : string)
+	initialisations from fileName
+		STRG_NAMES as "STRG_NAMES"
+	end-initialisations
+end-procedure
+
+procedure GeneralInitStdprdNames(STDPRD_NAMES : set of string, fileName : string)
+	initialisations from fileName
+		STDPRD_NAMES as "STDPRD_NAMES"
+	end-initialisations
+end-procedure
+
+procedure GeneralInitTrdtrnNames(TRDTRN_NAMES : set of string, fileName : string)
+	initialisations from fileName
+		TRDTRN_NAMES as "TRDTRN_NAMES"
+	end-initialisations
+end-procedure
+! ==============================================================================
+!
+!   Revision Control:
+!
+!   $Revision:: 500                     $   Revision of last commit
+!   $Author:: re04179                   $   Author of last commit
+!   $Date:: 2009-04-20 12:58:21 +0200 (#$   Date of last commit
+!
+! ==============================================================================

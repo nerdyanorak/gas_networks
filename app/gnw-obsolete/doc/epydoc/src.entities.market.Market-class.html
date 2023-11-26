@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>src.entities.market.Market</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="src.entities-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >gnw-obsolete</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;src ::
+        <a href="src.entities-module.html">Package&nbsp;entities</a> ::
+        <a href="src.entities.market-module.html">Module&nbsp;market</a> ::
+        Class&nbsp;Market
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="src.entities.market.Market-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Market</h1><p class="nomargin-top"><span class="codelink"><a href="src.entities.market-pysrc.html#Market">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_src_enti_2" name="uml_class_diagram_for_src_enti_2">
+<area shape="rect" href="src.entities.market.Market&#45;class.html#__init__" alt="" coords="20,425,678,444" />
+<area shape="rect" href="src.entities.market.Market&#45;class.html#set_DISCOUNT_FACTOR" alt="" coords="20,444,678,462" />
+<area shape="rect" href="src.entities.market.Market&#45;class.html#set_FWD_CURVE_BID" alt="" coords="20,462,678,481" />
+<area shape="rect" href="src.entities.market.Market&#45;class.html#set_FWD_CURVE_ASK" alt="" coords="20,481,678,500" />
+<area shape="rect" href="src.entities.market.Market&#45;class.html#set_DISPATCH_PERIODS" alt="" coords="20,500,678,518" />
+<area shape="rect" href="src.entities.market.Market&#45;class.html#create_model" alt="" coords="20,518,678,537" />
+<area shape="rect" href="src.entities.market.Market&#45;class.html" title="The Market entity&#39;s sole role is to balance the sum of all in flows with the sum of all out flows." alt="" coords="8,394,690,544" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#DISPATCH_PERIODS" alt="" coords="120,30,578,49" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#constraint_list" alt="" coords="120,49,578,68" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#in_flow" alt="" coords="120,68,578,86" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#name" alt="" coords="120,86,578,105" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#objective_list" alt="" coords="120,105,578,124" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#out_flow" alt="" coords="120,124,578,142" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#snkList" alt="" coords="120,142,578,161" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#srcList" alt="" coords="120,161,578,180" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#create_coefficient_array" alt="" coords="120,182,578,201" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#set_name" alt="" coords="120,201,578,220" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#set_src_list" alt="" coords="120,220,578,238" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#set_snk_list" alt="" coords="120,238,578,257" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#append_to_src_list" alt="" coords="120,257,578,276" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#append_to_snk_list" alt="" coords="120,276,578,294" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#create_lp_vars" alt="" coords="120,294,578,313" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#get_lp_vars" alt="" coords="120,313,578,332" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#get_topology_graph" alt="" coords="120,332,578,350" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#get_topology_edges" alt="" coords="120,350,578,369" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html" title="Gas Network framework base class." alt="" coords="108,8,590,376" />
+</map>
+  <img src="uml_class_diagram_for_src_enti_2.gif" alt='' usemap="#uml_class_diagram_for_src_enti_2" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>The <a href="src.entities.market.Market-class.html" 
+  class="link">Market</a> entity's sole role is to balance the sum of all 
+  in flows with the sum of all out flows. Typically, the <a 
+  href="src.entities.market.Market-class.html" class="link">Market</a> 
+  entity is linked to many <a 
+  href="src.entities.stdprod.StandardProduct-class.html" 
+  class="link">StandardProduct</a> entities covering the entire <a 
+  href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+  class="link">DISPATCH_PERIODS</a> with their delivery periods and to one 
+  or more other entities that have some optimisation potential (such as a 
+  Storage, Supplier, Consumer). In most cases, all entities the <a 
+  href="src.entities.market.Market-class.html" class="link">Market</a> 
+  entity is linked with are linked as source entity as well as sink entity 
+  (but other constellations are possible).</p>
+  <p>In order to construct a <a 
+  href="src.entities.market.Market-class.html" class="link">Market</a> 
+  entity that supports volume dependent bid/ask price spreads the <a 
+  href="src.entities.market.Market-class.html" class="link">Market</a> 
+  entity links, for each standard product delivery period, to a 
+  corresponding <a href="src.entities.stdprod.StandardProduct-class.html" 
+  class="link">StandardProduct</a> entity, that itself links to multiple <a
+  href="src.entities.ttranche.TradeTranche-class.html" 
+  class="link">TradeTranche</a> entities that have</p>
+  <ul>
+    <li>
+      restricted capacity limits, and
+    </li>
+    <li>
+      a widening spread between bid/ask prices.
+    </li>
+  </ul>
+  <p>This will cause the optimiser to transact volumes for the given 
+  standard product first at the most favourable trade tranche up to its 
+  upper capacity limit, before the second most favourable trade tranche is 
+  considered, etc. The least favourable trade tranche shouldn't have an 
+  upper capacity limit set and have a punishing bid/ask price spread and 
+  serves as so called 'slack' tranche.</p>
+
+<hr />
+<div class="fields">      <p><strong>To Do:</strong>
+        Add features to the <a href="src.entities.market.Market-class.html" 
+    class="link">Market</a> entity that allows check for validity of all 
+    linked to source and sink entities, such as:
+    <ul>
+      <li>
+        test the <a 
+        href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+        class="link">DISPATCH_PERIODS</a> are fully covered by <a 
+        href="src.entities.stdprod.StandardProduct-class.html" 
+        class="link">StandardProduct</a> delivery periods
+      </li>
+      <li>
+        test that <a href="src.entities.stdprod.StandardProduct-class.html"
+        class="link">StandardProduct</a> delivery periods do not overlap 
+        (in a first instance, later this restriction may have to be 
+        relaxed)
+      </li>
+    </ul>
+      </p>
+</div><!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.market.Market-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">discountFactor</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">fwdCurveBid</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">fwdCurveAsk</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">srcs</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">snks</span>=<span class="summary-sig-default">None</span>)</span><br />
+      x.__init__(...) initializes x; see x.__class__.__doc__ for signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.market-pysrc.html#Market.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_DISCOUNT_FACTOR"></a><span class="summary-sig-name">set_DISCOUNT_FACTOR</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.market-pysrc.html#Market.set_DISCOUNT_FACTOR">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_FWD_CURVE_BID"></a><span class="summary-sig-name">set_FWD_CURVE_BID</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.market-pysrc.html#Market.set_FWD_CURVE_BID">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_FWD_CURVE_ASK"></a><span class="summary-sig-name">set_FWD_CURVE_ASK</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.market-pysrc.html#Market.set_FWD_CURVE_ASK">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.market.Market-class.html#set_DISPATCH_PERIODS" class="summary-sig-name">set_DISPATCH_PERIODS</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">dispatchPeriods</span>)</span><br />
+      The length of the dispatchPeriods + 1 will be the number of time 
+      steps in the optimisation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.market-pysrc.html#Market.set_DISPATCH_PERIODS">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.market.Market-class.html#create_model" class="summary-sig-name">create_model</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">prefix</span>=<span class="summary-sig-default">&quot;&quot;</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.market-pysrc.html#Market.create_model">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="src.entities.entity.Entity-class.html">entity.Entity</a></code></b>:
+      <code><a href="src.entities.entity.Entity-class.html#append_to_snk_list">append_to_snk_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#append_to_src_list">append_to_src_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#create_lp_vars">create_lp_vars</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#get_lp_vars">get_lp_vars</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#get_topology_edges">get_topology_edges</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#get_topology_graph">get_topology_graph</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#set_name">set_name</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#set_snk_list">set_snk_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#set_src_list">set_src_list</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__str__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== STATIC METHODS ==================== -->
+<a name="section-StaticMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Static Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-StaticMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="src.entities.entity.Entity-class.html">entity.Entity</a></code></b>:
+      <code><a href="src.entities.entity.Entity-class.html#create_coefficient_array">create_coefficient_array</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE VARIABLES ==================== -->
+<a name="section-InstanceVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="src.entities.entity.Entity-class.html">entity.Entity</a></code></b>:
+      <code><a href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS">DISPATCH_PERIODS</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#constraint_list">constraint_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#in_flow">in_flow</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#name">name</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#objective_list">objective_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#out_flow">out_flow</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#snkList">snkList</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#srcList">srcList</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">name</span>,
+        <span class="sig-arg">discountFactor</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">fwdCurveBid</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">fwdCurveAsk</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">srcs</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">snks</span>=<span class="sig-default">None</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.market-pysrc.html#Market.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__init__(...) initializes x; see x.__class__.__doc__ for 
+  signature</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>name</code></strong> - uniqe, non-empty name string of entity</li>
+        <li><strong class="pname"><code>srcs</code></strong> - source entity object</li>
+        <li><strong class="pname"><code>snks</code></strong> - sink entity object</li>
+    </ul></dd>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_DISPATCH_PERIODS"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_DISPATCH_PERIODS</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">dispatchPeriods</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.market-pysrc.html#Market.set_DISPATCH_PERIODS">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>The length of the dispatchPeriods + 1 will be the number of time steps
+  in the optimisation. The time grid need not be uniform.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>value</code></strong> - length of the individual dispatch periods in hours.</li>
+    </ul></dd>
+    <dt>Overrides:
+        <a href="src.entities.entity.Entity-class.html#set_DISPATCH_PERIODS">entity.Entity.set_DISPATCH_PERIODS</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="create_model"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">create_model</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">prefix</span>=<span class="sig-default">&quot;&quot;</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.market-pysrc.html#Market.create_model">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="src.entities.entity.Entity-class.html#create_model">entity.Entity.create_model</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="src.entities-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >gnw-obsolete</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Mar 05 13:40:13 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

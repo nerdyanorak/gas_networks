@@ -1,0 +1,157 @@
+! ==============================================================================
+!
+!   Package         :   Gas NetWork and Storage Optimisation (gnw)
+!   Author          :   Marc Roth (re04179)
+!   Version         :   $Id: InterpolationCurve.mos 500 2009-04-20 10:58:21Z re04179 $
+!   Heading         :   $HeadURL: http://subversion.rwe.com/svn/s_and_v_projects/GasNetworks/trunk/app/gnw/xprs/src/InterpolationCurve.mos $
+!
+!   Description     :   Xpress-MP/Mosel file
+!
+!   Creation Date   :   02Mar2009
+!
+!   Copyright       :   RWE Supply & Trading GmbH
+!
+! ==============================================================================
+!
+!	InterpolationCurve
+!
+
+!	Interface
+declarations
+	MAX_INTERP_CURVE_PTS = 100
+	INTERP_CURVE_PTS_IDX = 1..MAX_INTERP_CURVE_PTS
+	INTERP_CURVE_TYPES = { "linear", "backstep", "frontstep" }
+	
+	InterpolationCurve = record
+		isInitialised : boolean
+		type : string			! in INTERP_CURVE_TYPES
+		size : integer			! in INTERP_CURVE_PTS_IDX
+		xArray : array(INTERP_CURVE_PTS_IDX) of real
+		yArray : array(INTERP_CURVE_PTS_IDX) of real
+	end-record
+end-declarations
+
+forward procedure Construct(curve : InterpolationCurve,
+			type : string,
+			size : integer,
+			xArray : array(range) of real,
+			yArray : array(range) of real)
+forward procedure Destroy(curve : InterpolationCurve)
+
+forward procedure setIsInitialised(curve : InterpolationCurve, flag : boolean)
+forward function getIsInitialised(curve : InterpolationCurve) : boolean
+
+forward procedure setType(curve : InterpolationCurve, type : string)
+forward function getType(curve : InterpolationCurve) : string
+forward procedure setSize(curve : InterpolationCurve, size : integer)
+forward function getSize(curve : InterpolationCurve) : integer
+forward function getXArray(curve : InterpolationCurve) : array(INTERP_CURVE_PTS_IDX) of real
+forward function getYArray(curve : InterpolationCurve) : array(INTERP_CURVE_PTS_IDX) of real
+
+forward function getValue(curve : InterpolationCurve, x : real) : real
+forward procedure setArray(tgtArray : array(INTERP_CURVE_PTS_IDX) of real, srcArray : array(range) of real, size : integer)
+
+!	Implementation
+procedure Construct(curve : InterpolationCurve,
+			type : string,
+			size : integer,
+			xArray : array(range) of real,
+			yArray : array(range) of real)
+	assert(type in INTERP_CURVE_TYPES,
+		"InterpolationCurve::Construct(): Argument type='" + type + "' not in INTERP_CURVE_TYPES!")
+	assert(0 <= size and size <= MAX_INTERP_CURVE_PTS,
+		"InterpolationCurve::Construct(): Argument size=" +  size + " not in INTERP_CURVE_PTS_IDX!")
+
+
+	declarations
+		tmpXArray : array(INTERP_CURVE_PTS_IDX) of real
+		tmpYArray : array(INTERP_CURVE_PTS_IDX) of real
+	end-declarations		
+	curve.Type := type
+	curve.Size := size
+	setArray(tmpXArray, xArray, size)
+	setArray(tmpYArray, yArray, size)
+	curve.xArray := tmpXArray
+	curve.yArray := tmpYArray
+	curve.IsInitialised := true
+end-procedure
+procedure Destroy(curve : InterpolationCurve)
+	declarations
+		dummy : array(range) of real
+	end-declarations
+	Construct(curve, "Linear", 0, dummy, dummy)
+	curve.IsInitialised := false
+end-procedure
+
+procedure setIsInitialised(curve : InterpolationCurve, flag : boolean)
+	curve.isInitialised := flag
+end-procedure
+function getIsInitialised(curve : InterpolationCurve) : boolean
+	returned := curve.isInitialised
+end-function
+
+procedure setType(curve : InterpolationCurve, type : string)
+	curve.type := type
+end-procedure
+function getType(curve : InterpolationCurve) : string
+	returned := curve.type
+end-function
+
+procedure setSize(curve : InterpolationCurve, size : integer)
+	curve.size := size
+end-procedure
+function getSize(curve : InterpolationCurve) : integer
+	returned := curve.size
+end-function
+
+function getXArray(curve : InterpolationCurve) : array(INTERP_CURVE_PTS_IDX) of real
+	returned := curve.xArray
+end-function
+function getYArray(curve : InterpolationCurve) : array(INTERP_CURVE_PTS_IDX) of real
+	returned := curve.yArray
+end-function
+
+function getValue(curve : InterpolationCurve, x : real) : real
+	declarations
+		tmpX : array(range) of real
+		tmpY : array(range) of real
+		idxRange : range
+	end-declarations
+	
+	idxRange := 1..curve.Size
+	forall(item in idxRange) tmpX(item) := curve.xArray(item)
+	forall(item in idxRange) tmpY(item) := curve.yArray(item)
+	
+	case curve.type of
+		"Linear" :
+			returned := LinearInterp(x, tmpX, tmpY, idxRange)
+		"BackStep" :
+			returned := BackStepInterp(x, tmpX, tmpY, idxRange)
+		"FrontStep" :
+			returned := FrontStepInterp(x, tmpX, tmpY, idxRange)
+	end-case
+end-function
+
+procedure setArray(
+			tgtArray : array(INTERP_CURVE_PTS_IDX) of real,
+			srcArray : array(range) of real,
+			size : integer)
+	assert(0 <= size and size <= MAX_INTERP_CURVE_PTS,
+		"InterpolationCurve::setArray(): Argument size=" + size + " no in INTERP_CURVE_PTS_IDX!")
+		
+	forall(item in 1..size | size >= 1)
+		tgtArray(item) := srcArray(item)
+	forall(item in (MAX_INTERP_CURVE_PTS - size)..MAX_INTERP_CURVE_PTS | size >= 1)
+		 tgtArray(item) := 0.0
+	forall(item in INTERP_CURVE_PTS_IDX | size = 0)
+		tgtArray(item) := 0.0
+end-procedure
+! ==============================================================================
+!
+!   Revision Control:
+!
+!   $Revision:: 500                     $   Revision of last commit
+!   $Author:: re04179                   $   Author of last commit
+!   $Date:: 2009-04-20 12:58:21 +0200 (#$   Date of last commit
+!
+! ==============================================================================

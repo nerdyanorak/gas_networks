@@ -1,0 +1,125 @@
+! ==============================================================================
+!
+!   Package         :   Gas NetWork and Storage Optimisation (gnw)
+!   Author          :   Marc Roth (re04179)
+!   Version         :   $Id: StandardProductRec.mos 500 2009-04-20 10:58:21Z re04179 $
+!   Heading         :   $HeadURL: http://subversion.rwe.com/svn/s_and_v_projects/GasNetworks/trunk/app/gnw/xprs/src/StandardProductRec.mos $
+!
+!   Description     :   Xpress-MP/Mosel file
+!
+!   Creation Date   :   02Mar2009
+!
+!   Copyright       :   RWE Supply & Trading GmbH
+!
+! ==============================================================================
+declarations
+	! This record defines a standard product that is tradable in the
+	! market, i.e., can be sold (SB = 1) or bought (SB = -1).
+	! The delivery period of the standard product is defined
+	! by the 2-element list DELIVERY_PERIOD that represent indices
+	! into the global DISPATCH_PERIOD array. The delivery volume
+	! during the standard product's dispatch period is uniform
+	! and therefore the transacted quantity can be described by
+	! a single value, the podition pos in denoted in MW/h.
+	!
+	! For each standard product delivery period there should
+	! exist 2 equivalent standard product records in the system
+	! distinguishing themselfs only by the SB value.
+	! With each standard product record there should be at least
+	! one trade tranche record (see TradeTrancheRec.mos)
+	! associated having the same SB and DELIVERY_PERIOD values
+	! set as the standard product record in question.
+	StandardProduct = record
+		Name : string									! Unique standard product identifier
+		SB : integer									! Buy = -1.0, Sell = 1.0
+		DELIVERY_PERIOD : list of integer				! List of 2 integers representing
+														! start (DELIVERY_PERIOD.first) and
+														! end (DELIVERY_PERIOD.last) indices into DISPATCH_PERIOD array
+		DELIVERY_PERIOD_IDX : range						! index range corresponding to DELIVERY_PERIOD
+														! (DELIVERY_PERIOD.first..DELIVERY_PERIOD.last)
+		CURRENT_POS : real								! [MW/h]; long position > 0.0, short postion < 0.0, independent
+														! of SB
+		TRADE_SIZE_LIMIT : list of real					! [MW/h]; list of 2 reals representing
+														! minimum (TRADE_SIZE_LIMIT.first) and
+														! maximum (TRADE_SIZE_LIMIT.last) tradable size
+		CLIP_SIZE : real								! [MW/h];  if > 0.0 triggers clip size constraints, ignored if equal to 0.0
+		PRICE : real									! [EUR/MWh]; mid price of standard product
+		
+		pos : mpvar										! [MW/h]; additionally (to CURRENT_POS) traded position, if SB = -1
+														! position will be bought, if SB = 1 position will be sold
+		num_clips : mpvar								! counter for number of clips if CLIP_SIZE > 0.0
+
+		vol : array(STEP_IDX) of linctr					! [MWh]; volume transacted during each dispatch period
+														! falling into DELIVERY_PERIOD corresponding to position pos
+	end-record
+end-declarations
+
+forward function SetConstraints(stdprd : StandardProduct) : linctr
+
+!######################
+!### Implementation ###
+!######################
+
+function SetConstraints(stdprd : StandardProduct) : linctr
+	declarations
+		objective : linctr
+	end-declarations
+	
+	objective := 0
+
+	! ignore standard products their delivery period
+	! is not falling fully into dispatch period
+	if 1 <= stdprd.DELIVERY_PERIOD.first and stdprd.DELIVERY_PERIOD.last <= nSteps then
+		! minimum trade size constraint
+		if stdprd.TRADE_SIZE_LIMIT.first > 0.0 then
+			stdprd.pos is_semcont stdprd.TRADE_SIZE_LIMIT.first
+		end-if
+		! maximum trade size constraint
+		! if no maximum trade size constraint should limit
+		! optimal solution set TRADE_SIZE_LIMIT.last to a
+		! sufficiently large number.
+		stdprd.pos <= stdprd.TRADE_SIZE_LIMIT.last
+		! clip size constraint
+		if stdprd.CLIP_SIZE > 0.0 then
+			stdprd.num_clips is_integer
+			! position has to be equal to an integral multiple of CLIP_SIZE
+			stdprd.pos = stdprd.num_clips*stdprd.CLIP_SIZE
+			! to limit search space for num_clip variable.
+			! if no problem specific maximal trade size limit applies
+			! set TRADE_SIZE_LIMIT.last to a value that is sufficiently
+			! large as not to limit optimal solution but as small as possible
+			! to reduce possible number of choices for num_clips.
+			! For example set it to maximum of sum of injection capacities or
+			! sum of release capacities of all storages
+			stdprd.num_clips <= stdprd.TRADE_SIZE_LIMIT.last/stdprd.CLIP_SIZE
+		end-if
+		
+		! calculated correpsonging dispatch period volumes for
+		! dispatch periods that are part of standard product's
+		! delivery period ...
+		forall(t in STEP_IDX | t in stdprd.DELIVERY_PERIOD_IDX) do
+			stdprd.vol(t) := stdprd.pos*DISPATCH_PERIOD(t) 
+		end-do
+		! ... and which are not
+		forall(t in STEP_IDX | not(t in stdprd.DELIVERY_PERIOD_IDX)) do
+			stdprd.vol(t) := 0
+		end-do
+		
+		! Value CURRENT position at mid PRICE
+		! long position > 0, i.e., we will have to buy at mid
+		! short position < 0, i.e., we will have to sell at mid
+		! independent of SB = -1 (eBuy) or = 1 (eSell)
+!		objective -= stdprd.CURRENT_POS*stdprd.PRICE*sum(t in stdprd.DELIVERY_PERIOD_IDX) DISPATCH_PERIOD(t)*DISCOUNT_FACTOR(t)
+	end-if
+
+	returned := objective
+end-function
+! ==============================================================================
+!
+!   Revision Control:
+!
+!   $Revision:: 500                     $   Revision of last commit
+!   $Author:: re04179                   $   Author of last commit
+!   $Date:: 2009-04-20 12:58:21 +0200 (#$   Date of last commit
+!
+! ==============================================================================

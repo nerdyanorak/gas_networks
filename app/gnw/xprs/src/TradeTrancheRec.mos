@@ -1,0 +1,92 @@
+! ==============================================================================
+!
+!   Package         :   Gas NetWork and Storage Optimisation (gnw)
+!   Author          :   Marc Roth (re04179)
+!   Version         :   $Id: TradeTrancheRec.mos 500 2009-04-20 10:58:21Z re04179 $
+!   Heading         :   $HeadURL: http://subversion.rwe.com/svn/s_and_v_projects/GasNetworks/trunk/app/gnw/xprs/src/TradeTrancheRec.mos $
+!
+!   Description     :   Xpress-MP/Mosel file
+!
+!   Creation Date   :   02Mar2009
+!
+!   Copyright       :   RWE Supply & Trading GmbH
+!
+! ==============================================================================
+declarations
+	! For each standard product (see StandardProductRec.mos) there exist
+	! 1 or more trade (or price) tranches having each the same value for SB
+	! and the same value for DELIVERY_PERIOD as the corresponding standard
+	! product. The main difference among those trade tranches is the value
+	! for the PRICE. If SB = 1 (-1) then the trade tranches should have
+	! gradually lower (higher) bid (ask) prices.
+	!
+	! If it is optimal to sell (buy) position pos of a given standard
+	! product, it will do so at the bid (ask) price of the trade tranche
+	! with the highest (lowest) price up to a trade size of
+	! TRADE_SIZE_LIMIT.last of that trade tranche, then at the bid (ask)
+	! price of the trade tranche with the second highest (lowest) price
+	! up to a trade size of TRADE_SIZE_LIMIT.last of that trade tranche, etc.
+	! It is advisable not to effectively limit the trade size from above
+	! for the trade tranche with lowest bid (highest ask) price as
+	! to serve as a slack trade tranche.
+	TradeTranche = record
+		Name : string									! Unique trade tranche identifier
+		SB : real										! Buy = -1.0, Sell = 1.0
+		DELIVERY_PERIOD : list of integer				! List of 2 integers representing
+														! start (DELIVERY_PERIOD.first) and
+														! end (DELIVERY_PERIOD.last) indices into DISPATCH_PERIOD array
+		DELIVERY_PERIOD_IDX : range						! index range corresponding to DELIVERY_PERIOD
+														! (DELIVERY_PERIOD.first..DELIVERY_PERIOD.last)
+		TRADE_SIZE_LIMIT : list of real					! [MW/h]; list of 2 reals representing
+														! minimum (TRADE_SIZE_LIMIT.first) and
+														! maximum (TRADE_SIZE_LIMIT.last) tradable size
+		PRICE : real									! [EUR/MWh]; bid (if SB = 1) or ask (if SB = -1) price 
+														! for standard product (having same SB and DELIVERY_PERIOD)
+		
+		pos : mpvar										! [MW/h]; traded position, if SB = -1
+														! position will be bought, if SB = 1 position will be sold
+														! at current PRICE
+	end-record
+end-declarations
+
+forward function SetConstraints(trdtrn : TradeTranche) : linctr
+
+!######################
+!### Implementation ###
+!######################
+
+function SetConstraints(trdtrn : TradeTranche) : linctr
+	declarations
+		objective : linctr
+	end-declarations
+	
+	objective := 0
+
+	! ignore trade tranches their delivery period
+	! is not falling fully into dispatch period
+	if 1 <= trdtrn.DELIVERY_PERIOD.first and trdtrn.DELIVERY_PERIOD.last <= nSteps then
+		! minimum trade size constraint
+		if trdtrn.TRADE_SIZE_LIMIT.first > 0.0 then
+			trdtrn.pos is_semcont trdtrn.TRADE_SIZE_LIMIT.first
+		end-if
+		! maximum trade size constraint
+		! if no maximum trade size constraint should limit
+		! optimal solution set TRADE_SIZE_LIMIT.last to a
+		! sufficiently large number.
+		trdtrn.pos <= trdtrn.TRADE_SIZE_LIMIT.last
+		
+		! objective function component
+		objective += trdtrn.SB*trdtrn.pos*trdtrn.PRICE*sum(t in trdtrn.DELIVERY_PERIOD_IDX) DISPATCH_PERIOD(t)*DISCOUNT_FACTOR(t)
+	end-if
+
+	returned := objective
+end-function
+! ==============================================================================
+!
+!   Revision Control:
+!
+!   $Revision:: 500                     $   Revision of last commit
+!   $Author:: re04179                   $   Author of last commit
+!   $Date:: 2009-04-20 12:58:21 +0200 (#$   Date of last commit
+!
+! ==============================================================================

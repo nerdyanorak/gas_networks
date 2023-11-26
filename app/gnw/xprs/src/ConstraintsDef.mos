@@ -1,0 +1,75 @@
+! ==============================================================================
+!
+!   Package         :   Gas NetWork and Storage Optimisation (gnw)
+!   Author          :   Marc Roth (re04179)
+!   Version         :   $Id: ConstraintsDef.mos 500 2009-04-20 10:58:21Z re04179 $
+!   Heading         :   $HeadURL: http://subversion.rwe.com/svn/s_and_v_projects/GasNetworks/trunk/app/gnw/xprs/src/ConstraintsDef.mos $
+!
+!   Description     :   Xpress-MP/Mosel file
+!
+!   Creation Date   :   02Mar2009
+!
+!   Copyright       :   RWE Supply & Trading GmbH
+!
+! ==============================================================================
+function SetAllConstraints(
+	strgs : array(STRG_NAMES) of Storage,
+	stdprds : array(STDPRD_NAMES) of StandardProduct,
+	trdtrns : array(TRDTRN_NAMES) of TradeTranche) : linctr
+	
+	declarations
+		objective : linctr
+	end-declarations
+	
+	objective := 0
+	
+	! Storage constraints
+	forall(strg in STRG_NAMES) do
+		objective += SetConstraints(strgs(strg))
+	end-do
+	
+	! Standard Product constraints
+	forall(stdprd in STDPRD_NAMES) do
+		objective += SetConstraints(stdprds(stdprd))
+	end-do
+	
+	
+	! Trade Tranche constraints
+	forall(trdtrn in TRDTRN_NAMES) do
+		objective += SetConstraints(trdtrns(trdtrn))
+	end-do
+	
+	
+	! Inter-entity constraints
+	
+	! Storage vs. Standard Products
+	! equate the dispatch volume of all storages to the additionally transacted volumes of all standard products
+	! as well as the volumes stemming from the standard products current positions
+	forall(t in STEP_IDX) do
+		sum(strg in STRG_NAMES) strgs(strg).dsp_pct(t)*strgs(strg).WGV =
+			sum(stdprd in STDPRD_NAMES | stdprds(stdprd).SB = eBuy)  stdprds(stdprd).vol(t) -
+			sum(stdprd in STDPRD_NAMES | stdprds(stdprd).SB = eSell) stdprds(stdprd).vol(t) +
+			DISPATCH_PERIOD(t)*sum(stdprd in STDPRD_NAMES | t in stdprds(stdprd).DELIVERY_PERIOD_IDX) stdprds(stdprd).CURRENT_POS
+	end-do
+	
+	! Standard Product vs. Trade Tranches
+	! equate the sum of the positions of all trade tranches 
+	! to the position of the corresponding standard product
+	forall(stdprd in STDPRD_NAMES) do
+		stdprds(stdprd).pos = sum(trdtrn in TRDTRN_NAMES |
+				trdtrns(trdtrn).SB = stdprds(stdprd).SB and
+				trdtrns(trdtrn).DELIVERY_PERIOD.first = stdprds(stdprd).DELIVERY_PERIOD.first and
+				trdtrns(trdtrn).DELIVERY_PERIOD.last = stdprds(stdprd).DELIVERY_PERIOD.last) trdtrns(trdtrn).pos
+	end-do
+
+	returned := objective
+end-function
+! ==============================================================================
+!
+!   Revision Control:
+!
+!   $Revision:: 500                     $   Revision of last commit
+!   $Author:: re04179                   $   Author of last commit
+!   $Date:: 2009-04-20 12:58:21 +0200 (#$   Date of last commit
+!
+! ==============================================================================

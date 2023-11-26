@@ -1,0 +1,15 @@
+NAME : gnw_prblm
+dT : 24.00000000
+nSteps : 730
+nPoints : 731
+nNtwrks : 1
+nStrgs : 1
+nSplrs : 1
+nFrmPrfls : 2
+nMrkts : 1
+nDspPrds : 2
+nStdPrds : 48
+nTrdTrns : 528
+INFINITY : 10000000000000000.00000000
+FILE_SUFFIX_ARRAY : [ ENTITY_FILE_SUFFIX_ARRAY
+NTWRK_NAME_ARRAY ]

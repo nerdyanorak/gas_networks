@@ -1,0 +1,51 @@
+! ==============================================================================
+!
+!   Package         :   Gas NetWork and Storage Optimisation (gnw)
+!   Author          :   Marc Roth (re04179)
+!   Version         :   $Id: TradeTrancheRecInit.mos 500 2009-04-20 10:58:21Z re04179 $
+!   Heading         :   $HeadURL: http://subversion.rwe.com/svn/s_and_v_projects/GasNetworks/trunk/app/gnw/xprs/src/TradeTrancheRecInit.mos $
+!
+!   Description     :   Xpress-MP/Mosel file
+!
+!   Creation Date   :   02Mar2009
+!
+!   Copyright       :   RWE Supply & Trading GmbH
+!
+! ==============================================================================
+procedure Init(trdtrn : TradeTranche, fileName : string)
+	declarations
+		Name : string
+		SB : integer
+		START_IDX, END_IDX : integer
+		TRADE_SIZE_MIN : real
+		TRADE_SIZE_MAX : real
+		PRICE : real
+	end-declarations
+
+	initialisations from fileName
+		Name as "NAME"
+		SB as "SB"
+		START_IDX as "START_IDX"
+		END_IDX as "END_IDX"
+		TRADE_SIZE_MIN  as "TRADE_SIZE_MIN"
+		TRADE_SIZE_MAX as "TRADE_SIZE_MAX"
+		PRICE as "PRICE"
+	end-initialisations
+
+	trdtrn.Name := Name
+	trdtrn.SB := SB
+	trdtrn.DELIVERY_PERIOD := [START_IDX, END_IDX]
+	trdtrn.DELIVERY_PERIOD_IDX := START_IDX..END_IDX
+	trdtrn.TRADE_SIZE_LIMIT := [TRADE_SIZE_MIN, TRADE_SIZE_MAX]
+	trdtrn.PRICE := PRICE
+	
+end-procedure
+! ==============================================================================
+!
+!   Revision Control:
+!
+!   $Revision:: 500                     $   Revision of last commit
+!   $Author:: re04179                   $   Author of last commit
+!   $Date:: 2009-04-20 12:58:21 +0200 (#$   Date of last commit
+!
+! ==============================================================================

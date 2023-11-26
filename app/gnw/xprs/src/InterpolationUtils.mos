@@ -1,0 +1,107 @@
+! ==============================================================================
+!
+!   Package         :   Gas NetWork and Storage Optimisation (gnw)
+!   Author          :   Marc Roth (re04179)
+!   Version         :   $Id: InterpolationUtils.mos 500 2009-04-20 10:58:21Z re04179 $
+!   Heading         :   $HeadURL: http://subversion.rwe.com/svn/s_and_v_projects/GasNetworks/trunk/app/gnw/xprs/src/InterpolationUtils.mos $
+!
+!   Description     :   Xpress-MP/Mosel file
+!
+!   Creation Date   :   02Mar2009
+!
+!   Copyright       :   RWE Supply & Trading GmbH
+!
+! ==============================================================================
+forward function LinearInterp(x : real, xArray : array(range) of real, yArray : array(range) of real, arrayIdx : range) : real
+forward function BackStepInterp(x : real, xArray : array(range) of real, yArray : array(range) of real, arrayIdx : range) : real
+forward function FrontStepInterp(x : real, xArray : array(range) of real, yArray : array(range) of real, arrayIdx : range) : real
+
+forward function BinarySearch(x : real, xArray : array(range) of real, arrayIdx : range) : range
+
+function LinearInterp(x : real, xArray : array(range) of real, yArray : array(range) of real, arrayIdx : range) : real
+	assert(arrayIdx.size >= 2, "LinearInterp() : Require at least 2 interpolation points!")
+	declarations
+		interval : range
+		f : real
+		y : real
+	end-declarations
+	
+	if x < xArray(arrayIdx.first) then
+		interval := arrayIdx.first..(arrayIdx.first + 1)
+	elif x > xArray(arrayIdx.last) then
+		interval := (arrayIdx.last - 1)..arrayIdx.last
+	else
+		interval := BinarySearch(x, xArray, arrayIdx)
+	end-if
+	f := (xArray(interval.last) - x)/(xArray(interval.last) - xArray(interval.first))
+	y := f*yArray(interval.first) + (1.0 - f)*yArray(interval.last)
+	returned := y
+end-function
+
+function BackStepInterp(x : real, xArray : array(range) of real, yArray : array(range) of real, arrayIdx : range) : real
+	declarations
+		interval : range
+		y : real
+	end-declarations
+
+	if x > xArray(arrayIdx.last) then
+		y := yArray(arrayIdx.last)
+	else
+		interval := BinarySearch(x, xArray, arrayIdx)
+		if x <= xArray(interval.first) then
+			y := yArray(interval.first)
+		else
+			y := yArray(interval.last)
+		end-if
+	end-if
+	returned := y
+end-function
+
+function FrontStepInterp(x : real, xArray : array(range) of real, yArray : array(range) of real, arrayIdx : range) : real
+	declarations
+		interval : range
+		y : real
+	end-declarations
+
+	if x < xArray(arrayIdx.first) then
+		y := yArray(arrayIdx.first)
+	else
+		interval := BinarySearch(x, xArray, arrayIdx)
+		if x >= xArray(interval.last) then
+			y := yArray(interval.last)
+		else
+			y := yArray(interval.first)
+		end-if
+	end-if
+	returned := y
+end-function
+
+function BinarySearch(x : real, xArray : array(range) of real, arrayIdx : range) : range
+	assert(and(item in arrayIdx.first..(arrayIdx.last - 1)) xArray(item) < xArray(item + 1),
+		"BinarySearch() : xArray elements not strictly monotonically increasing!")
+	declarations
+		lo, mid, hi : integer
+	end-declarations
+	
+	lo := arrayIdx.first
+	hi := arrayIdx.last
+	
+	while (lo + 1 < hi) do
+		mid := (hi + lo) div 2
+		if x < xArray(mid) then
+			hi := mid
+		else
+			lo := mid
+		end-if
+	end-do
+	returned := lo..hi
+end-function
+! ==============================================================================
+!
+!   Revision Control:
+!
+!   $Revision:: 500                     $   Revision of last commit
+!   $Author:: re04179                   $   Author of last commit
+!   $Date:: 2009-04-20 12:58:21 +0200 (#$   Date of last commit
+!
+! ==============================================================================

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>src.entities.market</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="src.entities-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >gnw-obsolete</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;src ::
+        <a href="src.entities-module.html">Package&nbsp;entities</a> ::
+        Module&nbsp;market
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="src.entities.market-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="src.entities.market-module.html">Module src.entities.market</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-docstring">"""L{Market} gas network L{Entity}"""</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">numpy</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">pulp</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment">#from src.entities.entity import Entity</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-comment">#from src.utils.util import conditional</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment"></tt><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Module src.entities.entity=src.entities.entity-module.html"><a title="src.entities.entity" class="py-name" href="#" onclick="return doclink('link-0', 'entity', 'link-0');">entity</a></tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Module src.entities.storage=src.entities.storage-module.html"><a title="src.entities.storage" class="py-name" href="#" onclick="return doclink('link-1', 'storage', 'link-1');">storage</a></tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Module src.entities.stdprod=src.entities.stdprod-module.html"><a title="src.entities.stdprod" class="py-name" href="#" onclick="return doclink('link-2', 'stdprod', 'link-2');">stdprod</a></tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Module src.entities.ttranche=src.entities.ttranche-module.html"><a title="src.entities.ttranche" class="py-name" href="#" onclick="return doclink('link-3', 'ttranche', 'link-3');">ttranche</a></tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">utils</tt><tt class="py-op">.</tt><tt class="py-name">util</tt> <tt class="py-keyword">import</tt> <tt class="py-name">conditional</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"> </tt>
+<a name="Market"></a><div id="Market-def"><a name="L14"></a><tt class="py-lineno"> 14</tt> <a class="py-toggle" href="#" id="Market-toggle" onclick="return toggle('Market');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="src.entities.market.Market-class.html">Market</a><tt class="py-op">(</tt><tt class="py-base-class">entity</tt><tt class="py-op">.</tt><tt class="py-base-class">Entity</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Market-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Market-expanded"><a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring">    The L{Market} entity's sole role is to</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring">    balance the sum of all in flows with the</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">    sum of all out flows. Typically, the L{Market}</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">    entity is linked to many L{StandardProduct}</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">    entities covering the entire L{DISPATCH_PERIODS}</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">    with their delivery periods and to one or more</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring">    other entities that have some optimisation</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring">    potential (such as a Storage, Supplier, Consumer).</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring">    In most cases, all entities the L{Market} entity</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">    is linked with are linked as source entity as</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">    well as sink entity (but other constellations</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring">    are possible).</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring">    In order to construct a L{Market} entity that supports</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">    volume dependent bid/ask price spreads the L{Market}</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">    entity links, for each standard product delivery period,</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring">    to a corresponding L{StandardProduct} entity, that itself</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-docstring">    links to multiple L{TradeTranche} entities that have</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring">        - restricted capacity limits, and</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring">        - a widening spread between bid/ask prices.</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">    This will cause the optimiser to transact volumes for</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">    the given standard product first at the most favourable</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">    trade tranche up to its upper capacity limit, before the</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">    second most favourable trade tranche is considered, etc.</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">    The least favourable trade tranche shouldn't have an upper</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring">    capacity limit set and have a punishing bid/ask price spread</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">    and serves as so called 'slack' tranche.  </tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring">    @todo: Add features to the L{Market} entity that allows</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-docstring">    check for validity of all linked to source and sink entities,</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-docstring">    such as:</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-docstring">        - test the L{DISPATCH_PERIODS} are fully covered by</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring">        L{StandardProduct} delivery periods</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-docstring">        - test that L{StandardProduct} delivery periods do not</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-docstring">        overlap (in a first instance, later this restriction</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring">        may have to be relaxed)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="Market.__init__"></a><div id="Market.__init__-def"><a name="L53"></a><tt class="py-lineno"> 53</tt> <a class="py-toggle" href="#" id="Market.__init__-toggle" onclick="return toggle('Market.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="src.entities.market.Market-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">                 <tt class="py-param">name</tt><tt class="py-op">,</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">                 <tt class="py-param">discountFactor</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">                 <tt class="py-param">fwdCurveBid</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">                 <tt class="py-param">fwdCurveAsk</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">                 <tt class="py-param">srcs</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">                 <tt class="py-param">snks</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Market.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Market.__init__-expanded"><a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-name">super</tt><tt class="py-op">(</tt><tt id="link-4" class="py-name" targets="Class src.entities.market.Market=src.entities.market.Market-class.html"><a title="src.entities.market.Market" class="py-name" href="#" onclick="return doclink('link-4', 'Market', 'link-4');">Market</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Method src.entities.entity.Entity.__init__()=src.entities.entity.Entity-class.html#__init__,Method src.entities.market.Market.__init__()=src.entities.market.Market-class.html#__init__,Method src.entities.stdprod.StandardProduct.__init__()=src.entities.stdprod.StandardProduct-class.html#__init__,Method src.entities.storage.Storage.__init__()=src.entities.storage.Storage-class.html#__init__,Method src.entities.ttranche.TradeTranche.__init__()=src.entities.ttranche.TradeTranche-class.html#__init__"><a title="src.entities.entity.Entity.__init__
+src.entities.market.Market.__init__
+src.entities.stdprod.StandardProduct.__init__
+src.entities.storage.Storage.__init__
+src.entities.ttranche.TradeTranche.__init__" class="py-name" href="#" onclick="return doclink('link-5', '__init__', 'link-5');">__init__</a></tt><tt class="py-op">(</tt> <tt class="py-name">name</tt><tt class="py-op">,</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">                                      <tt class="py-name">conditional</tt><tt class="py-op">(</tt> <tt class="py-name">srcs</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-name">srcs</tt><tt class="py-op">,</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> <tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">                                      <tt class="py-name">conditional</tt><tt class="py-op">(</tt> <tt class="py-name">snks</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-name">snks</tt><tt class="py-op">,</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> <tt class="py-op">)</tt> <tt class="py-op">)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method src.entities.market.Market.set_DISCOUNT_FACTOR()=src.entities.market.Market-class.html#set_DISCOUNT_FACTOR,Method src.entities.stdprod.StandardProduct.set_DISCOUNT_FACTOR()=src.entities.stdprod.StandardProduct-class.html#set_DISCOUNT_FACTOR,Method src.entities.storage.Storage.set_DISCOUNT_FACTOR()=src.entities.storage.Storage-class.html#set_DISCOUNT_FACTOR,Method src.entities.ttranche.TradeTranche.set_DISCOUNT_FACTOR()=src.entities.ttranche.TradeTranche-class.html#set_DISCOUNT_FACTOR"><a title="src.entities.market.Market.set_DISCOUNT_FACTOR
+src.entities.stdprod.StandardProduct.set_DISCOUNT_FACTOR
+src.entities.storage.Storage.set_DISCOUNT_FACTOR
+src.entities.ttranche.TradeTranche.set_DISCOUNT_FACTOR" class="py-name" href="#" onclick="return doclink('link-6', 'set_DISCOUNT_FACTOR', 'link-6');">set_DISCOUNT_FACTOR</a></tt><tt class="py-op">(</tt> <tt class="py-name">discountFactor</tt> <tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method src.entities.market.Market.set_FWD_CURVE_BID()=src.entities.market.Market-class.html#set_FWD_CURVE_BID,Method src.entities.stdprod.StandardProduct.set_FWD_CURVE_BID()=src.entities.stdprod.StandardProduct-class.html#set_FWD_CURVE_BID,Method src.entities.storage.Storage.set_FWD_CURVE_BID()=src.entities.storage.Storage-class.html#set_FWD_CURVE_BID"><a title="src.entities.market.Market.set_FWD_CURVE_BID
+src.entities.stdprod.StandardProduct.set_FWD_CURVE_BID
+src.entities.storage.Storage.set_FWD_CURVE_BID" class="py-name" href="#" onclick="return doclink('link-7', 'set_FWD_CURVE_BID', 'link-7');">set_FWD_CURVE_BID</a></tt><tt class="py-op">(</tt> <tt class="py-name">fwdCurveBid</tt> <tt class="py-op">)</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Method src.entities.market.Market.set_FWD_CURVE_ASK()=src.entities.market.Market-class.html#set_FWD_CURVE_ASK,Method src.entities.stdprod.StandardProduct.set_FWD_CURVE_ASK()=src.entities.stdprod.StandardProduct-class.html#set_FWD_CURVE_ASK,Method src.entities.storage.Storage.set_FWD_CURVE_ASK()=src.entities.storage.Storage-class.html#set_FWD_CURVE_ASK"><a title="src.entities.market.Market.set_FWD_CURVE_ASK
+src.entities.stdprod.StandardProduct.set_FWD_CURVE_ASK
+src.entities.storage.Storage.set_FWD_CURVE_ASK" class="py-name" href="#" onclick="return doclink('link-8', 'set_FWD_CURVE_ASK', 'link-8');">set_FWD_CURVE_ASK</a></tt><tt class="py-op">(</tt> <tt class="py-name">fwdCurveAsk</tt> <tt class="py-op">)</tt> </tt>
+</div><a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"> </tt>
+<a name="Market.set_DISCOUNT_FACTOR"></a><div id="Market.set_DISCOUNT_FACTOR-def"><a name="L70"></a><tt class="py-lineno"> 70</tt> <a class="py-toggle" href="#" id="Market.set_DISCOUNT_FACTOR-toggle" onclick="return toggle('Market.set_DISCOUNT_FACTOR');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="src.entities.market.Market-class.html#set_DISCOUNT_FACTOR">set_DISCOUNT_FACTOR</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Market.set_DISCOUNT_FACTOR-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Market.set_DISCOUNT_FACTOR-expanded"><a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">DISCOUNT_FACTOR</tt> <tt class="py-op">=</tt> <tt class="py-name">conditional</tt><tt class="py-op">(</tt> <tt class="py-name">value</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-number">1.0</tt><tt class="py-op">,</tt> <tt class="py-name">value</tt> <tt class="py-op">)</tt> </tt>
+</div><a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"> </tt>
+<a name="Market.set_FWD_CURVE_BID"></a><div id="Market.set_FWD_CURVE_BID-def"><a name="L74"></a><tt class="py-lineno"> 74</tt> <a class="py-toggle" href="#" id="Market.set_FWD_CURVE_BID-toggle" onclick="return toggle('Market.set_FWD_CURVE_BID');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="src.entities.market.Market-class.html#set_FWD_CURVE_BID">set_FWD_CURVE_BID</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Market.set_FWD_CURVE_BID-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Market.set_FWD_CURVE_BID-expanded"><a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">FWD_CURVE_BID</tt> <tt class="py-op">=</tt> <tt class="py-name">conditional</tt><tt class="py-op">(</tt> <tt class="py-name">value</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-number">24.0</tt><tt class="py-op">,</tt> <tt class="py-name">value</tt> <tt class="py-op">)</tt> </tt>
+</div><a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">         </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">     </tt>
+<a name="Market.set_FWD_CURVE_ASK"></a><div id="Market.set_FWD_CURVE_ASK-def"><a name="L78"></a><tt class="py-lineno"> 78</tt> <a class="py-toggle" href="#" id="Market.set_FWD_CURVE_ASK-toggle" onclick="return toggle('Market.set_FWD_CURVE_ASK');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="src.entities.market.Market-class.html#set_FWD_CURVE_ASK">set_FWD_CURVE_ASK</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Market.set_FWD_CURVE_ASK-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Market.set_FWD_CURVE_ASK-expanded"><a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">FWD_CURVE_ASK</tt> <tt class="py-op">=</tt> <tt class="py-name">conditional</tt><tt class="py-op">(</tt> <tt class="py-name">value</tt> <tt class="py-keyword">is</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-number">26.0</tt><tt class="py-op">,</tt> <tt class="py-name">value</tt> <tt class="py-op">)</tt> </tt>
+</div><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"> </tt>
+<a name="Market.set_DISPATCH_PERIODS"></a><div id="Market.set_DISPATCH_PERIODS-def"><a name="L82"></a><tt class="py-lineno"> 82</tt> <a class="py-toggle" href="#" id="Market.set_DISPATCH_PERIODS-toggle" onclick="return toggle('Market.set_DISPATCH_PERIODS');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="src.entities.market.Market-class.html#set_DISPATCH_PERIODS">set_DISPATCH_PERIODS</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">dispatchPeriods</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Market.set_DISPATCH_PERIODS-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Market.set_DISPATCH_PERIODS-expanded"><a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-name">super</tt><tt class="py-op">(</tt><tt id="link-9" class="py-name"><a title="src.entities.market.Market" class="py-name" href="#" onclick="return doclink('link-9', 'Market', 'link-4');">Market</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Method src.entities.entity.Entity.set_DISPATCH_PERIODS()=src.entities.entity.Entity-class.html#set_DISPATCH_PERIODS,Method src.entities.market.Market.set_DISPATCH_PERIODS()=src.entities.market.Market-class.html#set_DISPATCH_PERIODS,Method src.entities.stdprod.StandardProduct.set_DISPATCH_PERIODS()=src.entities.stdprod.StandardProduct-class.html#set_DISPATCH_PERIODS,Method src.entities.storage.Storage.set_DISPATCH_PERIODS()=src.entities.storage.Storage-class.html#set_DISPATCH_PERIODS,Method src.entities.ttranche.TradeTranche.set_DISPATCH_PERIODS()=src.entities.ttranche.TradeTranche-class.html#set_DISPATCH_PERIODS"><a title="src.entities.entity.Entity.set_DISPATCH_PERIODS
+src.entities.market.Market.set_DISPATCH_PERIODS
+src.entities.stdprod.StandardProduct.set_DISPATCH_PERIODS
+src.entities.storage.Storage.set_DISPATCH_PERIODS
+src.entities.ttranche.TradeTranche.set_DISPATCH_PERIODS" class="py-name" href="#" onclick="return doclink('link-10', 'set_DISPATCH_PERIODS', 'link-10');">set_DISPATCH_PERIODS</a></tt><tt class="py-op">(</tt> <tt class="py-name">dispatchPeriods</tt> <tt class="py-op">)</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">         </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-name">nSteps</tt> <tt class="py-op">=</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">DISPATCH_PERIODS</tt><tt class="py-op">)</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-name">nPoints</tt> <tt class="py-op">=</tt> <tt class="py-name">nSteps</tt> <tt class="py-op">+</tt> <tt class="py-number">1</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">DISCOUNT_FACTOR</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Static Method src.entities.entity.Entity.create_coefficient_array()=src.entities.entity.Entity-class.html#create_coefficient_array"><a title="src.entities.entity.Entity.create_coefficient_array" class="py-name" href="#" onclick="return doclink('link-11', 'create_coefficient_array', 'link-11');">create_coefficient_array</a></tt><tt class="py-op">(</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">DISCOUNT_FACTOR</tt><tt class="py-op">,</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">                                                              <tt class="py-name">nSteps</tt><tt class="py-op">,</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">                                                              <tt class="py-string">"Length of 'discountFactor' must match length of 'dispatchPeriods'"</tt> <tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">FWD_CURVE_BID</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="src.entities.entity.Entity.create_coefficient_array" class="py-name" href="#" onclick="return doclink('link-12', 'create_coefficient_array', 'link-11');">create_coefficient_array</a></tt><tt class="py-op">(</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">FWD_CURVE_BID</tt><tt class="py-op">,</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">                                                            <tt class="py-name">nSteps</tt><tt class="py-op">,</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">                                                            <tt class="py-string">"Length of 'fwdCurveBid' must match length of 'dispatchPeriods'"</tt> <tt class="py-op">)</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">FWD_CURVE_ASK</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="src.entities.entity.Entity.create_coefficient_array" class="py-name" href="#" onclick="return doclink('link-13', 'create_coefficient_array', 'link-11');">create_coefficient_array</a></tt><tt class="py-op">(</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">FWD_CURVE_ASK</tt><tt class="py-op">,</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">                                                            <tt class="py-name">nSteps</tt><tt class="py-op">,</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">                                                            <tt class="py-string">"Length of 'fwdCurveAsk' must match length of 'dispatchPeriods'"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">         </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"> </tt>
+<a name="Market.create_model"></a><div id="Market.create_model-def"><a name="L101"></a><tt class="py-lineno">101</tt> <a class="py-toggle" href="#" id="Market.create_model-toggle" onclick="return toggle('Market.create_model');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="src.entities.market.Market-class.html#create_model">create_model</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">prefix</tt><tt class="py-op">=</tt><tt class="py-string">""</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Market.create_model-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Market.create_model-expanded"><a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-name">super</tt><tt class="py-op">(</tt><tt id="link-14" class="py-name"><a title="src.entities.market.Market" class="py-name" href="#" onclick="return doclink('link-14', 'Market', 'link-4');">Market</a></tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method src.entities.entity.Entity.create_model()=src.entities.entity.Entity-class.html#create_model,Method src.entities.market.Market.create_model()=src.entities.market.Market-class.html#create_model,Method src.entities.stdprod.StandardProduct.create_model()=src.entities.stdprod.StandardProduct-class.html#create_model,Method src.entities.storage.Storage.create_model()=src.entities.storage.Storage-class.html#create_model,Method src.entities.ttranche.TradeTranche.create_model()=src.entities.ttranche.TradeTranche-class.html#create_model"><a title="src.entities.entity.Entity.create_model
+src.entities.market.Market.create_model
+src.entities.stdprod.StandardProduct.create_model
+src.entities.storage.Storage.create_model
+src.entities.ttranche.TradeTranche.create_model" class="py-name" href="#" onclick="return doclink('link-15', 'create_model', 'link-15');">create_model</a></tt><tt class="py-op">(</tt> <tt class="py-name">prefix</tt> <tt class="py-op">)</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">        <tt class="py-name">nSteps</tt> <tt class="py-op">=</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">DISPATCH_PERIODS</tt> <tt class="py-op">)</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">         </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt class="py-name">sprod_src_list</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">src</tt> <tt class="py-keyword">for</tt> <tt class="py-name">src</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">src_list</tt> <tt class="py-keyword">if</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt> <tt class="py-name">src</tt><tt class="py-op">,</tt> <tt id="link-16" class="py-name"><a title="src.entities.stdprod" class="py-name" href="#" onclick="return doclink('link-16', 'stdprod', 'link-2');">stdprod</a></tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Class src.entities.stdprod.StandardProduct=src.entities.stdprod.StandardProduct-class.html"><a title="src.entities.stdprod.StandardProduct" class="py-name" href="#" onclick="return doclink('link-17', 'StandardProduct', 'link-17');">StandardProduct</a></tt> <tt class="py-op">)</tt><tt class="py-op">]</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-name">sprod_snk_list</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">snk</tt> <tt class="py-keyword">for</tt> <tt class="py-name">snk</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">snk_list</tt> <tt class="py-keyword">if</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt> <tt class="py-name">snk</tt><tt class="py-op">,</tt> <tt id="link-18" class="py-name"><a title="src.entities.stdprod" class="py-name" href="#" onclick="return doclink('link-18', 'stdprod', 'link-2');">stdprod</a></tt><tt class="py-op">.</tt><tt id="link-19" class="py-name"><a title="src.entities.stdprod.StandardProduct" class="py-name" href="#" onclick="return doclink('link-19', 'StandardProduct', 'link-17');">StandardProduct</a></tt> <tt class="py-op">)</tt><tt class="py-op">]</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">         </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-name">other_src_list</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">src</tt> <tt class="py-keyword">for</tt> <tt class="py-name">src</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">src_list</tt> <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt> <tt class="py-name">src</tt><tt class="py-op">,</tt> <tt id="link-20" class="py-name"><a title="src.entities.stdprod" class="py-name" href="#" onclick="return doclink('link-20', 'stdprod', 'link-2');">stdprod</a></tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="src.entities.stdprod.StandardProduct" class="py-name" href="#" onclick="return doclink('link-21', 'StandardProduct', 'link-17');">StandardProduct</a></tt> <tt class="py-op">)</tt><tt class="py-op">]</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-name">other_snk_list</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">snk</tt> <tt class="py-keyword">for</tt> <tt class="py-name">snk</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">snk_list</tt> <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt> <tt class="py-name">snk</tt><tt class="py-op">,</tt> <tt id="link-22" class="py-name"><a title="src.entities.stdprod" class="py-name" href="#" onclick="return doclink('link-22', 'stdprod', 'link-2');">stdprod</a></tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="src.entities.stdprod.StandardProduct" class="py-name" href="#" onclick="return doclink('link-23', 'StandardProduct', 'link-17');">StandardProduct</a></tt> <tt class="py-op">)</tt><tt class="py-op">]</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">t</tt> <tt class="py-keyword">in</tt> <tt class="py-name">xrange</tt><tt class="py-op">(</tt> <tt class="py-name">nSteps</tt> <tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt> <tt class="py-name">sprod_src_list</tt> <tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt> <tt class="py-keyword">and</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt> <tt class="py-name">other_snk_list</tt> <tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">constraint_list</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt> <tt class="py-name">pulp</tt><tt class="py-op">.</tt><tt class="py-name">lpSum</tt><tt class="py-op">(</tt> <tt class="py-op">[</tt><tt class="py-name">src</tt><tt class="py-op">.</tt><tt class="py-name">out_flow</tt><tt class="py-op">[</tt><tt class="py-name">t</tt><tt class="py-op">]</tt> <tt class="py-keyword">for</tt> <tt class="py-name">src</tt> <tt class="py-keyword">in</tt> <tt class="py-name">sprod_src_list</tt><tt class="py-op">]</tt> <tt class="py-op">)</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">                                             <tt class="py-op">&gt;=</tt> <tt class="py-name">pulp</tt><tt class="py-op">.</tt><tt class="py-name">lpSum</tt><tt class="py-op">(</tt> <tt class="py-op">[</tt><tt class="py-name">snk</tt><tt class="py-op">.</tt><tt class="py-name">in_flow</tt><tt class="py-op">[</tt><tt class="py-name">t</tt><tt class="py-op">]</tt> <tt class="py-keyword">for</tt> <tt class="py-name">snk</tt> <tt class="py-keyword">in</tt> <tt class="py-name">other_snk_list</tt><tt class="py-op">]</tt> <tt class="py-op">)</tt> <tt class="py-op">)</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt> <tt class="py-name">other_src_list</tt> <tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt> <tt class="py-keyword">and</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt> <tt class="py-name">sprod_snk_list</tt> <tt class="py-op">)</tt> <tt class="py-op">&gt;</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">constraint_list</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt> <tt class="py-name">pulp</tt><tt class="py-op">.</tt><tt class="py-name">lpSum</tt><tt class="py-op">(</tt> <tt class="py-op">[</tt><tt class="py-name">src</tt><tt class="py-op">.</tt><tt class="py-name">out_flow</tt><tt class="py-op">[</tt><tt class="py-name">t</tt><tt class="py-op">]</tt> <tt class="py-keyword">for</tt> <tt class="py-name">src</tt> <tt class="py-keyword">in</tt> <tt class="py-name">other_src_list</tt><tt class="py-op">]</tt> <tt class="py-op">)</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">                                             <tt class="py-op">&gt;=</tt> <tt class="py-name">pulp</tt><tt class="py-op">.</tt><tt class="py-name">lpSum</tt><tt class="py-op">(</tt> <tt class="py-op">[</tt><tt class="py-name">snk</tt><tt class="py-op">.</tt><tt class="py-name">in_flow</tt><tt class="py-op">[</tt><tt class="py-name">t</tt><tt class="py-op">]</tt> <tt class="py-keyword">for</tt> <tt class="py-name">snk</tt> <tt class="py-keyword">in</tt> <tt class="py-name">sprod_snk_list</tt><tt class="py-op">]</tt> <tt class="py-op">)</tt> <tt class="py-op">)</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">         </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-name">all_srcs_storages</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">src</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">src_list</tt><tt class="py-op">:</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt> <tt class="py-name">src</tt><tt class="py-op">,</tt> <tt id="link-24" class="py-name"><a title="src.entities.storage" class="py-name" href="#" onclick="return doclink('link-24', 'storage', 'link-1');">storage</a></tt><tt class="py-op">.</tt><tt id="link-25" class="py-name" targets="Class src.entities.storage.Storage=src.entities.storage.Storage-class.html"><a title="src.entities.storage.Storage" class="py-name" href="#" onclick="return doclink('link-25', 'Storage', 'link-25');">Storage</a></tt> <tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">                <tt class="py-name">all_srcs_storages</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">                <tt class="py-keyword">break</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">                 </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt class="py-name">all_snks_storages</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">snk</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">snk_list</tt><tt class="py-op">:</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt> <tt class="py-name">snk</tt><tt class="py-op">,</tt> <tt id="link-26" class="py-name"><a title="src.entities.storage" class="py-name" href="#" onclick="return doclink('link-26', 'storage', 'link-1');">storage</a></tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="src.entities.storage.Storage" class="py-name" href="#" onclick="return doclink('link-27', 'Storage', 'link-25');">Storage</a></tt> <tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">                <tt class="py-name">all_snks_storages</tt> <tt class="py-op">=</tt> <tt class="py-name">False</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">                <tt class="py-keyword">break</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">         </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">all_srcs_storages</tt> <tt class="py-keyword">and</tt> <tt class="py-name">all_snks_storages</tt><tt class="py-op">:</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">objective_list</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt>  <tt class="py-name">pulp</tt><tt class="py-op">.</tt><tt class="py-name">lpSum</tt><tt class="py-op">(</tt> <tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">in_flow</tt><tt class="py-op">[</tt><tt class="py-name">t</tt><tt class="py-op">]</tt> <tt class="py-op">*</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">FWD_CURVE_BID</tt><tt class="py-op">[</tt><tt class="py-name">t</tt><tt class="py-op">]</tt><tt class="py-op">*</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">DISCOUNT_FACTOR</tt><tt class="py-op">[</tt><tt class="py-name">t</tt><tt class="py-op">]</tt> <tt class="py-keyword">for</tt> <tt class="py-name">t</tt> <tt class="py-keyword">in</tt> <tt class="py-name">xrange</tt><tt class="py-op">(</tt> <tt class="py-name">nSteps</tt> <tt class="py-op">)</tt><tt class="py-op">]</tt> <tt class="py-op">)</tt> <tt class="py-op">)</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">objective_list</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt> <tt class="py-op">-</tt><tt class="py-name">pulp</tt><tt class="py-op">.</tt><tt class="py-name">lpSum</tt><tt class="py-op">(</tt> <tt class="py-op">[</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">out_flow</tt><tt class="py-op">[</tt><tt class="py-name">t</tt><tt class="py-op">]</tt><tt class="py-op">*</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">FWD_CURVE_ASK</tt><tt class="py-op">[</tt><tt class="py-name">t</tt><tt class="py-op">]</tt><tt class="py-op">*</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">DISCOUNT_FACTOR</tt><tt class="py-op">[</tt><tt class="py-name">t</tt><tt class="py-op">]</tt> <tt class="py-keyword">for</tt> <tt class="py-name">t</tt> <tt class="py-keyword">in</tt> <tt class="py-name">xrange</tt><tt class="py-op">(</tt> <tt class="py-name">nSteps</tt> <tt class="py-op">)</tt><tt class="py-op">]</tt> <tt class="py-op">)</tt> <tt class="py-op">)</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">            <tt class="py-comment"># Inflow/outflow balance equation:</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-keyword">for</tt> <tt class="py-name">t</tt> <tt class="py-keyword">in</tt> <tt class="py-name">xrange</tt><tt class="py-op">(</tt> <tt class="py-name">nSteps</tt> <tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">constraint_list</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">in_flow</tt><tt class="py-op">[</tt><tt class="py-name">t</tt><tt class="py-op">]</tt> <tt class="py-op">==</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">out_flow</tt><tt class="py-op">[</tt><tt class="py-name">t</tt><tt class="py-op">]</tt> <tt class="py-op">)</tt> </tt>
+</div></div><a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">             </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">"__main__"</tt><tt class="py-op">:</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-name">conditional</tt><tt class="py-op">(</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-string">"Yes"</tt><tt class="py-op">,</tt> <tt class="py-string">"Nope"</tt><tt class="py-op">)</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">    <tt class="py-keyword">print</tt> <tt class="py-name">conditional</tt><tt class="py-op">(</tt><tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-string">"Yes"</tt><tt class="py-op">,</tt> <tt class="py-string">"Nope"</tt><tt class="py-op">)</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="src.entities-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >gnw-obsolete</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Mar 05 13:40:15 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

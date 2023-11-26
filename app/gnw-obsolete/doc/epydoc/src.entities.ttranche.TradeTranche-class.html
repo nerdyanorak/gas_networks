@@ -1,0 +1,952 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>src.entities.ttranche.TradeTranche</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="src.entities-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >gnw-obsolete</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;src ::
+        <a href="src.entities-module.html">Package&nbsp;entities</a> ::
+        <a href="src.entities.ttranche-module.html">Module&nbsp;ttranche</a> ::
+        Class&nbsp;TradeTranche
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="src.entities.ttranche.TradeTranche-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class TradeTranche</h1><p class="nomargin-top"><span class="codelink"><a href="src.entities.ttranche-pysrc.html#TradeTranche">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_src_enti_5" name="uml_class_diagram_for_src_enti_5">
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html#CAPACITY_LIMITS" alt="" coords="20,361,766,379" />
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html#DELIVERY_PERIOD" alt="" coords="20,379,766,398" />
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html#DISCOUNT_FACTOR" alt="" coords="20,398,766,417" />
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html#PRICE" alt="" coords="20,417,766,435" />
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html#name" alt="" coords="20,435,766,454" />
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html#purch_position" alt="" coords="20,454,766,473" />
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html#sales_position" alt="" coords="20,473,766,491" />
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html#__init__" alt="" coords="20,494,766,513" />
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html#set_PRICE" alt="" coords="20,513,766,531" />
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html#set_DELIVERY_PERIOD" alt="" coords="20,531,766,550" />
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html#set_CAPACITY_LIMITS" alt="" coords="20,550,766,569" />
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html#set_DISCOUNT_FACTOR" alt="" coords="20,569,766,587" />
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html#set_DISPATCH_PERIODS" alt="" coords="20,587,766,606" />
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html#create_lp_vars" alt="" coords="20,606,766,625" />
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html#create_model" alt="" coords="20,625,766,643" />
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html#get_lp_vars" alt="" coords="20,643,766,662" />
+<area shape="rect" href="src.entities.ttranche.TradeTranche&#45;class.html" title="src.entities.ttranche.TradeTranche" alt="" coords="8,338,778,669" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#DISPATCH_PERIODS" alt="" coords="164,30,622,49" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#constraint_list" alt="" coords="164,49,622,67" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#in_flow" alt="" coords="164,67,622,86" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#objective_list" alt="" coords="164,86,622,105" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#out_flow" alt="" coords="164,105,622,123" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#snkList" alt="" coords="164,123,622,142" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#srcList" alt="" coords="164,142,622,161" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#create_coefficient_array" alt="" coords="164,163,622,182" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#set_name" alt="" coords="164,182,622,201" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#set_src_list" alt="" coords="164,201,622,219" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#set_snk_list" alt="" coords="164,219,622,238" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#append_to_src_list" alt="" coords="164,238,622,257" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#append_to_snk_list" alt="" coords="164,257,622,275" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#get_topology_graph" alt="" coords="164,275,622,294" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#get_topology_edges" alt="" coords="164,294,622,313" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html" title="Gas Network framework base class." alt="" coords="152,7,634,319" />
+</map>
+  <img src="uml_class_diagram_for_src_enti_5.gif" alt='' usemap="#uml_class_diagram_for_src_enti_5" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.ttranche.TradeTranche-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">price</span>=<span class="summary-sig-default">(0.0,0.0)</span>,
+        <span class="summary-sig-arg">deliveryPeriod</span>=<span class="summary-sig-default">(0,0)</span>,
+        <span class="summary-sig-arg">capacityLimits</span>=<span class="summary-sig-default">(None,None)</span>,
+        <span class="summary-sig-arg">discountFactor</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">stdprd</span>=<span class="summary-sig-default">None</span>)</span><br />
+      x.__init__(...) initializes x; see x.__class__.__doc__ for signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.ttranche-pysrc.html#TradeTranche.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_PRICE"></a><span class="summary-sig-name">set_PRICE</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.ttranche-pysrc.html#TradeTranche.set_PRICE">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_DELIVERY_PERIOD"></a><span class="summary-sig-name">set_DELIVERY_PERIOD</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.ttranche-pysrc.html#TradeTranche.set_DELIVERY_PERIOD">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_CAPACITY_LIMITS"></a><span class="summary-sig-name">set_CAPACITY_LIMITS</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.ttranche-pysrc.html#TradeTranche.set_CAPACITY_LIMITS">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_DISCOUNT_FACTOR"></a><span class="summary-sig-name">set_DISCOUNT_FACTOR</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.ttranche-pysrc.html#TradeTranche.set_DISCOUNT_FACTOR">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.ttranche.TradeTranche-class.html#set_DISPATCH_PERIODS" class="summary-sig-name">set_DISPATCH_PERIODS</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">dispatchPeriods</span>)</span><br />
+      Set the dispatch periods array (calling parent's set method) and set 
+      coefficient arrays to the correct length and initialise with some 
+      meaningful defaults, if they haven't been set appropriately 
+      beforehand (using __init__(...) or setters).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.ttranche-pysrc.html#TradeTranche.set_DISPATCH_PERIODS">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.ttranche.TradeTranche-class.html#create_lp_vars" class="summary-sig-name">create_lp_vars</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">prefix</span>=<span class="summary-sig-default">&quot;&quot;</span>)</span><br />
+      This function creates (multi-dimensional) arrays of <code 
+      class="link">pulp.LpVariable</code>s, <code 
+      class="link">pulp.LpConstraint</code>s, etc.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.ttranche-pysrc.html#TradeTranche.create_lp_vars">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.ttranche.TradeTranche-class.html#create_model" class="summary-sig-name">create_model</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">prefix</span>=<span class="summary-sig-default">&quot;&quot;</span>)</span><br />
+      The dynamics of the trade tranche are as follows:</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.ttranche-pysrc.html#TradeTranche.create_model">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.ttranche.TradeTranche-class.html#get_lp_vars" class="summary-sig-name">get_lp_vars</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.ttranche-pysrc.html#TradeTranche.get_lp_vars">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="src.entities.entity.Entity-class.html">entity.Entity</a></code></b>:
+      <code><a href="src.entities.entity.Entity-class.html#append_to_snk_list">append_to_snk_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#append_to_src_list">append_to_src_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#get_topology_edges">get_topology_edges</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#get_topology_graph">get_topology_graph</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#set_name">set_name</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#set_snk_list">set_snk_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#set_src_list">set_src_list</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__str__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== STATIC METHODS ==================== -->
+<a name="section-StaticMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Static Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-StaticMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="src.entities.entity.Entity-class.html">entity.Entity</a></code></b>:
+      <code><a href="src.entities.entity.Entity-class.html#create_coefficient_array">create_coefficient_array</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE VARIABLES ==================== -->
+<a name="section-InstanceVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">(min, max), with min, max in {<code class="link">None</code>, number}</span>
+    </td><td class="summary">
+        <a href="src.entities.ttranche.TradeTranche-class.html#CAPACITY_LIMITS" class="summary-name">CAPACITY_LIMITS</a><br />
+      tuple of size two holding minimal and/or maximal allowed trade 
+      capacity in [MW] at given bid/ask <a 
+      href="src.entities.ttranche.TradeTranche-class.html#PRICE" 
+      class="link">PRICE</a>.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">(int, int)</span>
+    </td><td class="summary">
+        <a name="DELIVERY_PERIOD"></a><span class="summary-name">DELIVERY_PERIOD</span><br />
+      tuple of size of two holding indices into the <a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a> array with <a 
+      href="src.entities.ttranche.TradeTranche-class.html#DELIVERY_PERIOD" 
+      class="link">DELIVERY_PERIOD</a>[0] being the start index of the 
+      delivery period and <a 
+      href="src.entities.ttranche.TradeTranche-class.html#DELIVERY_PERIOD" 
+      class="link">DELIVERY_PERIOD</a>[1] being the end index of the 
+      delivery period.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">numpy.ndarray</code> of dtype='float'</span>
+    </td><td class="summary">
+        <a href="src.entities.ttranche.TradeTranche-class.html#DISCOUNT_FACTOR" class="summary-name">DISCOUNT_FACTOR</a><br />
+      array of cost of size len(<a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a>) containing the discount factors to
+      be used for cash flows from sales and purchase arising during each 
+      given dispatch period.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">tuple</code>, (number, number)</span>
+    </td><td class="summary">
+        <a name="PRICE"></a><span class="summary-name">PRICE</span><br />
+      tuple of size two holding bid and ask price for trade tranche in 
+      [EUR/MWh]
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">str</code></span>
+    </td><td class="summary">
+        <a name="name"></a><span class="summary-name">name</span><br />
+      is the unique name of the object.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">numpy.ndarray</code> of dtype='object' where 
+      object is <code class="link">pulp.LpVariable</code></span>
+    </td><td class="summary">
+        <a name="purch_position"></a><span class="summary-name">purch_position</span><br />
+      array of decision varaibles of size len(<a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a>) representing the volume purchased 
+      in [MWh] at ask <a 
+      href="src.entities.ttranche.TradeTranche-class.html#PRICE" 
+      class="link">PRICE</a> [EUR/MWh]
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><code class="link">numpy.ndarray</code> of dtype='object' where 
+      object is <code class="link">pulp.LpVariable</code></span>
+    </td><td class="summary">
+        <a name="sales_position"></a><span class="summary-name">sales_position</span><br />
+      array of decision variables of size len(<a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a>) representing volume sold in [MWh] 
+      at bid <a href="src.entities.ttranche.TradeTranche-class.html#PRICE" 
+      class="link">PRICE</a> [EUR/MWh]
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="src.entities.entity.Entity-class.html">entity.Entity</a></code></b>:
+      <code><a href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS">DISPATCH_PERIODS</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#constraint_list">constraint_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#in_flow">in_flow</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#objective_list">objective_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#out_flow">out_flow</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#snkList">snkList</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#srcList">srcList</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">name</span>,
+        <span class="sig-arg">price</span>=<span class="sig-default">(0.0,0.0)</span>,
+        <span class="sig-arg">deliveryPeriod</span>=<span class="sig-default">(0,0)</span>,
+        <span class="sig-arg">capacityLimits</span>=<span class="sig-default">(None,None)</span>,
+        <span class="sig-arg">discountFactor</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">stdprd</span>=<span class="sig-default">None</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.ttranche-pysrc.html#TradeTranche.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__init__(...) initializes x; see x.__class__.__doc__ for 
+  signature</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>name</code></strong> (<code class="link">str</code>) - unique name of entity</li>
+        <li><strong class="pname"><code>price</code></strong> - tuple of size two holding bid and ask price for trade tranche in 
+          [EUR/MWh]</li>
+        <li><strong class="pname"><code>deliveryPeriod</code></strong> ((int, int)) - tuple of size of two holding indices into the <a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a> array with <code 
+          class="link">deliveryPeriod</code>[0] being the start index of 
+          the delivery period and <code 
+          class="link">deliveryPeriod</code>[1] being the end index of the 
+          delivery period.</li>
+        <li><strong class="pname"><code>capacityLimits</code></strong> ((min, max), with min, max in {<code class="link">None</code>, 
+          number}) - tuple of size two holding minimal and/or maximal allowed trade 
+          capacity in [MW] at given bid/ask <a 
+          href="src.entities.ttranche.TradeTranche-class.html#PRICE" 
+          class="link">PRICE</a>. for given delivery period <code 
+          class="link">deliveryPeriod</code> If tuple element value is 
+          equal to <code class="link">None</code> then limit is not 
+          applied.</li>
+        <li><strong class="pname"><code>discountFactor</code></strong> - a number or an array of cost of size len(<a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>) containing the discount 
+          factors to be used for cash flows from sales and purchase arising
+          during each given dispatch period. This means that <code 
+          class="link">discountFactor</code>[t] doesn't necessarily need to
+          be the discount factor for cash flows payed at the end of <a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>[t] but some other point in time
+          (for example settlement date of standard product its delivery 
+          period includes given dispatch period <a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>[t]). If the value is None then 
+          discountFactor is set to 1.0.</li>
+        <li><strong class="pname"><code>stdprd</code></strong> (<a href="src.entities.stdprod.StandardProduct-class.html" 
+          class="link">StandardProduct</a>) - a reference to a <a 
+          href="src.entities.stdprod.StandardProduct-class.html" 
+          class="link">StandardProduct</a> entity for which it serves as a 
+          source as well as a sink.</li>
+        <li><strong class="pname"><code>DISCOUNT_FACTOR</code></strong> (number, <code class="link">numpy.ndarray</code> of dtype='float')</li>
+        <li><strong class="pname"><code>PRICE</code></strong> (<code class="link">tuple</code>, (number, number))</li>
+    </ul></dd>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_DISPATCH_PERIODS"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_DISPATCH_PERIODS</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">dispatchPeriods</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.ttranche-pysrc.html#TradeTranche.set_DISPATCH_PERIODS">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Set the dispatch periods array (calling parent's set method) and set 
+  coefficient arrays to the correct length and initialise with some 
+  meaningful defaults, if they haven't been set appropriately beforehand 
+  (using __init__(...) or setters). If coefficient arrays have already been
+  set check for appropriate size (and values?).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dispatchPeriods</code></strong> (<code class="link">numpy.ndarray</code> of dtype='float') - array of dispatch periods defining the overall optimisation 
+          horizon as well as the individual duration of each dispatch 
+          period.</li>
+    </ul></dd>
+    <dt>Overrides:
+        <a href="src.entities.entity.Entity-class.html#set_DISPATCH_PERIODS">entity.Entity.set_DISPATCH_PERIODS</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="create_lp_vars"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">create_lp_vars</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">prefix</span>=<span class="sig-default">&quot;&quot;</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.ttranche-pysrc.html#TradeTranche.create_lp_vars">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>This function creates (multi-dimensional) arrays of <code 
+  class="link">pulp.LpVariable</code>s, <code 
+  class="link">pulp.LpConstraint</code>s, etc. of the adequate 
+  dimensionality and size.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>prefix</code></strong> (string) - string used as a prefix for naming <code 
+          class="link">pulp.LpVariable</code>s, <code 
+          class="link">pulp.LpConstraint</code>s, etc.</li>
+    </ul></dd>
+    <dt>Overrides:
+        <a href="src.entities.entity.Entity-class.html#create_lp_vars">entity.Entity.create_lp_vars</a>
+    </dt>
+  </dl>
+<div class="fields">      <p><strong>Precondition:</strong>
+        Function <code class="link">setDISPATCH_PERIODS</code>
+      </p>
+</div></td></tr></table>
+</div>
+<a name="create_model"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">create_model</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">prefix</span>=<span class="sig-default">&quot;&quot;</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.ttranche-pysrc.html#TradeTranche.create_model">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>The dynamics of the trade tranche are as follows:</p>
+  <ul>
+    <li>
+      Inflow/Outflow restricted to standard product's delivery period
+      <ul>
+        <li>
+          Restricted inflow volume: <a 
+          href="src.entities.entity.Entity-class.html#in_flow" 
+          class="link">in_flow</a>[t] [MWh] == 0, for t not in <a 
+          href="src.entities.ttranche.TradeTranche-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>
+        </li>
+        <li>
+          Restricted outflow volume: <a 
+          href="src.entities.entity.Entity-class.html#out_flow" 
+          class="link">out_flow</a>[t] [MWh] == 0, for t not in <a 
+          href="src.entities.ttranche.TradeTranche-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Transacted (sold: <code class="link">trade_volume</code> &lt; 0; 
+      purchased: <code class="link">trade_volume</code> &gt; 0) gas volume 
+      in [MWh]:
+      <ul>
+        <li>
+          Transacted volume balance equation: <code 
+          class="link">trade_volume</code>[t] [MWh] == <a 
+          href="src.entities.entity.Entity-class.html#out_flow" 
+          class="link">out_flow</a>[t] [MWh] - <a 
+          href="src.entities.entity.Entity-class.html#in_flow" 
+          class="link">in_flow</a>[t] [MWh]
+        </li>
+        <li>
+          Delivery period volume equations: <code 
+          class="link">trade_volume</code>[t] [MWh] == <code 
+          class="link">trade_volume</code>[u] [MWh], for all t, u in <a 
+          href="src.entities.ttranche.TradeTranche-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a> must hold
+        </li>
+      </ul>
+    </li>
+    <li>
+      Sales (<code class="link">trade_volume</code> &lt; 0) gas volume in 
+      [MWh]:
+      <ul>
+        <li>
+          Non-negativity constraints: <a 
+          href="src.entities.ttranche.TradeTranche-class.html#sales_position"
+          class="link">sales_position</a>[t] [MWh] &gt;= 0, for all t in <a
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a> (see variable construction in 
+          method <a 
+          href="src.entities.ttranche.TradeTranche-class.html#create_lp_vars"
+          class="link">create_lp_vars</a>).
+        </li>
+        <li>
+          Sales volume constraints: <a 
+          href="src.entities.ttranche.TradeTranche-class.html#sales_position"
+          class="link">sales_position</a>[t] [MWh] &gt;= -<code 
+          class="link">trade_volume</code>[t] [MWh], for all t in <a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>
+        </li>
+        <li>
+          Minimal sales volume equation: sum(<a 
+          href="src.entities.ttranche.TradeTranche-class.html#sales_position"
+          class="link">sales_position</a>[t], t in <a 
+          href="src.entities.ttranche.TradeTranche-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>) [MWh] &gt;= <a 
+          href="src.entities.ttranche.TradeTranche-class.html#CAPACITY_LIMITS"
+          class="link">CAPACITY_LIMITS</a>[0]*sum(<a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>[t], t in <a 
+          href="src.entities.ttranche.TradeTranche-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>) [MW*h] (--&gt; semi-continuous:
+          0 or &gt;= MIN)
+        </li>
+        <li>
+          Maximal delivery volume equation: sum(<a 
+          href="src.entities.ttranche.TradeTranche-class.html#sales_position"
+          class="link">sales_position</a>[t], t in <a 
+          href="src.entities.ttranche.TradeTranche-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>) [MWh] &lt;= <a 
+          href="src.entities.ttranche.TradeTranche-class.html#CAPACITY_LIMITS"
+          class="link">CAPACITY_LIMITS</a>[1]*sum(<a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>[t], t in <a 
+          href="src.entities.ttranche.TradeTranche-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>) [MW*h]
+        </li>
+        <li>
+          Objective function component: sum(<a 
+          href="src.entities.ttranche.TradeTranche-class.html#sales_position"
+          class="link">sales_position</a>[t]*PRICE[0]*DISCOUNT_FACTOR[t], t
+          in <a 
+          href="src.entities.ttranche.TradeTranche-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>)
+        </li>
+      </ul>
+    </li>
+    <li>
+      Purchase (<code class="link">trade_volume</code> &gt; 0) gas volume 
+      in [MWh]:
+      <ul>
+        <li>
+          Non-negativity constraints: <a 
+          href="src.entities.ttranche.TradeTranche-class.html#purch_position"
+          class="link">purch_position</a>[t] [MWh] &gt;= 0, for all t in <a
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a> (see variable construction in 
+          method <a 
+          href="src.entities.ttranche.TradeTranche-class.html#create_lp_vars"
+          class="link">create_lp_vars</a>).
+        </li>
+        <li>
+          Purchase volume equation: <a 
+          href="src.entities.ttranche.TradeTranche-class.html#purch_position"
+          class="link">purch_position</a>[t] [MWh] &gt;= <code 
+          class="link">trade_volume</code>[t] [MWh], for all t in <a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>
+        </li>
+        <li>
+          Minimal purchase volume equation: sum(<a 
+          href="src.entities.ttranche.TradeTranche-class.html#purch_position"
+          class="link">purch_position</a>[t], t in <a 
+          href="src.entities.ttranche.TradeTranche-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>) [MWh] &gt;= <a 
+          href="src.entities.ttranche.TradeTranche-class.html#CAPACITY_LIMITS"
+          class="link">CAPACITY_LIMITS</a>[0]*sum(<a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>[t], t in <a 
+          href="src.entities.ttranche.TradeTranche-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>) [MW*h] (--&gt; semi-continuous:
+          0 or &gt;= MIN)
+        </li>
+        <li>
+          Maximal purchase volume equation: sum(<a 
+          href="src.entities.ttranche.TradeTranche-class.html#purch_position"
+          class="link">purch_position</a>[t], t in <a 
+          href="src.entities.ttranche.TradeTranche-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>) [MWh] &lt;= <a 
+          href="src.entities.ttranche.TradeTranche-class.html#CAPACITY_LIMITS"
+          class="link">CAPACITY_LIMITS</a>[1]*sum(<a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>[t], t in <a 
+          href="src.entities.ttranche.TradeTranche-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>) [MW*h]
+        </li>
+        <li>
+          Objective function component: (-1.0)*sum(<a 
+          href="src.entities.ttranche.TradeTranche-class.html#purch_position"
+          class="link">purch_position</a>[t]*PRICE[1]*DISCOUNT_FACTOR[t], t
+          in <a 
+          href="src.entities.ttranche.TradeTranche-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>)
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="src.entities.entity.Entity-class.html#create_model">entity.Entity.create_model</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_lp_vars"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_lp_vars</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.ttranche-pysrc.html#TradeTranche.get_lp_vars">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="src.entities.entity.Entity-class.html#get_lp_vars">entity.Entity.get_lp_vars</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== INSTANCE VARIABLE DETAILS ==================== -->
+<a name="section-InstanceVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="CAPACITY_LIMITS"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">CAPACITY_LIMITS</h3>
+  tuple of size two holding minimal and/or maximal allowed trade capacity 
+  in [MW] at given bid/ask <a 
+  href="src.entities.ttranche.TradeTranche-class.html#PRICE" 
+  class="link">PRICE</a>. for given delivery period <a 
+  href="src.entities.ttranche.TradeTranche-class.html#DELIVERY_PERIOD" 
+  class="link">DELIVERY_PERIOD</a> If tuple element value is equal to <code
+  class="link">None</code> then limit is not applied.
+  <dl class="fields">
+    <dt>Type:</dt>
+      <dd>(min, max), with min, max in {<code class="link">None</code>, number}</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="DISCOUNT_FACTOR"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">DISCOUNT_FACTOR</h3>
+  array of cost of size len(<a 
+  href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+  class="link">DISPATCH_PERIODS</a>) containing the discount factors to be 
+  used for cash flows from sales and purchase arising during each given 
+  dispatch period. This means that DISCOUNT_FACTOR[t] doesn't necessarily 
+  need to be the discount factor for cash flows payed at the end of 
+  DISPATCH_PERIOD[t] but some other point in time (for example settlement 
+  date of standard product its delivery period includes given dispatch 
+  period DISPATCH_PERIODS[t])
+  <dl class="fields">
+    <dt>Type:</dt>
+      <dd><code class="link">numpy.ndarray</code> of dtype='float'</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="src.entities-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >gnw-obsolete</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Mar 05 13:40:14 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

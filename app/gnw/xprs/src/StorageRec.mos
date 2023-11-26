@@ -1,0 +1,546 @@
+! ==============================================================================
+!
+!   Package         :   Gas NetWork and Storage Optimisation (gnw)
+!   Author          :   Marc Roth (re04179)
+!   Version         :   $Id: StorageRec.mos 500 2009-04-20 10:58:21Z re04179 $
+!   Heading         :   $HeadURL: http://subversion.rwe.com/svn/s_and_v_projects/GasNetworks/trunk/app/gnw/xprs/src/StorageRec.mos $
+!
+!   Description     :   Xpress-MP/Mosel file
+!
+!   Creation Date   :   02Mar2009
+!
+!   Copyright       :   RWE Supply & Trading GmbH
+!
+! ==============================================================================
+declarations
+
+	Storage = record 
+		Name : string									! Unique storage identifier
+		INJ_CAP : real									! [MW/h]; this is the nominal injection capacity of the storage
+		REL_CAP : real									! [MW/h]; this is the nominal release capacity of the storage
+		WGV : real										! [MWh]; this is the nominal working gas volume of the storage
+		START_LEV_PCT : real							! [%] of WGV; this is the start storage level
+		END_LEV_PCT : real								! [%] of WGV; this is the end storage level
+		STRICT_END_LEV : boolean						! whether storage end-level must be exactly = END_LEV_PCT*WGV or
+														! just >= END_LEV_PCT*WGV,
+														! i.e., whether or not storage must be emptied exactly to END_LEV_PCT
+
+		MIN_LEV_PCT : array(POINT_IDX) of real			! [%] of WGV; lower storage level bound for each dispatch period + 1
+		MAX_LEV_PCT : array(POINT_IDX) of real			! [%] of WGV; upper storage level bound for each dispatch period + 1
+
+		MAX_INJ_CAP_PCT : array(STEP_IDX) of real 		! [%] of INJ_CAP; maximal injection capacity for each dispatch period
+		MAX_REL_CAP_PCT : array(STEP_IDX) of real 		! [%] of REL_CAP; maximal release capacity for each dispatch period
+
+		INJ_COST : array(STEP_IDX) of real				! [EUR/MWh]; injection cost for each dispatch period
+		REL_COST : array(STEP_IDX) of real				! [EUR/MWh]; release cost for each dispatch period
+		
+		! Coefficients for storage level dependent
+		! injection/release rate curve constraints
+		HAS_LEV_DEP_INJ_CAP_CURVE : boolean				! Make use of level dependent injection capacity rate curve flag
+		HAS_LEV_DEP_REL_CAP_CURVE : boolean				! Make use of level dependent release capacity rate cure flag
+		
+		LEV_DEP_INJ_CAP_CURVE : InterpolationCurve		! Level dependent injection capacity rate curve
+		LEV_DEP_REL_CAP_CURVE : InterpolationCurve		! Level dependent release capacity rate curve
+		
+		! Coefficients for min/max injection volume
+		! constraints
+		HAS_MIN_INJ_VOL_PCT : boolean					! Make use of minimm injection volume flag
+		HAS_MAX_INJ_VOL_PCT : boolean					! Make use of maximum injection volume flag
+
+		MIN_INJ_VOL_PCT_IDX : range
+		MIN_INJ_VOL_PCT_START_IDX : array(MAX_INJ_STEP_IDX) of integer	! Index into DISPATCH_PERIOD array representing starting
+														! dispatch period for which minimum injection volume constraint applies
+		MIN_INJ_VOL_PCT_FINAL_IDX : array(MAX_INJ_STEP_IDX) of integer	! Index into DISPATCH_PERIOD array representing last
+														! dispatch period for which minmum injection volume constraint applies
+		MIN_INJ_VOL_PCT : array(MAX_INJ_STEP_IDX) of real	! [%] of WGV; minimum injection volume that must be at least injected
+														! during period spanned by DISPATCH_PERIOD(MIN_INJ_VOL_PCT_START_IDX(i))..
+														! DISPATCH_PERIOD(MIN_INJ_VOL_PCT_FINAL_IDX(i)), forall i in MIN_INJ_VOL_PCT_IDX.
+		
+		MAX_INJ_VOL_PCT_IDX : range
+		MAX_INJ_VOL_PCT_START_IDX : array(MAX_INJ_STEP_IDX) of integer	! Index into DISPATCH_PERIOD array representing starting
+														! dispatch period for which maximum injection volume constraint applies
+		MAX_INJ_VOL_PCT_FINAL_IDX : array(MAX_INJ_STEP_IDX) of integer	! Index into DISPATCH_PERIOD array representing last
+														! dispatch period for which maximum injection volume constraint applies
+		MAX_INJ_VOL_PCT : array(MAX_INJ_STEP_IDX) of real	! [%] of WGV; maximum injection volume that can be at most injected
+														! during period spanned by DISPATCH_PERIOD(MIN_INJ_VOL_PCT_START_IDX(i))..
+														! DISPATCH_PERIOD(MIN_INJ_VOL_PCT_FINAL_IDX(i)), forall i in MIN_INJ_VOL_PCT_IDX.
+
+		! mpvars for given 'object'
+		
+		lev_pct : array(POINT_IDX) of mpvar				! [%] of WGV; storage level for each dispach period + 1. It represents the
+														! starting level for a given dispatch period, i.e., before a dispatch
+														! decision has been made for that period
+		dsp_pct : array(STEP_IDX) of mpvar				! [%] of WGV; storage dispatch percentage (free variable) for each
+														! dispatch period:
+														! dsp_pct > 0 is injection, e.g., inj_pct(t) >= dsp_pct(t), forall t in STEP_IDX
+														! dsp_pct < 0 is release, e.g., rel_pct(t) >= -dsp_pct(t), forall t in STEP_IDX
+														! lev_pct(t) = lev_pct(t-1) + dsp_pct(t-1), forall t in STEP_IDX | t > 1
+		inj_pct : array(STEP_IDX) of mpvar				! [%] of WGV; injection percentage, i.e., the positive part of dsp_pct(t)
+		rel_pct : array(STEP_IDX) of mpvar				! [%] of WGV; release percentage, i.e., the positive part of -dsp_pct(t)
+		
+		
+		max_inj_cap_pct : array(STEP_IDX) of mpvar		! maximal injection capacity rate implied by storage level lev_pct for
+														! each dispatch period
+		a_inj_trig : array(STEP_IDX, MAX_INJ_STEP_IDX) of mpvar	! binary auxiliary decision variables to model
+														! piecewise constant injection capacity rate curve
+		b_inj_trig : array(STEP_IDX, MAX_INJ_STEP_IDX) of mpvar	! binary auxiliary decision variables to model
+														! piecewise constant injection capacity rate curve (only used
+														! if not STRG_SOS1_FLAG = true)
+		inj_sos1 : array(STEP_IDX) of linctr			! auxiliary linear constraint variables to model
+														! piecewise constant injection capacity rate curve using
+														! special ordered sets of type 1.
+		
+		max_rel_cap_pct : array(STEP_IDX) of mpvar		! maximal release capacity rate implied by storage level lev_pct for
+														! each dispatch period
+		a_rel_trig : array(STEP_IDX, MAX_REL_STEP_IDX) of mpvar	! binary auxiliary decision variables to model
+														! piecewise constant release capacity rate curve
+		b_rel_trig : array(STEP_IDX, MAX_REL_STEP_IDX) of mpvar	! binary auxiliary decision variables to model
+														! piecewise constant release capacity rate curve (only used
+														! if not STRG_SOS1_FLAG = true)
+		rel_sos1 : array(STEP_IDX) of linctr			! auxiliary linear constraint variables to model
+														! piecewise constant release capacity rate curve using
+														! special ordered sets of type 1.
+	end-record
+end-declarations
+
+forward procedure writeStorage(strg : Storage)
+
+forward function SetConstraints(strg : Storage) : linctr
+
+forward procedure SetLevDepCapRateConstraints(strg : Storage)
+
+forward procedure SetLevDepRelCapRateConstraints(strg : Storage)
+
+forward procedure SetLevDepRelCapRateBackStepConstraints(strg : Storage)
+forward procedure SetLevDepRelCapRateFrontStepConstraints(strg : Storage)
+forward procedure SetLevDepRelCapRateLinearConstraints(strg : Storage)
+
+forward procedure SetLevDepInjCapRateConstraints(strg : Storage)
+
+forward procedure SetLevDepInjCapRateBackStepConstraints(strg : Storage)
+forward procedure SetLevDepInjCapRateFrontStepConstraints(strg : Storage)
+forward procedure SetLevDepInjCapRateLinearConstraints(strg : Storage)
+
+
+!######################
+!### Implementation ###
+!######################
+
+procedure writeStorage(strg : Storage)
+
+	writeln("Name;", strg.Name)
+	writeln("INJ_CAP;", strg.INJ_CAP)
+	writeln("REL_CAP;", strg.REL_CAP)
+	writeln("WGV;", strg.WGV)
+	writeln("START_LEV_PCT;", strg.START_LEV_PCT)
+	writeln("END_LEV_PCT;", strg.END_LEV_PCT)
+	writeln("STRICT_END_LEV;", strg.STRICT_END_LEV)
+	writeln("HAS_LEV_DEP_REL_CAP_CURVE;", strg.HAS_LEV_DEP_REL_CAP_CURVE)
+	writeln("HAS_LEV_DEP_INJ_CAP_CURVE;", strg.HAS_LEV_DEP_INJ_CAP_CURVE)
+	writeln("Index;MIN_LEV_PCT;MAX_LEV_PCT;MAX_REL_CAP_PCT;MAX_INJ_CAP_PCT;REL_COST;INJ_COST")
+	writeln("[t];[%];[%];[MW];[MW];[EUR/MWh];[EUR/MWh]")
+	forall(t in POINT_IDX) do
+		write(strfmt(t, 1), ";")
+		write(strfmt(strg.MIN_LEV_PCT(t), 4, 2), ";")
+		write(strfmt(strg.MAX_LEV_PCT(t), 4, 2), ";")
+		if t < POINT_IDX.last then
+			write(strfmt(strg.MAX_REL_CAP_PCT(t), 4, 2), ";")
+			write(strfmt(strg.MAX_INJ_CAP_PCT(t), 4, 2), ";")
+			write(strfmt(strg.REL_COST(t), 4, 2), ";")
+			write(strfmt(strg.INJ_COST(t), 4, 2))
+		else
+			write(";;;")
+		end-if
+		writeln
+	end-do
+end-procedure
+
+function SetConstraints(strg : Storage) : linctr
+	declarations
+		objective : linctr
+	end-declarations
+	
+	objective := 0
+	
+	SetLevDepCapRateConstraints(strg)
+	
+	forall(t in STEP_IDX) strg.dsp_pct(t) is_free
+	
+	! storage start level constraint
+	strg.lev_pct(1) = strg.START_LEV_PCT
+	! storage level balance constraints
+	forall(t in POINT_IDX | t > 1) strg.lev_pct(t) = strg.lev_pct(t-1) + strg.dsp_pct(t-1)
+	
+	! storage min/max level constraints
+	forall(t in POINT_IDX) strg.lev_pct(t) <= strg.MAX_LEV_PCT(t)
+	forall(t in POINT_IDX) strg.lev_pct(t) >= strg.MIN_LEV_PCT(t)
+	! storage end level constraint
+	if strg.STRICT_END_LEV then
+		strg.lev_pct(nPoints) = strg.END_LEV_PCT
+	else
+		strg.lev_pct(nPoints) >= strg.END_LEV_PCT
+	end-if
+	! storage max injection/release dispatch constraints
+	forall(t in STEP_IDX) strg.dsp_pct(t)*strg.WGV <=  strg.MAX_INJ_CAP_PCT(t)*strg.INJ_CAP*DISPATCH_PERIOD(t)*strg.max_inj_cap_pct(t)
+	forall(t in STEP_IDX) strg.dsp_pct(t)*strg.WGV >= -strg.MAX_REL_CAP_PCT(t)*strg.REL_CAP*DISPATCH_PERIOD(t)*strg.max_rel_cap_pct(t)
+	
+	! storage non-negaive injection/release dispatch constraints
+	forall(t in STEP_IDX) strg.inj_pct(t) >=  strg.dsp_pct(t)
+	forall(t in STEP_IDX) strg.rel_pct(t) >= -strg.dsp_pct(t)
+	
+	! storage (multi-)dispatch period minimum injection constraints
+	if strg.HAS_MIN_INJ_VOL_PCT then
+		forall(p in strg.MIN_INJ_VOL_PCT_IDX) do
+			sum(t in strg.MIN_INJ_VOL_PCT_START_IDX(p)..strg.MIN_INJ_VOL_PCT_FINAL_IDX(p)) strg.inj_pct(t) >= strg.MIN_INJ_VOL_PCT(p)
+		end-do
+	end-if
+
+	! storage (multi-)dispatch period maximum injection constraints
+	if strg.HAS_MAX_INJ_VOL_PCT then
+		forall(p in strg.MAX_INJ_VOL_PCT_IDX) do
+			sum(t in strg.MAX_INJ_VOL_PCT_START_IDX(p)..strg.MAX_INJ_VOL_PCT_FINAL_IDX(p)) strg.inj_pct(t) <= strg.MAX_INJ_VOL_PCT(p)
+		end-do
+	end-if
+	
+	! storage injection/release cost objective function components
+	objective -= strg.WGV*sum(t in STEP_IDX) strg.inj_pct(t)*strg.INJ_COST(t)*DISCOUNT_FACTOR(t)
+	objective -= strg.WGV*sum(t in STEP_IDX) strg.rel_pct(t)*strg.REL_COST(t)*DISCOUNT_FACTOR(t)
+	
+	returned := objective
+end-function
+
+procedure SetLevDepCapRateConstraints(strg : Storage)
+	SetLevDepRelCapRateConstraints(strg)
+	SetLevDepInjCapRateConstraints(strg)
+end-procedure
+
+procedure SetLevDepRelCapRateConstraints(strg : Storage)
+	! MIP storage level dependent release capacity modelling
+	if strg.HAS_LEV_DEP_REL_CAP_CURVE then
+		case strg.LEV_DEP_REL_CAP_CURVE.Type of
+		"backstep" : 	SetLevDepRelCapRateBackStepConstraints(strg)
+		"frontstep" : 	SetLevDepRelCapRateFrontStepConstraints(strg)		!!!not tested yet!!!
+		"linear" : 		SetLevDepRelCapRateLinearConstraints(strg)			!!!not tested yet!!!
+		end-case
+	else
+		forall(t in STEP_IDX) strg.max_rel_cap_pct(t) = 1.0
+	end-if
+end-procedure
+
+procedure SetLevDepRelCapRateBackStepConstraints(strg : Storage)
+	declarations
+		nLevels : integer
+		LEVEL : array(INTERP_CURVE_PTS_IDX) of real
+		RATE : array(INTERP_CURVE_PTS_IDX) of real
+	end-declarations
+
+	if not STRG_SOS1_FLAG then
+		! MIP storage level dependent release capacity modelling
+		! not using sos1
+		nLevels := strg.LEV_DEP_REL_CAP_CURVE.Size
+		LEVEL := strg.LEV_DEP_REL_CAP_CURVE.XArray
+		RATE := strg.LEV_DEP_REL_CAP_CURVE.YArray
+		forall(t in STEP_IDX) do
+			! all b_rel_trig(t,i) will be > 0 for all i for which LEVEL(i) > strg.lev_pct(t), forall t
+			! all b_rel_trig(t,i) will be < 1 for all i for which LEVEL(i) < strg.lev_pct(t), forall t
+			! i.e., all b_rel_trig(t,i) will be = 1 for all i for which LEVEL(i) > strg.lev_pct(t), forall t,
+			! 0 otherwise.
+			forall(i in 1..nLevels) do
+				strg.b_rel_trig(t, i) is_binary
+				strg.b_rel_trig(t, i) >= LEVEL(i) - strg.lev_pct(t)
+				strg.b_rel_trig(t, i) <= LEVEL(i) - strg.lev_pct(t) + 1.0
+			end-do
+			
+			! a_rel_trig(t,i) will be 1 if b_rel_trig(t,i) = 1 and b_rel_trig(t, i-1) = 0
+			! all other a_rel_trig(t,j) = 0, j = 1..i-1,i+1..nLevels
+			forall(i in 1..nLevels) do
+				strg.a_rel_trig(t, i) is_binary
+				if i = 1 then
+					strg.a_rel_trig(t, i) = strg.b_rel_trig(t, i)
+				else
+					strg.a_rel_trig(t, i) = strg.b_rel_trig(t, i) - strg.b_rel_trig(t, i - 1)
+				end-if
+			end-do
+			! make sure exactly one of the a_rel_trig(t,i) = 1.
+			sum(i in 1..nLevels) strg.a_rel_trig(t, i) = 1.0
+			
+			! storage level dependent release capacity rate curve constraints
+			strg.max_rel_cap_pct(t) = sum(i in 1..nLevels) strg.a_rel_trig(t, i)*RATE(i)
+		end-do
+	else
+		! MIP storage level dependent release capacity modelling
+		! using sos1
+		nLevels := strg.LEV_DEP_REL_CAP_CURVE.Size
+		LEVEL := strg.LEV_DEP_REL_CAP_CURVE.XArray
+		RATE := strg.LEV_DEP_REL_CAP_CURVE.YArray
+		forall(t in STEP_IDX) do
+			! reference row
+	!		strg.rel_sos1(t) := sum(i in 1..nLevels) LEVEL(i)*strg.a_rel_trig(t, i) is_sos1
+			makesos1(
+				strg.rel_sos1(t),
+				union(i in 1..nLevels) {strg.a_rel_trig(t, i)},
+				sum(i in 1..nLevels) LEVEL(i)*strg.a_rel_trig(t, i))
+			! convexity row
+			sum(i in 1..nLevels) strg.a_rel_trig(t, i) = 1
+			! function row
+			strg.lev_pct(t) <= sum(i in 2..nLevels) LEVEL(i)*strg.a_rel_trig(t, i)
+			strg.lev_pct(t) >= sum(i in 2..nLevels) LEVEL(i - 1)*strg.a_rel_trig(t, i)
+			strg.max_rel_cap_pct(t) = sum(i in 1..nLevels) RATE(i)*strg.a_rel_trig(t, i)
+		end-do
+	end-if
+end-procedure
+
+procedure SetLevDepRelCapRateFrontStepConstraints(strg : Storage)
+	declarations
+		nLevels : integer
+		LEVEL : array(INTERP_CURVE_PTS_IDX) of real
+		RATE : array(INTERP_CURVE_PTS_IDX) of real
+	end-declarations
+
+	! MIP storage level dependent release capacity modelling
+	nLevels := strg.LEV_DEP_REL_CAP_CURVE.Size
+	LEVEL := strg.LEV_DEP_REL_CAP_CURVE.XArray
+	RATE := strg.LEV_DEP_REL_CAP_CURVE.YArray
+	forall(t in STEP_IDX) do
+		forall(i in 1..nLevels) do
+			strg.b_rel_trig(t, i) is_binary
+			if i < nLevels or LEVEL(nLevels) >= 1.0 then
+				strg.b_rel_trig(t, i) >= LEVEL(i) - strg.lev_pct(t)
+				strg.b_rel_trig(t, i) <= 1 + LEVEL(i) - strg.lev_pct(t)
+			else
+				strg.b_rel_trig(t, i) >= 1 - strg.lev_pct(t)
+				strg.b_rel_trig(t, i) <= 1 + 1 - strg.lev_pct(t)
+			end-if
+		end-do
+		
+		forall(i in 1..nLevels) do
+			strg.a_rel_trig(t, i) is_binary
+			if i = 1 then
+				strg.a_rel_trig(t, i) = strg.b_rel_trig(t, i)
+			else
+				strg.a_rel_trig(t, i) = strg.b_rel_trig(t, i) - strg.b_rel_trig(t, i - 1)
+			end-if
+		end-do
+		sum(i in 1..nLevels) strg.a_rel_trig(t, i) = 1.0
+		
+		strg.max_rel_cap_pct(t) = sum(i in 1..nLevels) strg.a_rel_trig(t, i)*RATE(i)
+	end-do
+end-procedure
+
+procedure SetLevDepRelCapRateLinearConstraints(strg : Storage)
+	declarations
+		nLevels : integer
+		LEVEL : array(INTERP_CURVE_PTS_IDX) of real
+		RATE : array(INTERP_CURVE_PTS_IDX) of real
+	end-declarations
+
+	! MIP storage level dependent release capacity modelling
+	nLevels := strg.LEV_DEP_REL_CAP_CURVE.Size
+	LEVEL := strg.LEV_DEP_REL_CAP_CURVE.XArray
+	RATE := strg.LEV_DEP_REL_CAP_CURVE.YArray
+	
+	declarations
+		SLOPE : array(1..nLevels) of real
+		rel_curve : array(STEP_IDX, 1..nLevels) of mpvar
+	end-declarations
+
+	forall(i in 1..nLevels-1) SLOPE(i) := (RATE(i+1) - RATE(i))/(LEVEL(i+1) - LEVEL(i))
+	SLOPE(nLevels) := SLOPE(nLevels - 1)
+	
+	forall(t in STEP_IDX) do
+		forall(i in 1..nLevels) do
+			strg.b_rel_trig(t, i) is_binary
+			strg.b_rel_trig(t, i) >= LEVEL(i) - strg.lev_pct(t)
+			strg.b_rel_trig(t, i) <= 1 + LEVEL(i) - strg.lev_pct(t)
+		end-do
+		
+		forall(i in 1..nLevels) do
+			strg.a_rel_trig(t, i) is_binary
+			if i = 1 then
+				strg.a_rel_trig(t, i) = strg.b_rel_trig(t, i)
+			else
+				strg.a_rel_trig(t, i) = strg.b_rel_trig(t, i) - strg.b_rel_trig(t, i - 1)
+			end-if
+		end-do
+		sum(i in 1..nLevels) strg.a_rel_trig(t, i) = 1.0
+		
+		
+		forall(i in 1..nLevels) do
+			rel_curve(t, i) <= strg.lev_pct(t)
+			rel_curve(t, i) >= strg.lev_pct(t) - strg.MAX_REL_CAP_PCT(t)*(1 -  strg.a_rel_trig(t, i))
+			rel_curve(t, i) <= strg.MAX_REL_CAP_PCT(t)*(1 -  strg.a_rel_trig(t, i))
+		end-do
+		
+		strg.max_rel_cap_pct(t) = sum(i in 1..nLevels) (strg.a_rel_trig(t, i)*(RATE(i) - SLOPE(i)*LEVEL(i)) + SLOPE(i)*rel_curve(t, i))
+	end-do
+end-procedure
+
+
+procedure SetLevDepInjCapRateConstraints(strg : Storage)
+	! MIP storage level dependent injection capacity modelling
+	if strg.HAS_LEV_DEP_INJ_CAP_CURVE then
+		case strg.LEV_DEP_INJ_CAP_CURVE.Type of
+		"backstep" : 	SetLevDepInjCapRateBackStepConstraints(strg)
+		"frontstep" : 	SetLevDepInjCapRateFrontStepConstraints(strg)		!!!not tested yet!!!
+		"linear" : 		SetLevDepInjCapRateLinearConstraints(strg)			!!!not tested yet!!!
+		end-case
+	else
+		forall(t in STEP_IDX) strg.max_inj_cap_pct(t) = 1.0
+	end-if
+end-procedure
+
+procedure SetLevDepInjCapRateBackStepConstraints(strg : Storage)
+	declarations
+		nLevels : integer
+		LEVEL : array(INTERP_CURVE_PTS_IDX) of real
+		RATE : array(INTERP_CURVE_PTS_IDX) of real
+	end-declarations
+
+	if not STRG_SOS1_FLAG then
+		! MIP storage level dependent injection capacity modelling
+		! not using sos1
+		nLevels := strg.LEV_DEP_INJ_CAP_CURVE.size
+		LEVEL := strg.LEV_DEP_INJ_CAP_CURVE.XArray
+		RATE := strg.LEV_DEP_INJ_CAP_CURVE.YArray
+		forall(t in STEP_IDX) do
+			! all b_inj_trig(t,i) will be > 0 for all i for which LEVEL(i) > strg.lev_pct(t), forall t
+			! all b_inj_trig(t,i) will be < 1 for all i for which LEVEL(i) < strg.lev_pct(t), forall t
+			! i.e., all b_inj_trig(t,i) will be = 1 for all i for which LEVEL(i) > strg.lev_pct(t), forall t,
+			! 0 otherwise.
+			forall(i in 1..nLevels) do
+				strg.b_inj_trig(t, i) is_binary
+				strg.b_inj_trig(t, i) >= LEVEL(i) - strg.lev_pct(t)
+				strg.b_inj_trig(t, i) <= LEVEL(i) - strg.lev_pct(t) + 1.0
+			end-do
+			
+			! a_inj_trig(t,i) will be 1 if b_inj_trig(t,i) = 1 and b_inj_trig(t, i-1) = 0
+			! all other a_inj_trig(t,j) = 0, j = 1..i-1,i+1..nLevels
+			forall(i in 1..nLevels) do
+				strg.a_inj_trig(t, i) is_binary
+				if i = 1 then	
+					strg.a_inj_trig(t, 1) = strg.b_inj_trig(t, 1)
+				else
+					strg.a_inj_trig(t, i) = strg.b_inj_trig(t, i) - strg.b_inj_trig(t, i - 1)
+				end-if
+			end-do
+			! make sure exactly one of the a_inj_trig(t,i) = 1.
+			sum(i in 1..nLevels) strg.a_inj_trig(t, i) = 1.0
+		
+			! storage level dependent injection capacity rate curve constraints
+			strg.max_inj_cap_pct(t) = sum(i in 1..nLevels) strg.a_inj_trig(t, i)*RATE(i)
+		end-do
+	else
+		! MIP storage level dependent release capacity modelling
+		! using sos1
+		nLevels := strg.LEV_DEP_INJ_CAP_CURVE.size
+		LEVEL := strg.LEV_DEP_INJ_CAP_CURVE.XArray
+		RATE := strg.LEV_DEP_INJ_CAP_CURVE.YArray
+		forall(t in STEP_IDX) do
+			! reference row
+	!		strg.inj_sos1(t) := sum(i in 1..nLevels) LEVEL(i)*strg.a_inj_trig(t, i) is_sos1
+			makesos1(
+				strg.inj_sos1(t),
+				union(i in 1..nLevels) {strg.a_inj_trig(t, i)},
+				sum(i in 1..nLevels) LEVEL(i)*strg.a_inj_trig(t, i))
+			! convexity row
+			sum(i in 1..nLevels) strg.a_inj_trig(t, i) = 1
+			! function row
+			strg.lev_pct(t) <= sum(i in 2..nLevels) LEVEL(i)*strg.a_inj_trig(t, i)
+			strg.lev_pct(t) >= sum(i in 2..nLevels) LEVEL(i - 1)*strg.a_inj_trig(t, i)
+			strg.max_inj_cap_pct(t) = sum(i in 1..nLevels) RATE(i)*strg.a_inj_trig(t, i)
+		end-do
+	end-if
+end-procedure
+
+procedure SetLevDepInjCapRateFrontStepConstraints(strg : Storage)
+	declarations
+		nLevels : integer
+		LEVEL : array(INTERP_CURVE_PTS_IDX) of real
+		RATE : array(INTERP_CURVE_PTS_IDX) of real
+	end-declarations
+
+	! Backstep interpolation
+	nLevels := strg.LEV_DEP_INJ_CAP_CURVE.size
+	LEVEL := strg.LEV_DEP_INJ_CAP_CURVE.XArray
+	RATE := strg.LEV_DEP_INJ_CAP_CURVE.YArray
+	forall(t in STEP_IDX) do
+		forall(i in 1..nLevels) do
+			strg.b_inj_trig(t, i) is_binary
+			if i < nLevels or LEVEL(nLevels) >= 1.0 then
+				strg.b_inj_trig(t, i) >= LEVEL(i) - strg.lev_pct(t)
+				strg.b_inj_trig(t, i) <= 1 + LEVEL(i) - strg.lev_pct(t)
+			else
+				strg.b_inj_trig(t, i) >= 1 - strg.lev_pct(t)
+				strg.b_inj_trig(t, i) <= 1 + 1 - strg.lev_pct(t)
+			end-if				
+		end-do
+		
+		forall(i in 1..nLevels) do
+			strg.a_inj_trig(t, i) is_binary
+			if i = 1 then	
+				strg.a_inj_trig(t, 1) = strg.b_inj_trig(t, 1)
+			else
+				strg.a_inj_trig(t, i) = strg.b_inj_trig(t, i) - strg.b_inj_trig(t, i - 1)
+			end-if
+		end-do
+		sum(i in 1..nLevels) strg.a_inj_trig(t, i) = 1.0
+	
+		strg.max_inj_cap_pct(t) = sum(i in 1..nLevels) strg.a_inj_trig(t, i)*RATE(i)
+	end-do
+end-procedure
+
+procedure SetLevDepInjCapRateLinearConstraints(strg : Storage)
+	declarations
+		nLevels : integer
+		LEVEL : array(INTERP_CURVE_PTS_IDX) of real
+		RATE : array(INTERP_CURVE_PTS_IDX) of real
+	end-declarations
+
+	! MIP storage level dependent injease capacity modelling
+	nLevels := strg.LEV_DEP_INJ_CAP_CURVE.Size
+	LEVEL := strg.LEV_DEP_INJ_CAP_CURVE.XArray
+	RATE := strg.LEV_DEP_INJ_CAP_CURVE.YArray
+	
+	declarations
+		SLOPE : array(1..nLevels) of real
+		inj_curve : array(STEP_IDX, 1..nLevels) of mpvar
+	end-declarations
+
+	forall(i in 1..nLevels-1) SLOPE(i) := (RATE(i+1) - RATE(i))/(LEVEL(i+1) - LEVEL(i))
+	SLOPE(nLevels) := SLOPE(nLevels - 1)
+	
+	forall(t in STEP_IDX) do
+		forall(i in 1..nLevels) do
+			strg.b_inj_trig(t, i) is_binary
+			strg.b_inj_trig(t, i) >= LEVEL(i) - strg.lev_pct(t)
+			strg.b_inj_trig(t, i) <= 1 + LEVEL(i) - strg.lev_pct(t)
+		end-do
+		
+		forall(i in 1..nLevels) do
+			strg.a_inj_trig(t, i) is_binary
+			if i = 1 then
+				strg.a_inj_trig(t, i) = strg.b_inj_trig(t, i)
+			else
+				strg.a_inj_trig(t, i) = strg.b_inj_trig(t, i) - strg.b_inj_trig(t, i - 1)
+			end-if
+		end-do
+		sum(i in 1..nLevels) strg.a_inj_trig(t, i) = 1.0
+		
+		forall(i in 1..nLevels) do
+			inj_curve(t, i) <= strg.lev_pct(t)
+			inj_curve(t, i) >= strg.lev_pct(t) - strg.MAX_INJ_CAP_PCT(t)*(1 - strg.a_inj_trig(t, i))
+			inj_curve(t, i) <= strg.MAX_INJ_CAP_PCT(t)*(1 - strg.a_inj_trig(t, i))
+		end-do
+		
+		strg.max_inj_cap_pct(t) = sum(i in 1..nLevels) (strg.a_inj_trig(t, i)*(RATE(i) - SLOPE(i)*LEVEL(i)) + SLOPE(i)*inj_curve(t, i))
+	end-do
+end-procedure
+! ==============================================================================
+!
+!   Revision Control:
+!
+!   $Revision:: 500                     $   Revision of last commit
+!   $Author:: re04179                   $   Author of last commit
+!   $Date:: 2009-04-20 12:58:21 +0200 (#$   Date of last commit
+!
+! ==============================================================================

@@ -1,0 +1,1131 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>src.entities.stdprod.StandardProduct</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="src.entities-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >gnw-obsolete</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;src ::
+        <a href="src.entities-module.html">Package&nbsp;entities</a> ::
+        <a href="src.entities.stdprod-module.html">Module&nbsp;stdprod</a> ::
+        Class&nbsp;StandardProduct
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="src.entities.stdprod.StandardProduct-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class StandardProduct</h1><p class="nomargin-top"><span class="codelink"><a href="src.entities.stdprod-pysrc.html#StandardProduct">source&nbsp;code</a></span></p>
+<center>
+<center>  <map id="uml_class_diagram_for_src_enti_3" name="uml_class_diagram_for_src_enti_3">
+<area shape="rect" href="src.entities.stdprod.StandardProduct&#45;class.html#CLIP_SIZE" alt="" coords="19,380,1097,398" />
+<area shape="rect" href="src.entities.stdprod.StandardProduct&#45;class.html#CURRENT_POSITION" alt="" coords="19,398,1097,417" />
+<area shape="rect" href="src.entities.stdprod.StandardProduct&#45;class.html#DELIVERY_PERIOD" alt="" coords="19,417,1097,436" />
+<area shape="rect" href="src.entities.stdprod.StandardProduct&#45;class.html#MAX_TRADE_SIZE" alt="" coords="19,436,1097,454" />
+<area shape="rect" href="src.entities.stdprod.StandardProduct&#45;class.html#MIN_TRADE_SIZE" alt="" coords="19,454,1097,473" />
+<area shape="rect" href="src.entities.stdprod.StandardProduct&#45;class.html#__init__" alt="" coords="19,476,1097,494" />
+<area shape="rect" href="src.entities.stdprod.StandardProduct&#45;class.html#set_DELIVERY_PERIOD" alt="" coords="19,494,1097,513" />
+<area shape="rect" href="src.entities.stdprod.StandardProduct&#45;class.html#set_DISCOUNT_FACTOR" alt="" coords="19,513,1097,532" />
+<area shape="rect" href="src.entities.stdprod.StandardProduct&#45;class.html#set_FWD_CURVE_BID" alt="" coords="19,532,1097,550" />
+<area shape="rect" href="src.entities.stdprod.StandardProduct&#45;class.html#set_FWD_CURVE_ASK" alt="" coords="19,550,1097,569" />
+<area shape="rect" href="src.entities.stdprod.StandardProduct&#45;class.html#set_DISPATCH_PERIODS" alt="" coords="19,569,1097,588" />
+<area shape="rect" href="src.entities.stdprod.StandardProduct&#45;class.html#create_lp_vars" alt="" coords="19,588,1097,606" />
+<area shape="rect" href="src.entities.stdprod.StandardProduct&#45;class.html#create_model" alt="" coords="19,606,1097,625" />
+<area shape="rect" href="src.entities.stdprod.StandardProduct&#45;class.html#get_lp_vars" alt="" coords="19,625,1097,644" />
+<area shape="rect" href="src.entities.stdprod.StandardProduct&#45;class.html" title="The StandardProduct class object&#39;s role is to store information on the standard product that are tradable in the market." alt="" coords="7,357,1109,650" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#DISPATCH_PERIODS" alt="" coords="329,30,787,49" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#constraint_list" alt="" coords="329,49,787,68" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#in_flow" alt="" coords="329,68,787,86" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#name" alt="" coords="329,86,787,105" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#objective_list" alt="" coords="329,105,787,124" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#out_flow" alt="" coords="329,124,787,142" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#snkList" alt="" coords="329,142,787,161" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#srcList" alt="" coords="329,161,787,180" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#create_coefficient_array" alt="" coords="329,182,787,201" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#set_name" alt="" coords="329,201,787,220" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#set_src_list" alt="" coords="329,220,787,238" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#set_snk_list" alt="" coords="329,238,787,257" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#append_to_src_list" alt="" coords="329,257,787,276" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#append_to_snk_list" alt="" coords="329,276,787,294" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#get_topology_graph" alt="" coords="329,294,787,313" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html#get_topology_edges" alt="" coords="329,313,787,332" />
+<area shape="rect" href="src.entities.entity.Entity&#45;class.html" title="Gas Network framework base class." alt="" coords="317,8,799,338" />
+</map>
+  <img src="uml_class_diagram_for_src_enti_3.gif" alt='' usemap="#uml_class_diagram_for_src_enti_3" ismap="ismap" class="graph-without-title" />
+</center>
+</center>
+<hr />
+<p>The StandardProduct class object's role is to store information on the
+  standard product that are tradable in the market. The StandardProduct 
+  class object collaborates with the <a 
+  href="src.entities.market.Market-class.html" class="link">Market</a> <a 
+  href="src.entities.entity.Entity-class.html" class="link">Entity</a> and 
+  one or more <a href="src.entities.ttranche.TradeTranche-class.html" 
+  class="link">TradeTranche</a> <a 
+  href="src.entities.entity.Entity-class.html" class="link">Entity</a> 
+  objects</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.stdprod.StandardProduct-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">name</span>,
+        <span class="summary-sig-arg">deliveryPeriod</span>=<span class="summary-sig-default">(0,0)</span>,
+        <span class="summary-sig-arg">position</span>=<span class="summary-sig-default">0.0</span>,
+        <span class="summary-sig-arg">minTradeSize</span>=<span class="summary-sig-default">0.0</span>,
+        <span class="summary-sig-arg">clipSize</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">discountFactor</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">fwdCurveBid</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">fwdCurveAsk</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">srcs</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">snks</span>=<span class="summary-sig-default">None</span>)</span><br />
+      x.__init__(...) initializes x; see x.__class__.__doc__ for signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.stdprod-pysrc.html#StandardProduct.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_DELIVERY_PERIOD"></a><span class="summary-sig-name">set_DELIVERY_PERIOD</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.stdprod-pysrc.html#StandardProduct.set_DELIVERY_PERIOD">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_DISCOUNT_FACTOR"></a><span class="summary-sig-name">set_DISCOUNT_FACTOR</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.stdprod-pysrc.html#StandardProduct.set_DISCOUNT_FACTOR">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_FWD_CURVE_BID"></a><span class="summary-sig-name">set_FWD_CURVE_BID</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.stdprod-pysrc.html#StandardProduct.set_FWD_CURVE_BID">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="set_FWD_CURVE_ASK"></a><span class="summary-sig-name">set_FWD_CURVE_ASK</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">value</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.stdprod-pysrc.html#StandardProduct.set_FWD_CURVE_ASK">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.stdprod.StandardProduct-class.html#set_DISPATCH_PERIODS" class="summary-sig-name">set_DISPATCH_PERIODS</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">dispatchPeriods</span>)</span><br />
+      Set the dispatch periods array (calling parent's set method) and set 
+      coefficient arrays to the correct length and initialise with some 
+      meaningful defaults, if they haven't been set appropriately 
+      beforehand (using __init__(...) or setters).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.stdprod-pysrc.html#StandardProduct.set_DISPATCH_PERIODS">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.stdprod.StandardProduct-class.html#create_lp_vars" class="summary-sig-name">create_lp_vars</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">prefix</span>=<span class="summary-sig-default">&quot;&quot;</span>)</span><br />
+      This function creates (multi-dimensional) arrays of <code 
+      class="link">pulp.LpVariable</code>s, <code 
+      class="link">pulp.LpConstraint</code>s, etc.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.stdprod-pysrc.html#StandardProduct.create_lp_vars">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.stdprod.StandardProduct-class.html#create_model" class="summary-sig-name">create_model</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">prefix</span>=<span class="summary-sig-default">&quot;&quot;</span>)</span><br />
+      The dynamics of the standard product is as follows:</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.stdprod-pysrc.html#StandardProduct.create_model">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="src.entities.stdprod.StandardProduct-class.html#get_lp_vars" class="summary-sig-name">get_lp_vars</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="src.entities.stdprod-pysrc.html#StandardProduct.get_lp_vars">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="src.entities.entity.Entity-class.html">entity.Entity</a></code></b>:
+      <code><a href="src.entities.entity.Entity-class.html#append_to_snk_list">append_to_snk_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#append_to_src_list">append_to_src_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#get_topology_edges">get_topology_edges</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#get_topology_graph">get_topology_graph</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#set_name">set_name</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#set_snk_list">set_snk_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#set_src_list">set_src_list</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__str__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== STATIC METHODS ==================== -->
+<a name="section-StaticMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Static Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-StaticMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="src.entities.entity.Entity-class.html">entity.Entity</a></code></b>:
+      <code><a href="src.entities.entity.Entity-class.html#create_coefficient_array">create_coefficient_array</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE VARIABLES ==================== -->
+<a name="section-InstanceVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="src.entities.stdprod.StandardProduct-class.html#CLIP_SIZE" class="summary-name">CLIP_SIZE</a><br />
+      This is a positive floating point number or None representing the 
+      standard product clip size in [MW] that can be executed in the market
+      for quantities above the <a 
+      href="src.entities.stdprod.StandardProduct-class.html#MIN_TRADE_SIZE"
+      class="link">MIN_TRADE_SIZE</a>.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">number</span>
+    </td><td class="summary">
+        <a href="src.entities.stdprod.StandardProduct-class.html#CURRENT_POSITION" class="summary-name">CURRENT_POSITION</a><br />
+      Is a floating point number representing the current hedge position of
+      that standard product at the time of optimisation in [MW].
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">(number,number)</span>
+    </td><td class="summary">
+        <a href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD" class="summary-name">DELIVERY_PERIOD</a><br />
+      This is a tuple (t_s, t_e) of index values into the <a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a> array and define as such the 
+      delivery period of the given standard product.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">number (very large)</span>
+    </td><td class="summary">
+        <a href="src.entities.stdprod.StandardProduct-class.html#MAX_TRADE_SIZE" class="summary-name">MAX_TRADE_SIZE</a><br />
+      Hypothetical upper limit trade size in [MW] in order to model a 
+      semi-continuous variables, such that for a binary variable b and a 
+      continuous variable s the following constraint hold:
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">number</span>
+    </td><td class="summary">
+        <a href="src.entities.stdprod.StandardProduct-class.html#MIN_TRADE_SIZE" class="summary-name">MIN_TRADE_SIZE</a><br />
+      This is a non-negative floating point number representing the minimal
+      trade size in [MW] that can be executed in the market.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="src.entities.entity.Entity-class.html">entity.Entity</a></code></b>:
+      <code><a href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS">DISPATCH_PERIODS</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#constraint_list">constraint_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#in_flow">in_flow</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#name">name</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#objective_list">objective_list</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#out_flow">out_flow</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#snkList">snkList</a></code>,
+      <code><a href="src.entities.entity.Entity-class.html#srcList">srcList</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">name</span>,
+        <span class="sig-arg">deliveryPeriod</span>=<span class="sig-default">(0,0)</span>,
+        <span class="sig-arg">position</span>=<span class="sig-default">0.0</span>,
+        <span class="sig-arg">minTradeSize</span>=<span class="sig-default">0.0</span>,
+        <span class="sig-arg">clipSize</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">discountFactor</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">fwdCurveBid</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">fwdCurveAsk</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">srcs</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">snks</span>=<span class="sig-default">None</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.stdprod-pysrc.html#StandardProduct.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>x.__init__(...) initializes x; see x.__class__.__doc__ for 
+  signature</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>name</code></strong> - uniqe, non-empty name string of entity</li>
+        <li><strong class="pname"><code>srcs</code></strong> - source entity object</li>
+        <li><strong class="pname"><code>snks</code></strong> - sink entity object</li>
+    </ul></dd>
+    <dt>Overrides:
+        object.__init__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_DISPATCH_PERIODS"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_DISPATCH_PERIODS</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">dispatchPeriods</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.stdprod-pysrc.html#StandardProduct.set_DISPATCH_PERIODS">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Set the dispatch periods array (calling parent's set method) and set 
+  coefficient arrays to the correct length and initialise with some 
+  meaningful defaults, if they haven't been set appropriately beforehand 
+  (using __init__(...) or setters). If coefficient arrays have already been
+  set check for appropriate size (and values?).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dispatchPeriods</code></strong> (<code class="link">numpy.ndarray</code> of dtype='float') - array of dispatch periods defining the overall optimisation 
+          horizon as well as the individual duration of each dispatch 
+          period.</li>
+    </ul></dd>
+    <dt>Overrides:
+        <a href="src.entities.entity.Entity-class.html#set_DISPATCH_PERIODS">entity.Entity.set_DISPATCH_PERIODS</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="create_lp_vars"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">create_lp_vars</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">prefix</span>=<span class="sig-default">&quot;&quot;</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.stdprod-pysrc.html#StandardProduct.create_lp_vars">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>This function creates (multi-dimensional) arrays of <code 
+  class="link">pulp.LpVariable</code>s, <code 
+  class="link">pulp.LpConstraint</code>s, etc. of the adequate 
+  dimensionality and size.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>prefix</code></strong> (string) - string used as a prefix for naming <code 
+          class="link">pulp.LpVariable</code>s, <code 
+          class="link">pulp.LpConstraint</code>s, etc.</li>
+    </ul></dd>
+    <dt>Overrides:
+        <a href="src.entities.entity.Entity-class.html#create_lp_vars">entity.Entity.create_lp_vars</a>
+    </dt>
+  </dl>
+<div class="fields">      <p><strong>Precondition:</strong>
+        Function <code class="link">setDISPATCH_PERIODS</code>
+      </p>
+</div></td></tr></table>
+</div>
+<a name="create_model"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">create_model</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">prefix</span>=<span class="sig-default">&quot;&quot;</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.stdprod-pysrc.html#StandardProduct.create_model">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>The dynamics of the standard product is as follows:</p>
+  <p>The <a href="src.entities.stdprod.StandardProduct-class.html" 
+  class="link">StandardProduct</a> model assumes that on the one hand it is
+  linked to a <a href="src.entities.market.Market-class.html" 
+  class="link">Market</a> <a href="src.entities.entity.Entity-class.html" 
+  class="link">Entity</a> (as source and sink) and to one or more <a 
+  href="src.entities.ttranche.TradeTranche-class.html" 
+  class="link">TradeTranche</a> <a 
+  href="src.entities.entity.Entity-class.html" class="link">Entity</a>(s) 
+  (each as a sink and a source). Furthermore, the <a 
+  href="src.entities.stdprod.StandardProduct-class.html" 
+  class="link">StandardProduct</a> holds an array of <code 
+  class="link">position</code> <code class="link">pulp.LpVariable</code>(s)
+  of size len(<a 
+  href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+  class="link">DISPATCH_PERIODS</a>). Given that the</p>
+  <ul>
+    <li>
+      sum(src.out_flow[t], src in srcList) == <a 
+      href="src.entities.entity.Entity-class.html#in_flow" 
+      class="link">in_flow</a>[t], and
+    </li>
+    <li>
+      sum(snk.in_flow[t], snk in snkList) == <a 
+      href="src.entities.entity.Entity-class.html#out_flow" 
+      class="link">out_flow</a>[t], for all t in <a 
+      href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+      class="link">DISPATCH_PERIODS</a>
+    </li>
+  </ul>
+  <p>(see method <a 
+  href="src.entities.entity.Entity-class.html#create_model" 
+  class="link">Entity.create_model</a>) the following additional 
+  constraints must hold:</p>
+  <ul>
+    <li>
+      Inflow/outflow restricted to standard product's delivery period:
+      <ul>
+        <li>
+          Restricted inflow volumes: <a 
+          href="src.entities.entity.Entity-class.html#in_flow" 
+          class="link">in_flow</a>[t] [MWh] == 0, for t not in <a 
+          href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>
+        </li>
+        <li>
+          Restricted outflow volumes: <a 
+          href="src.entities.entity.Entity-class.html#out_flow" 
+          class="link">out_flow</a>[t] [MWh] == 0, for t not in <a 
+          href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Transacted (sold: <code class="link">position</code>[t] &lt; 0; 
+      purchased: <code class="link">position</code>[t] &gt; 0) gas position
+      in [MW]:
+      <ul>
+        <li>
+          Inflow/outflow balance equations: <code 
+          class="link">position</code>[t]*DISPATCH_PERIODS[t] [MW*h] == <a 
+          href="src.entities.stdprod.StandardProduct-class.html#CURRENT_POSITION"
+          class="link">CURRENT_POSITION</a>*DISPATCH_PERIODS[t] [MW*h] + <a
+          href="src.entities.entity.Entity-class.html#out_flow" 
+          class="link">out_flow</a>[t] [MWh] - <a 
+          href="src.entities.entity.Entity-class.html#in_flow" 
+          class="link">in_flow</a>[t] [MWh], for all t in <a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>, i.e., if we sell then <a 
+          href="src.entities.entity.Entity-class.html#in_flow" 
+          class="link">in_flow</a>[t] &gt; <a 
+          href="src.entities.entity.Entity-class.html#out_flow" 
+          class="link">out_flow</a>[t] and hence, <code 
+          class="link">position</code>[t] &lt; 0, if we buy then <a 
+          href="src.entities.entity.Entity-class.html#out_flow" 
+          class="link">out_flow</a>[t] &gt; <a 
+          href="src.entities.entity.Entity-class.html#in_flow" 
+          class="link">in_flow</a>[t] and <code 
+          class="link">position</code>[t] &gt; 0, <code 
+          class="link">position</code>[t] == 0, otherwise.
+        </li>
+        <li>
+          Delivery period volume equations: <code 
+          class="link">position</code>[t] [MWh] == <code 
+          class="link">position</code>[u] [MWh], for all t, u in <a 
+          href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Sales (<code class="link">position</code> &lt; 0) gas position in 
+      [MW]:
+      <ul>
+        <li>
+          Non-negativity constraints: <code 
+          class="link">shrt_position</code>[t] [MW] &gt;= 0, for all t in 
+          <a href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a> (see variable construction in 
+          method <a 
+          href="src.entities.stdprod.StandardProduct-class.html#create_lp_vars"
+          class="link">create_lp_vars</a>).
+        </li>
+        <li>
+          Sales position constraints: <code 
+          class="link">shrt_position</code>[t] [MW] &gt;= -<code 
+          class="link">position</code>[t] [MW], for all t in <a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>
+        </li>
+        <li>
+          Minimum trade size constraint:
+          <ul>
+            <li>
+              sum(<code class="link">shrt_position</code>[t]*<a 
+              href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS"
+              class="link">DISPATCH_PERIODS</a>[t], t in <a 
+              href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+              class="link">DELIVERY_PERIOD</a>) [MW*h] &gt;= <code 
+              class="link">shrt_semi_cont_trigger</code>*<a 
+              href="src.entities.stdprod.StandardProduct-class.html#MIN_TRADE_SIZE"
+              class="link">MIN_TRADE_SIZE</a>*sum(<a 
+              href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS"
+              class="link">DISPATCH_PERIODS</a>[t], t in <a 
+              href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+              class="link">DELIVERY_PERIOD</a>) [MW*h],
+            </li>
+            <li>
+              sum(<code class="link">shrt_position</code>[t]*<a 
+              href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS"
+              class="link">DISPATCH_PERIODS</a>[t], t in <a 
+              href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+              class="link">DELIVERY_PERIOD</a>) [MW*h] &lt;= <code 
+              class="link">shrt_semi_cont_trigger</code>*<a 
+              href="src.entities.stdprod.StandardProduct-class.html#MAX_TRADE_SIZE"
+              class="link">MAX_TRADE_SIZE</a>*sum(<a 
+              href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS"
+              class="link">DISPATCH_PERIODS</a>[t], t in <a 
+              href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+              class="link">DELIVERY_PERIOD</a>) [MW*h],
+            </li>
+          </ul>
+          <p>where <code class="link">shrt_semi_cont_trigger</code> is a 
+          binary variable (i.e., is <code 
+          class="link">pulp.LpInteger</code>, 0 &lt;= <code 
+          class="link">shrt_semi_cont_trigger</code> &lt;= 1) (--&gt; 
+          semi-continuous)</p>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Purchase (<code class="link">position</code> &gt; 0) gas position in 
+      [MW]:
+      <ul>
+        <li>
+          Non-negativity constraints: <code 
+          class="link">long_position</code>[t] [MW] &gt;= 0, for all t in 
+          <a href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a> (see variable construction in 
+          method <a 
+          href="src.entities.stdprod.StandardProduct-class.html#create_lp_vars"
+          class="link">create_lp_vars</a>).
+        </li>
+        <li>
+          Purchase position constraints: <code 
+          class="link">long_position</code>[t] [MW] &gt;= <code 
+          class="link">position</code>[t] [MW], for all t in <a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>
+        </li>
+        <li>
+          Minimum trade size constraint:
+          <ul>
+            <li>
+              sum(<code class="link">long_position</code>[t]*<a 
+              href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS"
+              class="link">DISPATCH_PERIODS</a>[t], t in <a 
+              href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+              class="link">DELIVERY_PERIOD</a>) [MW*h] &gt;= <code 
+              class="link">long_semi_cont_trigger</code>*<a 
+              href="src.entities.stdprod.StandardProduct-class.html#MIN_TRADE_SIZE"
+              class="link">MIN_TRADE_SIZE</a>*sum(<a 
+              href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS"
+              class="link">DISPATCH_PERIODS</a>[t], t in <a 
+              href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+              class="link">DELIVERY_PERIOD</a>) [MW*h],
+            </li>
+            <li>
+              sum(<code class="link">long_position</code>[t]*<a 
+              href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS"
+              class="link">DISPATCH_PERIODS</a>[t], t in <a 
+              href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+              class="link">DELIVERY_PERIOD</a>) [MW*h] &lt;= <code 
+              class="link">long_semi_cont_trigger</code>*<a 
+              href="src.entities.stdprod.StandardProduct-class.html#MAX_TRADE_SIZE"
+              class="link">MAX_TRADE_SIZE</a>*sum(DISPATCH_PERIODS[t], t in
+              <a 
+              href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+              class="link">DELIVERY_PERIOD</a>) [MW*h],
+            </li>
+          </ul>
+          <p>where <code class="link">long_semi_cont_trigger</code> is a 
+          binary variable (i.e., is <code 
+          class="link">pulp.LpInteger</code>, 0 &lt;= <code 
+          class="link">shrt_semi_cont_trigger</code> &lt;= 1) (--&gt; 
+          semi-continuous)</p>
+        </li>
+      </ul>
+    </li>
+    <li>
+      Exclusivity constraint: <code 
+      class="link">shrt_semi_cont_trigger</code> + <code 
+      class="link">long_semi_cont_trigger</code> &lt;= 1, (only one of the 
+      variables can be one, redundant constraint)
+    </li>
+    <li>
+      Clip size constraints (if CLIP_SIZE is not None):
+      <ul>
+        <li>
+          sum(<code class="link">shrt_position</code>[t]*<a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>[t], t in <a 
+          href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>) [MW*h] == <code 
+          class="link">shrt_semi_cont_trigger</code>*<a 
+          href="src.entities.stdprod.StandardProduct-class.html#MIN_TRADE_SIZE"
+          class="link">MIN_TRADE_SIZE</a>*sum(<a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>[t], t in <a 
+          href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>) [MW*h] + <code 
+          class="link">shrt_clip_count</code>*<a 
+          href="src.entities.stdprod.StandardProduct-class.html#CLIP_SIZE" 
+          class="link">CLIP_SIZE</a>*sum(DISPATCH_PERIODS[t], t in <a 
+          href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>) [MW*h]
+        </li>
+        <li>
+          sum(<code class="link">long_position</code>[t]*<a 
+          href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+          class="link">DISPATCH_PERIODS</a>[t], t in <a 
+          href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>) [MW*h] == <code 
+          class="link">long_semi_cont_trigger</code>*<a 
+          href="src.entities.stdprod.StandardProduct-class.html#MIN_TRADE_SIZE"
+          class="link">MIN_TRADE_SIZE</a>*sum(DISPATCH_PERIODS[t], t in <a 
+          href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>) [MW*h] + <code 
+          class="link">long_clip_count</code>*<a 
+          href="src.entities.stdprod.StandardProduct-class.html#CLIP_SIZE" 
+          class="link">CLIP_SIZE</a>*sum(DISPATCH_PERIODS[t], t in <a 
+          href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+          class="link">DELIVERY_PERIOD</a>) [MW*h]
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="src.entities.entity.Entity-class.html#create_model">entity.Entity.create_model</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_lp_vars"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_lp_vars</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="src.entities.stdprod-pysrc.html#StandardProduct.get_lp_vars">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="src.entities.entity.Entity-class.html#get_lp_vars">entity.Entity.get_lp_vars</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== INSTANCE VARIABLE DETAILS ==================== -->
+<a name="section-InstanceVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="CLIP_SIZE"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">CLIP_SIZE</h3>
+  This is a positive floating point number or None representing the 
+  standard product clip size in [MW] that can be executed in the market for
+  quantities above the <a 
+  href="src.entities.stdprod.StandardProduct-class.html#MIN_TRADE_SIZE" 
+  class="link">MIN_TRADE_SIZE</a>. If it is set to a positive number any 
+  quantity traded above the <a 
+  href="src.entities.stdprod.StandardProduct-class.html#MIN_TRADE_SIZE" 
+  class="link">MIN_TRADE_SIZE</a> will have to be an integral multiple of 
+  the <a href="src.entities.stdprod.StandardProduct-class.html#CLIP_SIZE" 
+  class="link">CLIP_SIZE</a>. If it is set to None it will be ignored and 
+  any quantity above the <a 
+  href="src.entities.stdprod.StandardProduct-class.html#MIN_TRADE_SIZE" 
+  class="link">MIN_TRADE_SIZE</a> can be traded. The equivalent [MWh] clip 
+  size is calculated as
+  <ul>
+    <li>
+      t_s = <a 
+      href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+      class="link">DELIVERY_PERIOD</a>[0]
+    </li>
+    <li>
+      t_e = <a 
+      href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+      class="link">DELIVERY_PERIOD</a>[1]
+    </li>
+    <li>
+      clipSizeMWh [MWh] = <a 
+      href="src.entities.stdprod.StandardProduct-class.html#CLIP_SIZE" 
+      class="link">CLIP_SIZE</a>*sum(DISPATCH_PERIODS[t]; t in t_s..t_e) 
+      [MW*h]
+    </li>
+  </ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="CURRENT_POSITION"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">CURRENT_POSITION</h3>
+  Is a floating point number representing the current hedge position of 
+  that standard product at the time of optimisation in [MW]. The equivalent
+  [MWh] position is calculated as
+  <ul>
+    <li>
+      t_s = <a 
+      href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+      class="link">DELIVERY_PERIOD</a>[0]
+    </li>
+    <li>
+      t_e = <a 
+      href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+      class="link">DELIVERY_PERIOD</a>[1]
+    </li>
+    <li>
+      positionMWh [MWh] = <a 
+      href="src.entities.stdprod.StandardProduct-class.html#CURRENT_POSITION"
+      class="link">CURRENT_POSITION</a>*sum(DISPATCH_PERIODS[t]; t in 
+      t_s..t_e) [MW*h]
+    </li>
+    <li>
+      <a 
+      href="src.entities.stdprod.StandardProduct-class.html#CURRENT_POSITION"
+      class="link">CURRENT_POSITION</a> &gt; 0 for long position
+    </li>
+    <li>
+      <a 
+      href="src.entities.stdprod.StandardProduct-class.html#CURRENT_POSITION"
+      class="link">CURRENT_POSITION</a> &lt; 0 for short position.
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Type:</dt>
+      <dd>number</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="DELIVERY_PERIOD"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">DELIVERY_PERIOD</h3>
+  This is a tuple (t_s, t_e) of index values into the <a 
+  href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+  class="link">DISPATCH_PERIODS</a> array and define as such the delivery 
+  period of the given standard product. It is the user's responsibility to 
+  assure the consistency of <a 
+  href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+  class="link">DISPATCH_PERIODS</a> array contents and the <a 
+  href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD" 
+  class="link">DELIVERY_PERIOD</a> tuple values. This means that the 
+  standard product's delivery period must be representable by one or more 
+  consecutive dispatch periods given in <a 
+  href="src.entities.entity.Entity-class.html#DISPATCH_PERIODS" 
+  class="link">DISPATCH_PERIODS</a>.
+  <dl class="fields">
+    <dt>Type:</dt>
+      <dd>(number,number)</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="MAX_TRADE_SIZE"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">MAX_TRADE_SIZE</h3>
+  Hypothetical upper limit trade size in [MW] in order to model a 
+  semi-continuous variables, such that for a binary variable b and a 
+  continuous variable s the following constraint hold:
+  <ul>
+    <li>
+      b*MIN_TRADE_SIZE &lt;= s &lt;= b*MAX_TRADE_SIZE
+    </li>
+  </ul>
+  <p>and therefore</p>
+  <ul>
+    <li>
+      s == 0, if b == 0, or
+    </li>
+    <li>
+      MIN_TRADE_SIZE &lt;= s &lt;= MAX_TRADE_SIZE, if b == 1.
+    </li>
+  </ul>
+  <p>Note that MAX_TRADE_SIZE should not represent a real upper boundary to
+  s but is used to force s &lt;= 0, if b == 0.</p>
+  <dl class="fields">
+    <dt>Type:</dt>
+      <dd>number (very large)</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="MIN_TRADE_SIZE"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">MIN_TRADE_SIZE</h3>
+  This is a non-negative floating point number representing the minimal 
+  trade size in [MW] that can be executed in the market. The equivalent 
+  [MWh] minimal trade size is calculated as
+  <ul>
+    <li>
+      t_s = <a 
+      href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+      class="link">DELIVERY_PERIOD</a>[0]
+    </li>
+    <li>
+      t_e = <a 
+      href="src.entities.stdprod.StandardProduct-class.html#DELIVERY_PERIOD"
+      class="link">DELIVERY_PERIOD</a>[1]
+    </li>
+    <li>
+      minTradeSizeMWh [MWh] = MIN_TRADE_SIZE*sum(DISPATCH_PERIODS[t]; t in 
+      t_s..t_e) [MW*h].
+    </li>
+  </ul>
+  <dl class="fields">
+    <dt>Type:</dt>
+      <dd>number</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="src.entities-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >gnw-obsolete</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Mar 05 13:40:14 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

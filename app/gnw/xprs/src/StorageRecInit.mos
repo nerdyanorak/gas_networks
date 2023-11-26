@@ -1,0 +1,173 @@
+! ==============================================================================
+!
+!   Package         :   Gas NetWork and Storage Optimisation (gnw)
+!   Author          :   Marc Roth (re04179)
+!   Version         :   $Id: StorageRecInit.mos 500 2009-04-20 10:58:21Z re04179 $
+!   Heading         :   $HeadURL: http://subversion.rwe.com/svn/s_and_v_projects/GasNetworks/trunk/app/gnw/xprs/src/StorageRecInit.mos $
+!
+!   Description     :   Xpress-MP/Mosel file
+!
+!   Creation Date   :   02Mar2009
+!
+!   Copyright       :   RWE Supply & Trading GmbH
+!
+! ==============================================================================
+procedure Init(
+			strg : Storage,
+			values_fileName : string,
+			MIN_LEV_PCT_fileName : string, 
+			MAX_LEV_PCT_fileName : string,
+			MAX_REL_CAP_PCT_fileName : string,
+			MAX_INJ_CAP_PCT_fileName : string,
+			REL_COST_fileName : string,
+			INJ_COST_fileName : string,
+			LEV_DEP_REL_CAP_CURVE_fileName : string,
+			LEV_DEP_INJ_CAP_CURVE_fileName : string,
+			MAX_INJ_VOL_PCT_fileName : string)
+
+	declarations	
+		Name : string
+		INJ_CAP : real
+		REL_CAP : real
+		WGV : real
+		START_LEV_PCT : real
+		END_LEV_PCT : real
+		STRICT_END_LEV : boolean
+	
+		MIN_LEV_PCT : array(POINT_IDX) of real
+		MAX_LEV_PCT : array(POINT_IDX) of real
+	
+		MAX_REL_CAP_PCT : array(STEP_IDX) of real
+		MAX_INJ_CAP_PCT : array(STEP_IDX) of real
+	
+		REL_COST : array(STEP_IDX) of real
+		INJ_COST : array(STEP_IDX) of real
+
+		HAS_LEV_DEP_REL_CAP_CURVE : boolean
+		HAS_LEV_DEP_INJ_CAP_CURVE : boolean
+
+		LEV_DEP_REL_CAP_CURVE_TYPE : string
+		LEV_DEP_INJ_CAP_CURVE_TYPE : string
+
+		REL_LEV_IDX : range
+		REL_LEV : array(REL_LEV_IDX) of real
+		REL_RATE : array(REL_LEV_IDX) of real
+		
+		INJ_LEV_IDX : range
+		INJ_LEV : array(INJ_LEV_IDX) of real
+		INJ_RATE : array(INJ_LEV_IDX) of real
+
+		HAS_MIN_INJ_VOL_PCT : boolean
+		MIN_INJ_VOL_PCT_IDX : range
+		MIN_INJ_VOL_PCT_START_IDX : array(MIN_INJ_VOL_PCT_IDX) of integer
+		MIN_INJ_VOL_PCT_FINAL_IDX : array(MIN_INJ_VOL_PCT_IDX) of integer
+		MIN_INJ_VOL_PCT : array(MIN_INJ_VOL_PCT_IDX) of real
+		
+		HAS_MAX_INJ_VOL_PCT : boolean
+		MAX_INJ_VOL_PCT_IDX : range
+		MAX_INJ_VOL_PCT_START_IDX : array(MAX_INJ_VOL_PCT_IDX) of integer
+		MAX_INJ_VOL_PCT_FINAL_IDX : array(MAX_INJ_VOL_PCT_IDX) of integer
+		MAX_INJ_VOL_PCT : array(MAX_INJ_VOL_PCT_IDX) of real
+	end-declarations
+
+	initialisations from values_fileName
+		Name as "NAME"
+		INJ_CAP as "INJ_CAP"
+		REL_CAP as "REL_CAP"
+		WGV as "WGV"
+		START_LEV_PCT as "START_LEV_PCT"
+		END_LEV_PCT as "END_LEV_PCT"
+		STRICT_END_LEV as "STRICT_END_LEV"
+		HAS_LEV_DEP_REL_CAP_CURVE as "HAS_LEV_DEP_REL_CAP_CURVE"
+		HAS_LEV_DEP_INJ_CAP_CURVE as "HAS_LEV_DEP_INJ_CAP_CURVE"
+		LEV_DEP_REL_CAP_CURVE_TYPE as "LEV_DEP_REL_CAP_CURVE_TYPE"
+		LEV_DEP_INJ_CAP_CURVE_TYPE as "LEV_DEP_INJ_CAP_CURVE_TYPE"
+		HAS_MIN_INJ_VOL_PCT as "HAS_MIN_INJ_VOL_PCT"
+		HAS_MAX_INJ_VOL_PCT as "HAS_MAX_INJ_VOL_PCT"
+	end-initialisations
+	initialisations from MIN_LEV_PCT_fileName
+		MIN_LEV_PCT
+	end-initialisations
+	initialisations from MAX_LEV_PCT_fileName
+		MAX_LEV_PCT
+	end-initialisations
+	initialisations from MAX_REL_CAP_PCT_fileName
+		MAX_REL_CAP_PCT
+	end-initialisations
+	initialisations from MAX_INJ_CAP_PCT_fileName
+		MAX_INJ_CAP_PCT
+	end-initialisations
+	initialisations from REL_COST_fileName
+		REL_COST
+	end-initialisations
+	initialisations from INJ_COST_fileName
+		INJ_COST
+	end-initialisations
+
+	if HAS_LEV_DEP_REL_CAP_CURVE then
+		initialisations from LEV_DEP_REL_CAP_CURVE_fileName
+			[REL_LEV, REL_RATE] as "LEV_DEP_REL_CAP_CURVE"
+		end-initialisations
+	end-if
+	if HAS_LEV_DEP_INJ_CAP_CURVE then
+		initialisations from LEV_DEP_INJ_CAP_CURVE_fileName
+			[INJ_LEV, INJ_RATE] as "LEV_DEP_INJ_CAP_CURVE"
+		end-initialisations
+	end-if
+	if HAS_MIN_INJ_VOL_PCT then
+		initialisations from MAX_INJ_VOL_PCT_fileName
+			[MIN_INJ_VOL_PCT_START_IDX, MIN_INJ_VOL_PCT_FINAL_IDX, MIN_INJ_VOL_PCT] as "MIN_INJ_VOL_PCT"
+		end-initialisations	
+	end-if
+	if HAS_MAX_INJ_VOL_PCT then
+		initialisations from MAX_INJ_VOL_PCT_fileName
+			[MAX_INJ_VOL_PCT_START_IDX, MAX_INJ_VOL_PCT_FINAL_IDX, MAX_INJ_VOL_PCT] as "MAX_INJ_VOL_PCT"
+		end-initialisations	
+	end-if
+
+	strg.Name := Name
+	strg.INJ_CAP := INJ_CAP
+	strg.REL_CAP := REL_CAP
+	strg.WGV := WGV
+	strg.START_LEV_PCT := START_LEV_PCT
+	strg.END_LEV_PCT := END_LEV_PCT
+	strg.STRICT_END_LEV := STRICT_END_LEV
+	strg.MIN_LEV_PCT := MIN_LEV_PCT
+	strg.MAX_LEV_PCT := MAX_LEV_PCT
+	strg.MAX_REL_CAP_PCT := MAX_REL_CAP_PCT
+	strg.MAX_INJ_CAP_PCT := MAX_INJ_CAP_PCT
+	strg.REL_COST := REL_COST
+	strg.INJ_COST := INJ_COST
+	strg.HAS_LEV_DEP_REL_CAP_CURVE := HAS_LEV_DEP_REL_CAP_CURVE 
+	strg.HAS_LEV_DEP_INJ_CAP_CURVE := HAS_LEV_DEP_INJ_CAP_CURVE
+	
+	if HAS_LEV_DEP_REL_CAP_CURVE then
+		Construct(strg.LEV_DEP_REL_CAP_CURVE, LEV_DEP_REL_CAP_CURVE_TYPE, REL_LEV.size, REL_LEV, REL_RATE)
+	end-if
+	if HAS_LEV_DEP_INJ_CAP_CURVE then
+		Construct(strg.LEV_DEP_INJ_CAP_CURVE, LEV_DEP_INJ_CAP_CURVE_TYPE, INJ_LEV.size, INJ_LEV, INJ_RATE)
+	end-if
+
+	if HAS_MIN_INJ_VOL_PCT then
+		strg.MIN_INJ_VOL_PCT_IDX := MIN_INJ_VOL_PCT_IDX
+		forall(i in MIN_INJ_VOL_PCT_IDX) strg.MIN_INJ_VOL_PCT_START_IDX(i) := MIN_INJ_VOL_PCT_START_IDX(i)
+		forall(i in MIN_INJ_VOL_PCT_IDX) strg.MIN_INJ_VOL_PCT_FINAL_IDX(i) := MIN_INJ_VOL_PCT_FINAL_IDX(i)
+		forall(i in MIN_INJ_VOL_PCT_IDX) strg.MIN_INJ_VOL_PCT(i) := MIN_INJ_VOL_PCT(i)
+	end-if
+	if HAS_MAX_INJ_VOL_PCT then
+		strg.MAX_INJ_VOL_PCT_IDX := MAX_INJ_VOL_PCT_IDX
+		forall(i in MAX_INJ_VOL_PCT_IDX) strg.MAX_INJ_VOL_PCT_START_IDX(i) := MAX_INJ_VOL_PCT_START_IDX(i)
+		forall(i in MAX_INJ_VOL_PCT_IDX) strg.MAX_INJ_VOL_PCT_FINAL_IDX(i) := MAX_INJ_VOL_PCT_FINAL_IDX(i)
+		forall(i in MAX_INJ_VOL_PCT_IDX) strg.MAX_INJ_VOL_PCT(i) := MAX_INJ_VOL_PCT(i)
+	end-if
+
+end-procedure
+! ==============================================================================
+!
+!   Revision Control:
+!
+!   $Revision:: 500                     $   Revision of last commit
+!   $Author:: re04179                   $   Author of last commit
+!   $Date:: 2009-04-20 12:58:21 +0200 (#$   Date of last commit
+!
+! ==============================================================================

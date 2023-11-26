@@ -1,0 +1,186 @@
+! ==============================================================================
+!
+!   Package         :   Gas NetWork and Storage Optimisation (gnw)
+!   Author          :   Marc Roth (re04179)
+!   Version         :   $Id: GasNetwork.mos 500 2009-04-20 10:58:21Z re04179 $
+!   Heading         :   $HeadURL: http://subversion.rwe.com/svn/s_and_v_projects/GasNetworks/trunk/app/gnw/xprs/src/GasNetwork.mos $
+!
+!   Description     :   Xpress-MP/Mosel file
+!
+!   Creation Date   :   02Mar2009
+!
+!   Copyright       :   RWE Supply & Trading GmbH
+!
+! ==============================================================================
+model ModelName
+uses "mmxprs"		!gain access to the Xpress-Optimizer solver
+uses "mmsystem"
+
+options noimplicit
+
+parameters
+	STRG_SOS1_FLAG = true
+
+	MODEL_BASE_DIR = ".."
+	! Tests: Multiple (nPrds) standard products (some of which with overlapping
+	! delivery periods) and multiple (nTrns) trade tranches per standard
+	! product representing incrementally wider bid/ask price spreads for
+	! given standard products. Tests can be run with various settings
+	! for clip sizes (cs) and maximal trade sizes (ts) per trade tranche.
+	! Clip sizes > 0 trigger MIP optimisation. The last trade tranche's
+	! maximal trade size is unlimited to avoid infeasibility
+	! or limiting storage dispatch. In practice an additional trade
+	! tranche could be added with punitive bid/ask spread acting as
+	! slack trade tranche.
+	! Additionally, tests have been carried out that make use of
+	! storage level dependent maximal injection or release rate curves.
+	! Tests using such storage curves are marked with suffix 'sc'.
+	! If such storage curves are used they are modelled either with
+	! sos1 type variables (parameter STRG_SOS1_FLAG = true) or with
+	! pure binary variables (parameter STRG_SOS1_FLAG = false).
+	! Additionally, tests have been carried out that make use of
+	! a minimal standard product size, marked such as '30min'
+	! denoting a minimal trade size of 30 MW. If this feature is used
+	! variables of type semcont are used.
+	!
+	! Therefore a test is labelled as:
+	!	<identifier>-<strgDsp>-<nPrds>-<clipSize>cs-<nTrns>-<maxTrnSize>ts[-<minPrdSize>min][-sc]
+	!
+	! where
+	!	<identifier>	: identifier for test, like 'virtstor-3sp', meaning
+	!					test of virtual storage having 3 storage packages.
+	!	<strgDsp>		: length of storage dispatch periods in number of
+	!					elements in DISPATCH_PERIOD vector.
+	!	<nPrds>			: number of standard products used, i.e., if value
+	!					is 24 then effectively there are 48 StandardProduct
+	!					records created 24 for selling and 24 for buying.
+	!	<clipSize>		: clip size in MW/h. If value is equal to 0 clip size
+	!					constraints are ignored.
+	!	<nTrns>			: number of trade (price) tranches used, i.e., if
+	!					value is 11 then effectively 11*<nPrds>*2 TradeTranche
+	!					records are created (for each standard product (<nPrds>)
+	!					and sell and buy (2)).
+	!	<maxTrnSize>	: the maximal tranche size in MW/h that can be bought
+	!					or sold at given tranche price. The last tranche of
+	!					each of the <nTrns> tranches hasn't got maxTrnSize
+	!					constraint applied.
+	!	<minPrdSize>	: triggers semcont variables having lower bound of
+	!					<minPrdSize> in MW/h
+	!	sc				: triggers use of Storage level dependent injection
+	!					and release Curves.
+	!					
+	! The following clip size/trade size combination have been tested
+	!
+	!	The optimisation period for all tests is 730 days (01/01/2009 - 31/12/2010) but
+	!	the storage dispatch period is only 365 days (01/04/2009 - 31/03/2010)
+	!
+!	MODEL_DATA_BASE_DIR = MODEL_BASE_DIR + "/data/test/virtstor-3sp-365-24-0cs-11-30ts"
+	MODEL_DATA_BASE_DIR = MODEL_BASE_DIR + "/data/test/virtstor-3sp-365-24-0cs-11-30ts-sc"
+!	MODEL_DATA_BASE_DIR = MODEL_BASE_DIR + "/data/test/virtstor-3sp-365-24-0cs-11-30ts-30min-sc"
+!	MODEL_DATA_BASE_DIR = MODEL_BASE_DIR + "/data/test/virtstor-3sp-365-24-30cs-11-30ts"
+!	MODEL_DATA_BASE_DIR = MODEL_BASE_DIR + "/data/test/virtstor-3sp-365-24-30cs-11-30ts-sc"
+	
+	MODEL_DATA_DIR = MODEL_DATA_BASE_DIR + "/data"
+	MODEL_RSLT_DIR = MODEL_DATA_BASE_DIR + "/results"
+end-parameters
+
+setparam("XPRS_VERBOSE", true)
+setparam("XPRS_LOADNAMES", true)
+setparam("XPRS_PREPROBING", 2)
+setparam("XPRS_SBITERLIMIT", 0)
+setparam("XPRS_VARSELECTION", 1)
+
+include "./GeneralDef.mos"
+start_time := gettime
+include "./GeneralInit.mos"
+nSteps := GeneralInit_nSteps(MODEL_DATA_DIR + "/General_Values.dat")
+nPoints := GeneralInit_nPoints(MODEL_DATA_DIR + "/General_Values.dat")
+dT := GeneralInit_dT(MODEL_DATA_DIR + "/General_Values.dat")
+nStrgs := GeneralInit_nStrgs(MODEL_DATA_DIR + "/General_Values.dat")
+nStdPrds := GeneralInit_nStdPrds(MODEL_DATA_DIR + "/General_Values.dat")
+nTrdTrns := GeneralInit_nTrdTrns(MODEL_DATA_DIR + "/General_Values.dat")
+INFINITY := GeneralInit_INFINITY(MODEL_DATA_DIR + "/General_Values.dat")
+
+GeneralInitStrgNames(STRG_NAMES, MODEL_DATA_DIR + "/General_STRG_NAMES.dat")
+GeneralInitStdprdNames(STDPRD_NAMES, MODEL_DATA_DIR + "/General_STDPRD_NAMES.dat")
+GeneralInitTrdtrnNames(TRDTRN_NAMES, MODEL_DATA_DIR + "/General_TRDTRN_NAMES.dat")
+
+include "./GeneralIdxDef.mos"
+
+include "./InterpolationUtils.mos"
+include "./InterpolationCurve.mos"
+
+include "./MarketDef.mos"
+include "./MarketInit.mos"
+MarketInitDispatchPeriod(DISPATCH_PERIOD, MODEL_DATA_DIR + "/Market_DISPATCH_PERIOD.dat")
+MarketInitDiscountFactor(DISCOUNT_FACTOR, MODEL_DATA_DIR + "/Market_DISCOUNT_FACTOR.dat")
+MarketInitFwdCurve(FWD_CURVE, MODEL_DATA_DIR + "/Market_FWD_CURVE.dat")
+
+include "./StorageRec.mos"
+include "./StorageRecInit.mos"
+declarations
+	strgs : array(STRG_NAMES) of Storage
+end-declarations
+forall(strg in STRG_NAMES) do
+	Init(strgs(strg),
+		MODEL_DATA_DIR + "/Storage_" + strg + "_Values.dat",				! Values fileName
+		MODEL_DATA_DIR + "/Storage_" + strg + "_MIN_LEV_PCT.dat",			! MIN_LEV_PCT fileName
+		MODEL_DATA_DIR + "/Storage_" + strg + "_MAX_LEV_PCT.dat",			! MAX_LEV_PCT fileName
+		MODEL_DATA_DIR + "/Storage_" + strg + "_MAX_REL_CAP_PCT.dat",		! MAX_REL_CAP_PCT fileName
+		MODEL_DATA_DIR + "/Storage_" + strg + "_MAX_INJ_CAP_PCT.dat",		! MAX_INJ_CAP_PCT fileName
+		MODEL_DATA_DIR + "/Storage_" + strg + "_REL_COST.dat",				! REL_COST fileName
+		MODEL_DATA_DIR + "/Storage_" + strg + "_INJ_COST.dat",				! INJ_COST fileName
+		MODEL_DATA_DIR + "/Storage_" + strg + "_LEV_DEP_REL_CAP_CURVE.dat",	! LEV_DEP_REL_CAP_CURVE fileName
+		MODEL_DATA_DIR + "/Storage_" + strg + "_LEV_DEP_INJ_CAP_CURVE.dat", ! LEV_DEP_INJ_CAP_CURVE fileName
+		MODEL_DATA_DIR + "/Storage_" + strg + "_MAX_INJ_VOL_PCT.dat")		! MAX_INJ_VOL_PCT CURVE fileName
+end-do
+
+include "./StandardProductRec.mos"
+include "./StandardProductRecInit.mos"
+declarations
+	stdprds : array(STDPRD_NAMES) of StandardProduct
+end-declarations
+
+forall(stdprd in STDPRD_NAMES) do
+	Init(stdprds(stdprd), MODEL_DATA_DIR + "/StandardProduct_" + stdprd + ".dat")
+end-do
+
+include "./TradeTrancheRec.mos"
+include "./TradeTrancheRecInit.mos"
+declarations
+	trdtrns : array(TRDTRN_NAMES) of TradeTranche
+end-declarations
+
+forall(trdtrn in TRDTRN_NAMES) do
+	Init(trdtrns(trdtrn), MODEL_DATA_DIR + "/TradeTranche_" + trdtrn + ".dat")
+end-do
+
+declarations
+	objective : linctr
+end-declarations
+
+include "./ConstraintsDef.mos"
+objective := SetAllConstraints(strgs, stdprds, trdtrns)
+
+input_time := gettime - start_time
+
+! Maximise objective function
+maximise(objective)
+
+solve_time := gettime - input_time
+
+fopen(MODEL_RSLT_DIR + "/results.txt", F_OUTPUT)
+include "./ResultWriter.mos"
+fclose(F_OUTPUT)
+
+
+end-model
+! ==============================================================================
+!
+!   Revision Control:
+!
+!   $Revision:: 500                     $   Revision of last commit
+!   $Author:: re04179                   $   Author of last commit
+!   $Date:: 2009-04-20 12:58:21 +0200 (#$   Date of last commit
+!
+! ==============================================================================

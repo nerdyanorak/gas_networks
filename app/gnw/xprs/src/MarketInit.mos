@@ -1,0 +1,58 @@
+! ==============================================================================
+!
+!   Package         :   Gas NetWork and Storage Optimisation (gnw)
+!   Author          :   Marc Roth (re04179)
+!   Version         :   $Id: MarketInit.mos 500 2009-04-20 10:58:21Z re04179 $
+!   Heading         :   $HeadURL: http://subversion.rwe.com/svn/s_and_v_projects/GasNetworks/trunk/app/gnw/xprs/src/MarketInit.mos $
+!
+!   Description     :   Xpress-MP/Mosel file
+!
+!   Creation Date   :   02Mar2009
+!
+!   Copyright       :   RWE Supply & Trading GmbH
+!
+! ==============================================================================
+procedure MarketInitDispatchPeriod(
+	DISPATCH_PERIOD : array(STEP_IDX) of real,
+	fileName : string)
+
+	initialisations from fileName
+		DISPATCH_PERIOD as "DISPATCH_PERIOD"
+	end-initialisations
+end-procedure
+
+procedure MarketInitDiscountFactor(
+	DISCOUNT_FACTOR : array(STEP_IDX) of real,
+	fileName : string)
+	initialisations from fileName
+		DISCOUNT_FACTOR as "DISCOUNT_FACTOR"
+	end-initialisations
+end-procedure
+
+procedure MarketInitFwdCurve(
+	FWD_CURVE : array(STEP_IDX, BMA_IDX) of  real,
+	fileName : string)
+
+	declarations
+		fwdCurveBid,
+		fwdCurveMid,
+		fwdCurveAsk : array(STEP_IDX) of real
+	end-declarations
+	initialisations from fileName
+		[fwdCurveBid, fwdCurveMid, fwdCurveAsk] as "FWD_CURVE"
+	end-initialisations
+	forall(t in STEP_IDX) do
+		FWD_CURVE(t, eBid) := fwdCurveBid(t)
+		FWD_CURVE(t, eMid) := fwdCurveMid(t)
+		FWD_CURVE(t, eAsk) := fwdCurveAsk(t)
+	end-do
+end-procedure
+! ==============================================================================
+!
+!   Revision Control:
+!
+!   $Revision:: 500                     $   Revision of last commit
+!   $Author:: re04179                   $   Author of last commit
+!   $Date:: 2009-04-20 12:58:21 +0200 (#$   Date of last commit
+!
+! ==============================================================================

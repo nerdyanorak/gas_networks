@@ -1,0 +1,291 @@
+! ==============================================================================
+!
+!   Package         :   Gas NetWork and Storage Optimisation (gnw)
+!   Author          :   Marc Roth (re04179)
+!   Version         :   $Id: ResultWriter.mos 500 2009-04-20 10:58:21Z re04179 $
+!   Heading         :   $HeadURL: http://subversion.rwe.com/svn/s_and_v_projects/GasNetworks/trunk/app/gnw/xprs/src/ResultWriter.mos $
+!
+!   Description     :   Xpress-MP/Mosel file
+!
+!   Creation Date   :   02Mar2009
+!
+!   Copyright       :   RWE Supply & Trading GmbH
+!
+! ==============================================================================
+function getprobstatstr : string
+	returned:="???"	
+	case getprobstat of
+		XPRS_OPT: returned:="Optimum found"
+		XPRS_UNF: returned:="Unfinished"
+		XPRS_INF: returned:="Infeasible"
+		XPRS_UNB: returned:="Unbounded"
+		XPRS_OTH: returned:="Failed"
+	end-case
+end-function
+
+
+! Output results
+declarations
+	textwidth = -0
+	realwidth = 0
+	decwidth = 8
+	NA = "N/A;"
+end-declarations
+
+writeln("ModelDataDir;", MODEL_DATA_DIR, ";")
+writeln("ModelRsltDir;", MODEL_RSLT_DIR, ";")
+writeln("objective;", objective.sol, ";")
+writeln("status;", getprobstat, ";", getprobstatstr, ";")
+writeln("input time;", input_time, ";")
+writeln("solve time;", solve_time, ";")
+writeln
+
+writeln("Standard Products and related Trade Tranches;")
+write(strfmt("Name", textwidth), ";")
+write(strfmt("Start Idx", textwidth), ";")
+write(strfmt("Final Idx", textwidth), ";")
+write(strfmt("Buy/Sell", textwidth), ";")
+write(strfmt("clips", textwidth), ";")
+write(strfmt("pos [MW]", textwidth), ";")
+write(strfmt("CurPos [MW]", textwidth), ";")
+write(strfmt("NetPos [MW]", textwidth), ";")
+write(strfmt("vol [MWh]", textwidth), ";")
+write(strfmt("AvgDF", textwidth), ";")
+forall(trdtrn in TRDTRN_IDX) do
+	write(strfmt("Name", textwidth), ";")
+	write(strfmt("Buy/Sell", textwidth), ";")
+	write(strfmt("pos [MW]", textwidth), ";")
+	write(strfmt("vol [MWh]", textwidth), ";")
+	write(strfmt("Price [EUR/MWh]", textwidth), ";")
+end-do
+writeln
+
+forall(sb in SB_IDX) do
+
+	forall(stdprd in STDPRD_NAMES | stdprds(stdprd).SB = sb) do
+		write(strfmt(stdprds(stdprd).Name, textwidth), ";")
+		write(strfmt(stdprds(stdprd).DELIVERY_PERIOD.first, realwidth), ";")
+		write(strfmt(stdprds(stdprd).DELIVERY_PERIOD.last, realwidth), ";")
+		write(strfmt(stdprds(stdprd).SB, realwidth), ";")
+		write(strfmt(stdprds(stdprd).num_clips.sol, realwidth), ";")
+		write(strfmt(stdprds(stdprd).pos.sol, realwidth, decwidth), ";")
+		write(strfmt(stdprds(stdprd).CURRENT_POS, realwidth, decwidth), ";")
+		write(strfmt(stdprds(stdprd).pos.sol + stdprds(stdprd).CURRENT_POS, realwidth, decwidth), ";")
+		write(strfmt(sum(t in stdprds(stdprd).DELIVERY_PERIOD_IDX) stdprds(stdprd).vol(t).sol, realwidth, decwidth), ";")
+		write(strfmt((sum(t in stdprds(stdprd).DELIVERY_PERIOD_IDX) DISPATCH_PERIOD(t)*DISCOUNT_FACTOR(t)) / (sum(t in stdprds(stdprd).DELIVERY_PERIOD_IDX) DISPATCH_PERIOD(t)), realwidth, decwidth), ";")
+		
+		forall(trdtrn in TRDTRN_NAMES | trdtrns(trdtrn).SB = stdprds(stdprd).SB and
+				trdtrns(trdtrn).DELIVERY_PERIOD.first = stdprds(stdprd).DELIVERY_PERIOD.first and
+				trdtrns(trdtrn).DELIVERY_PERIOD.last = stdprds(stdprd).DELIVERY_PERIOD.last) do
+			write(strfmt(trdtrns(trdtrn).Name, textwidth), ";")
+			write(strfmt(trdtrns(trdtrn).SB, realwidth), ";")
+			write(strfmt(trdtrns(trdtrn).pos.sol, realwidth, decwidth), ";")
+			write(strfmt(trdtrns(trdtrn).pos.sol*sum(t in trdtrns(trdtrn).DELIVERY_PERIOD_IDX) DISPATCH_PERIOD(t), realwidth, decwidth), ";")
+			write(strfmt(trdtrns(trdtrn).PRICE, realwidth, decwidth), ";")
+		end-do
+		writeln
+	end-do
+
+end-do
+writeln
+
+
+writeln("Market data, storage dispatch, sales and purchase volumes of standard products;")
+! Print first header line
+write(strfmt("Index;", textwidth))
+write(strfmt("dT;", textwidth))
+write(strfmt("Inj Cost;", textwidth))
+write(strfmt("Rel Cost;", textwidth))
+write(strfmt("Sales Revenue;", textwidth))
+write(strfmt("Sales Cost;", textwidth))	
+
+write(strfmt("DF;", textwidth))
+write(strfmt("FWD Bid;", textwidth))
+write(strfmt("FWD Ask;", textwidth))
+forall(strg in STRG_NAMES) do
+	write(strfmt(strgs(strg).Name + ";", textwidth))
+	write(strfmt(strgs(strg).Name + ";", textwidth))
+	write(strfmt(strgs(strg).Name + ";", textwidth))
+	write(strfmt(strgs(strg).Name + ";", textwidth))
+	write(strfmt(strgs(strg).Name + ";", textwidth))
+	write(strfmt(strgs(strg).Name + ";", textwidth))
+	write(strfmt(strgs(strg).Name + ";", textwidth))
+	write(strfmt(strgs(strg).Name + ";", textwidth))
+end-do
+forall(sb in SB_IDX) do
+	forall(stdprd in STDPRD_NAMES | stdprds(stdprd).SB = sb) do
+		write(strfmt(stdprds(stdprd).Name + ";", textwidth))
+		write(strfmt(stdprds(stdprd).Name + ";", textwidth))
+		write(strfmt(stdprds(stdprd).Name + ";", textwidth))
+		write(strfmt(stdprds(stdprd).Name + ";", textwidth))
+		write(strfmt(stdprds(stdprd).Name + ";", textwidth))
+	end-do
+end-do
+writeln
+
+! Print second header line
+write(strfmt("[t];", textwidth))
+write(strfmt("[h];", textwidth))
+write(strfmt("[EUR/MWh];", textwidth))
+write(strfmt("[EUR/MWh];", textwidth))
+write(strfmt("[EUR/MWh];", textwidth))
+write(strfmt("[EUR/MWh];", textwidth))
+
+write(strfmt("DF(t);", textwidth))
+write(strfmt("[EUR/MWh];", textwidth))
+write(strfmt("[EUR/MWh];", textwidth))
+forall(strg in STRG_NAMES) do
+	write(strfmt("rel(t) [EUR];", textwidth))
+	write(strfmt("inj(t) [EUR];", textwidth))
+	write(strfmt("lev(t) [WGV%];", textwidth))
+	write(strfmt("lev(t) [MWh];", textwidth))
+	write(strfmt("rel(t) [WGV%];", textwidth))
+	write(strfmt("rel(t) [MWh];", textwidth))
+	write(strfmt("inj(t) [WGV%];", textwidth))
+	write(strfmt("inj(t) [MWh];", textwidth))
+end-do
+forall(sb in SB_IDX) do
+	forall(stprd in STDPRD_NAMES | stdprds(stprd).SB = sb) do
+		write(strfmt("clips(t);", textwidth))
+		write(strfmt("pos(t) [MW];", textwidth))
+		write(strfmt("CurPos [MW]", textwidth), ";")
+		write(strfmt("NetPos [MW]", textwidth), ";")
+		write(strfmt("vol(t) [MWh];", textwidth))
+	end-do
+end-do
+writeln
+
+! Print dispatch period related output
+forall(t in POINT_IDX) do
+	write(strfmt(t, realwidth), ";")
+	if t in STEP_IDX then
+		write(strfmt(DISPATCH_PERIOD(t), realwidth, decwidth), ";")
+		
+		write(strfmt(-DISCOUNT_FACTOR(t)*sum(strg in STRG_NAMES) strgs(strg).rel_pct(t).sol*strgs(strg).REL_COST(t)*strgs(strg).WGV, realwidth, 2), ";")
+		write(strfmt(-DISCOUNT_FACTOR(t)*sum(strg in STRG_NAMES) strgs(strg).inj_pct(t).sol*strgs(strg).INJ_COST(t)*strgs(strg).WGV, realwidth, 2), ";")
+		write(strfmt(+DISCOUNT_FACTOR(t)*sum(trdtrn in TRDTRN_NAMES | trdtrns(trdtrn).SB = eSell and
+				t in trdtrns(trdtrn).DELIVERY_PERIOD_IDX) trdtrns(trdtrn).pos.sol*DISPATCH_PERIOD(t)*trdtrns(trdtrn).PRICE, realwidth, 2), ";")
+		write(strfmt(-DISCOUNT_FACTOR(t)*sum(trdtrn in TRDTRN_NAMES | trdtrns(trdtrn).SB = eBuy and
+				t in trdtrns(trdtrn).DELIVERY_PERIOD_IDX) trdtrns(trdtrn).pos.sol*DISPATCH_PERIOD(t)*trdtrns(trdtrn).PRICE, realwidth, 2), ";")
+
+		write(strfmt(DISCOUNT_FACTOR(t), realwidth, decwidth), ";")
+		write(strfmt(FWD_CURVE(t, eBid), realwidth, decwidth), ";")
+		write(strfmt(FWD_CURVE(t, eAsk), realwidth, decwidth), ";")
+
+		forall(strg in STRG_NAMES) do
+			write(strfmt(strgs(strg).REL_COST(t), realwidth, decwidth), ";")
+			write(strfmt(strgs(strg).INJ_COST(t), realwidth, decwidth), ";")
+			write(strfmt(strgs(strg).lev_pct(t).sol, realwidth, decwidth), ";")
+			write(strfmt(strgs(strg).lev_pct(t).sol*strgs(strg).WGV, realwidth, 2), ";")
+			write(strfmt(strgs(strg).rel_pct(t).sol, realwidth, decwidth), ";")
+			write(strfmt(strgs(strg).rel_pct(t).sol*strgs(strg).WGV, realwidth, 2), ";")
+			write(strfmt(strgs(strg).inj_pct(t).sol, realwidth, decwidth), ";")
+			write(strfmt(strgs(strg).inj_pct(t).sol*strgs(strg).WGV, realwidth, 2), ";")
+		end-do
+		
+		forall(sb in SB_IDX) do
+		
+			forall(stdprd in STDPRD_NAMES | stdprds(stdprd).SB = sb) do
+				if t in stdprds(stdprd).DELIVERY_PERIOD_IDX then
+					write(strfmt(stdprds(stdprd).num_clips.sol, realwidth, decwidth), ";")
+					write(strfmt(stdprds(stdprd).pos.sol, realwidth, decwidth), ";")
+					write(strfmt(stdprds(stdprd).CURRENT_POS, realwidth, decwidth), ";")
+					write(strfmt(stdprds(stdprd).pos.sol + stdprds(stdprd).CURRENT_POS, realwidth, decwidth), ";")
+				else
+					write(strfmt(NA, textwidth))
+					write(strfmt(NA, textwidth))
+					write(strfmt(NA, textwidth))
+					write(strfmt(NA, textwidth))
+				end-if
+				write(strfmt(stdprds(stdprd).vol(t).sol, realwidth, 2), ";")
+			end-do
+			
+		end-do
+	else
+		write(strfmt(NA, textwidth))
+		write(strfmt(NA, textwidth))
+		write(strfmt(NA, textwidth))
+		write(strfmt(NA, textwidth))
+		write(strfmt(NA, textwidth))
+
+		write(strfmt(NA, textwidth))
+		write(strfmt(NA, textwidth))
+		write(strfmt(NA, textwidth))
+
+		forall(strg in STRG_NAMES) do		
+			write(strfmt(NA, textwidth))
+			write(strfmt(NA, textwidth))
+			write(strfmt(strgs(strg).lev_pct(t).sol, realwidth, decwidth), ";")
+			write(strfmt(strgs(strg).lev_pct(t).sol*strgs(strg).WGV, realwidth, 2), ";")
+			write(strfmt(NA, textwidth))
+			write(strfmt(NA, textwidth))
+			write(strfmt(NA, textwidth))
+			write(strfmt(NA, textwidth))
+		end-do
+		
+		forall(sb in SB_IDX) do
+		
+			forall(stdprd in STDPRD_NAMES | stdprds(stdprd).SB = sb) do
+				write(strfmt(NA, textwidth))
+				write(strfmt(NA, textwidth))
+				write(strfmt(NA, textwidth))
+				write(strfmt(NA, textwidth))
+				write(strfmt(NA, textwidth))
+			end-do
+			
+		end-do
+	end-if
+	writeln
+	
+end-do
+writeln
+
+
+forall(strg in STRG_NAMES) do
+	writeStorage(strgs(strg))
+end-do
+
+forall(strg in STRG_NAMES) do
+	
+	forall(t in STEP_IDX) do
+		write(strgs(strg).Name, ";")
+		write(strfmt(t, 4), ";")
+		write("b_rel_trig(t, s);")
+
+		forall(s in MAX_REL_STEP_IDX | s <= strgs(strg).LEV_DEP_REL_CAP_CURVE.Size) do
+			write(strfmt(strgs(strg).b_rel_trig(t, s).sol, 12, 8), ";")
+		end-do
+		write(strfmt(strgs(strg).max_rel_cap_pct(t).sol, 12, 8), ";")
+		write("b_inj_trig(t, s);")
+		forall(s in MAX_INJ_STEP_IDX | s <= strgs(strg).LEV_DEP_INJ_CAP_CURVE.Size) do
+			write(strfmt(strgs(strg).b_inj_trig(t, s).sol, 12, 8), ";")
+		end-do
+		write(strfmt(strgs(strg).max_inj_cap_pct(t).sol, 12, 8), ";")
+		writeln
+		
+
+		write(strgs(strg).Name, ";")
+		write(strfmt(t, 4), ";")
+		write("a_rel_trig(t, s);")
+		forall(s in MAX_REL_STEP_IDX | s <= strgs(strg).LEV_DEP_REL_CAP_CURVE.Size) do
+			write(strfmt(strgs(strg).a_rel_trig(t, s).sol, 12, 8), ";")
+		end-do
+		write("N/A;")
+		write("a_inj_trig(t, s);")
+		forall(s in MAX_INJ_STEP_IDX | s <= strgs(strg).LEV_DEP_INJ_CAP_CURVE.Size) do
+			write(strfmt(strgs(strg).a_inj_trig(t, s).sol, 12, 8), ";")
+		end-do
+		write("N/A;")
+		writeln
+		
+	end-do
+end-do
+! ==============================================================================
+!
+!   Revision Control:
+!
+!   $Revision:: 500                     $   Revision of last commit
+!   $Author:: re04179                   $   Author of last commit
+!   $Date:: 2009-04-20 12:58:21 +0200 (#$   Date of last commit
+!
+! ==============================================================================
